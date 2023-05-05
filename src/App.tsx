@@ -1,9 +1,10 @@
 import React from "react";
+import Header from "./components/Header";
 
 function App() {
   return (
-    <div className="h-screen bg-blue-300 flex justify-center item-center">
-      
+    <div>
+      <Header />
     </div>
   );
 }

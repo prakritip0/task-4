@@ -2,19 +2,19 @@ import React from "react";
 
 const Header = () => {
   return (
-    <div className="border-y-2 flex items-center flex-wrap py-4 px-20 justify-around ">
+    <div className="border-y-2 flex items-center flex-wrap py-3 px-20 justify-around ">
         <div className="logo">
-        <a href="#"><h1 className='text-indigo-700 text-3xl font-bold'>Hirace</h1></a>
+        <a href="#"><h1 className='text-indigo-500 text-2xl font-semibold'>Hirace</h1></a>
         </div>
         <div className="nav-items">
-            <ul className="flex flex-row font-light gap-14 ">
-                <li className="hover:text-gray-500 focus:text-gray-500" ><a href="#">Job Vacancy</a></li>
-                <li className="hover:text-gray-500"><a href="#">Features</a></li>
-                <li className="hover:text-gray-500"><a href="#">Pricing</a></li>
-                <li className="hover:text-gray-500"><a href="#">About Us</a></li>
+            <ul className="flex flex-row font-light gap-14">
+                <li className="hover:text-gray-500 focus:text-gray-500 text-sm" ><a href="#">Job Vacancy</a></li>
+                <li className="hover:text-gray-500 focus:text-gray-500 text-sm"><a href="#">Features</a></li>
+                <li className="hover:text-gray-500 focus:text-gray-500 text-sm"><a href="#">Pricing</a></li>
+                <li className="hover:text-gray-500 focus:text-gray-500 text-sm"><a href="#">About Us</a></li>
             </ul>
         </div>
-        <div className="right flex items-center gap-8">
+        <div className="right flex items-center gap-6">
         <div className="theme border-2 border-gray-400 h-8 w-8 rounded-lg flex items-center justify-center p-1 cursor-pointer ">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
            <path strokeLinecap="round" strokeLinejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" />
@@ -25,7 +25,7 @@ const Header = () => {
           </svg>
 
         </div>
-        <button className='bg-indigo-700 rounded-lg text-white px-4 py-2 font-thin'>
+        <button className='bg-indigo-500 rounded-lg text-white px-2 py-1 font-thin'>
             Sign Up 
         </button>
         </div>

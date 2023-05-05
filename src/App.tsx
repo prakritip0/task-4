@@ -1,10 +1,10 @@
-import React from 'react';
+
 
 
 function App() {
   return (
-    <div className="App">
-      <h1 className='text-3xl text-gray-500'>hello</h1>
+    <div className="h-screen bg-blue-300 flex justify-center item-center">
+      <button className="bg-green-200 h-10 p-4 rounded-3xl ">Dark Mode</button>
     </div>
   );
 }

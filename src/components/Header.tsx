@@ -2,7 +2,7 @@ import React from "react";
 
 const Header = () => {
   return (
-    <div className="border-y-2 flex items-center flex-wrap py-6 px-20 justify-around ">
+    <div className="border-y-2 flex items-center flex-wrap py-4 px-20 justify-around ">
         <div className="logo">
         <a href="#"><h1 className='text-indigo-700 text-3xl font-bold'>Hirace</h1></a>
         </div>

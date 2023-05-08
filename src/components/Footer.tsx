@@ -18,17 +18,15 @@ function Footer() {
                 </div>
                 <div className="features flex flex-col">
                     <a href="#" className='text-gray-500 mb-3'>Features</a>
-                    <a href="#">Remote Job</a>
-                    <a href="#">Startup</a>
-                    <a href="#">Investor & Board</a>
-                    <a href="#">Company</a>
+                    <a href="#">For Candidate</a>
+                    <a href="#">For Company</a>
+                    <a href="#">Society</a>
                 </div>
                 <div className="aboutUs flex flex-col">
                     <a href="#" className='text-gray-500 mb-3'>About Us</a>
-                    <a href="#">Remote Job</a>
-                    <a href="#">Startup</a>
-                    <a href="#">Investor & Board</a>
-                    <a href="#">Company</a>
+                    <a href="#">Documentation</a>
+                    <a href="#">Contact Us</a>
+                    <a href="#">Career</a>
                 </div>
             </div>
         </div>

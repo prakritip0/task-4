@@ -1,9 +1,10 @@
 import React from 'react'
+import GridLayout from '../utils/GridLayout'
 
 function Banner() {
   return (
-    <div className='banner flex gap-80 h-[80vw] w-[100vw]'>
-      <div className="bannerLeft mt-32 ml-40 flex flex-col gap-12">
+    <div className='banner flex justify-between mx-[10rem] overflow-hidden'>
+      <div className="bannerLeft mt-32 flex flex-col mr-[4rem] gap-12">
         <div className="new border rounded-full border-gray-300 flex items-center gap-2 px-1 py-1 w-[13rem]">
             <p className='text-sm bg-indigo-500 py-1.5 px-2  rounded-full text-white' >NEW</p>
             <p className='text-sm text-indigo-500'>WE ARE HIRING</p>
@@ -46,8 +47,57 @@ function Banner() {
 
         </div>
       </div>
-      <div className="bannerRight">
-       <div className="gridBox border-[1px] h-[30rem] w-[45rem] mt-32"></div>
+      <div className="bannerRight relative">
+        <GridLayout />
+        <div className="bannerDesign h-[25rem] w-[24rem] absolute top-[10.5rem] left-[10.5rem] rounded-3xl border border-indigo-700 shadow-lg shadow-indigo-500 bg-white flex items-center justify-center">
+         <div className="suggestions w-[22rem] h-[21rem] bg-gray-100 mt-8 rounded-2xl">
+          <h4 className='font-semi-bold mx-4 mt-4'>Suggested Work</h4>
+          
+          <div className="dummyJob border bg-white w-[20rem] h-[15rem] rounded-2xl flex flex-col gap-8 ml-[1rem] mt-[1rem] ">
+            <div className="suggestedTop flex px-2 mt-6 ml-2">
+            <p className='text-white bg-black rounded-full h-[3rem] w-[3rem] text-center pt-2' >-_-</p>
+            <div className="dummyTitle ml-3 mr-14">
+              <h4>Product Designer</h4>
+              <p className='text-gray-400 text-sm '>Framer</p>
+            </div>
+            <p className='text-indigo-500 text-sm mt-2'>Apply</p>
+            </div>
+            <div className="suggestedBottom flex flex-col gap-4 ml-5">
+              <div className="longLine h-2 w-[15rem] bg-gray-200 rounded-full">
+              </div>
+              <div className="shortLine w-[5rem] h-2 bg-gray-200 rounded-full">
+
+              </div>
+              <div className="shortLine">
+
+              </div>
+            </div>
+            <hr />
+            <div className="suggestedCardIcons flex justify-between mx-6 relative">
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 absolute text-gray-300 top-[-10px] right-[17rem]" viewBox="0 0 20 20" fill="currentColor">
+              <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
+            </svg>
+              <div className="lines h-2 w-[4rem] bg-gray-300 rounded-full">
+              </div>
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 absolute text-gray-300 top-[-10px] right-[11rem]" viewBox="0 0 20 20" fill="currentColor">
+               <path d="M8.433 7.418c.155-.103.346-.196.567-.267v1.698a2.305 2.305 0 01-.567-.267C8.07 8.34 8 8.114 8 8c0-.114.07-.34.433-.582zM11 12.849v-1.698c.22.071.412.164.567.267.364.243.433.468.433.582 0 .114-.07.34-.433.582a2.305 2.305 0 01-.567.267z" />
+               <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-13a1 1 0 10-2 0v.092a4.535 4.535 0 00-1.676.662C6.602 6.234 6 7.009 6 8c0 .99.602 1.765 1.324 2.246.48.32 1.054.545 1.676.662v1.941c-.391-.127-.68-.317-.843-.504a1 1 0 10-1.51 1.31c.562.649 1.413 1.076 2.353 1.253V15a1 1 0 102 0v-.092a4.535 4.535 0 001.676-.662C13.398 13.766 14 12.991 14 12c0-.99-.602-1.765-1.324-2.246A4.535 4.535 0 0011 9.092V7.151c.391.127.68.317.843.504a1 1 0 101.511-1.31c-.563-.649-1.413-1.076-2.354-1.253V5z" clipRule="evenodd" />
+              </svg>
+              <div className="lines h-2 w-[4rem] bg-gray-300 rounded-full">
+              </div>
+              <div className="lines h-2 w-[4rem] bg-gray-300 rounded-full">
+              </div>
+            </div>
+          </div>
+         </div>
+        </div>
+        <div className="topRating absolute bottom-[5rem] right-[30rem] flex gap-4 bg-white border border-black rounded-xl px-4 py-3">
+          <h3 className='bg-orange-700 h-[3rem] w-[3rem] rounded-full text-center pt-2 text-2xl text-white'>P</h3>
+          <div>
+            <p>Top Rating App</p>
+            <p className='text-yellow-400'>★★★★★</p>
+          </div>
+        </div>
       </div>
     </div>
   )

@@ -49,10 +49,9 @@ function Banner() {
       </div>
       <div className="bannerRight relative">
         <GridLayout />
-        <div className="bannerDesign h-[25rem] w-[24rem] absolute top-[10.5rem] left-[10.5rem] rounded-3xl border border-indigo-700 shadow-lg shadow-indigo-500 bg-white flex items-center justify-center">
+        <div className="bannerDesign h-[25rem] w-[24rem] absolute top-[10.5rem] left-[10.5rem] rounded-3xl border border-indigo-700 shadow-[4px_4px_0_0] shadow-indigo-500 bg-white flex items-center justify-center">
          <div className="suggestions w-[22rem] h-[21rem] bg-gray-100 mt-8 rounded-2xl">
           <h4 className='font-semi-bold mx-4 mt-4'>Suggested Work</h4>
-          
           <div className="dummyJob border bg-white w-[20rem] h-[15rem] rounded-2xl flex flex-col gap-8 ml-[1rem] mt-[1rem] ">
             <div className="suggestedTop flex px-2 mt-6 ml-2">
             <p className='text-white bg-black rounded-full h-[3rem] w-[3rem] text-center pt-2' >-_-</p>
@@ -91,7 +90,7 @@ function Banner() {
           </div>
          </div>
         </div>
-        <div className="topRating absolute bottom-[5rem] right-[30rem] flex gap-4 bg-white border border-black rounded-xl px-4 py-3">
+        <div className="topRating absolute bottom-[5rem] right-[30rem] flex gap-4 bg-white border shadow-[2px_2px_0_0_black] border-black rounded-xl px-4 py-3">
           <h3 className='bg-orange-700 h-[3rem] w-[3rem] rounded-full text-center pt-2 text-2xl text-white'>P</h3>
           <div>
             <p>Top Rating App</p>

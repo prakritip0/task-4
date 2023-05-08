@@ -2,16 +2,16 @@ import React from "react";
 
 const Header = () => {
   return (
-    <div className="border-y-2 flex items-center flex-wrap py-3 px-20 justify-around ">
+    <div className="border-y-2 flex items-center flex-wrap py-5 px-32 justify-between ">
         <div className="logo">
-        <a href="#"><h1 className='text-indigo-500 text-2xl font-semibold'>Hirace</h1></a>
+        <a href="#"><h1 className='text-indigo-500 text-3xl font-semibold'>Hirace</h1></a>
         </div>
         <div className="nav-items">
             <ul className="flex flex-row font-light gap-14">
-                <li className="hover:text-gray-500 focus:text-gray-500 text-sm" ><a href="#">Job Vacancy</a></li>
-                <li className="hover:text-gray-500 focus:text-gray-500 text-sm"><a href="#">Features</a></li>
-                <li className="hover:text-gray-500 focus:text-gray-500 text-sm"><a href="#">Pricing</a></li>
-                <li className="hover:text-gray-500 focus:text-gray-500 text-sm"><a href="#">About Us</a></li>
+                <li className="hover:text-gray-500 focus:text-gray-500 text-md" ><a href="#">Job Vacancy</a></li>
+                <li className="hover:text-gray-500 focus:text-gray-500 text-md"><a href="#">Features</a></li>
+                <li className="hover:text-gray-500 focus:text-gray-500 text-md"><a href="#">Pricing</a></li>
+                <li className="hover:text-gray-500 focus:text-gray-500 text-md"><a href="#">About Us</a></li>
             </ul>
         </div>
         <div className="right flex items-center gap-6">
@@ -25,7 +25,7 @@ const Header = () => {
           </svg>
 
         </div>
-        <button className='bg-indigo-500 rounded-lg text-white px-2 py-1 font-thin'>
+        <button className='bg-indigo-500 rounded-lg text-white px-4 py-2 font-light text-lg'>
             Sign Up 
         </button>
         </div>

@@ -10,9 +10,13 @@ const Homepage = () => {
     setIsDarkMode(opt)
   }
 
+  const darkModeToggle = () => {
+    setIsDarkMode(!isDarkMode)
+  }
+
   return (
     <div className={isDarkMode? "bg-gray-800": ""}>
-     <Header isDarkMode = {isDarkMode} darkModeFunc={darkModeFunc} />
+     <Header isDarkMode = {isDarkMode} darkModeToggle={darkModeToggle} />
      <Banner isDarkMode = {isDarkMode} />
      <hr className={isDarkMode? 'mt-[3rem] mx-[9rem] bg-gray-800' : 'mt-[3rem] mx-[9rem]'} />
      <Footer isDarkMode = {isDarkMode} />

@@ -34,8 +34,8 @@ function Footer({isDarkMode}:FooterProps) {
                 </div>
             </div>
         </div>
-        <hr className='my-[2rem]' />
-        <div className="footerBottom pb-[2rem] flex justify-between">
+        <hr className='mt-[2rem] mb-6' />
+        <div className="footerBottom pb-[1rem] flex justify-around items-center">
             <p className={isDarkMode? 'text-gray-300' : 'text-gray-500'}>©2023 Hirace Technologies, Inc.  </p>
             <div className="legal flex gap-6">
                 <a href="#" className={isDarkMode? "text-white" : ""}>Terms</a>

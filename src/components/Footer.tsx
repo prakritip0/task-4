@@ -6,41 +6,41 @@ interface FooterProps {
 
 function Footer({isDarkMode}:FooterProps) {
   return (
-    <div className='mx-[9rem]' >
-        <div className="footerTop flex justify-between  mt-[3rem]">
+    <div className={isDarkMode? 'px-[9rem] bg-gray-800' :'px-[9rem]'} >
+        <div className="footerTop flex justify-between  pt-[3rem]">
             <div>
                 <h2 className='text-indigo-500 text-3xl font-semibold mb-4'>Hirace</h2>
-                <p className='text-gray-500'>Find job you love and research the <br /> fastest-growing companies, and hire experienced workers.</p>
+                <p className={isDarkMode? 'text-gray-300' : 'text-gray-500'}>Find job you love and research the <br /> fastest-growing companies, and hire experienced workers.</p>
             </div>
             <div className="footer-items flex gap-[4rem] mr-[5rem]">
                 <div className="product flex flex-col">
-                    <a href="#" className='text-gray-500 mb-3'>Product</a>
-                    <a href="#">Remote Job</a>
-                    <a href="#">Startup</a>
-                    <a href="#">Investor & Board</a>
-                    <a href="#">Company</a>
+                    <a href="#" className={isDarkMode? 'text-white mb-3' : 'text-gray-500 mb-3'}>Product</a>
+                    <a href="#" className={isDarkMode? "text-gray-300" : ""}>Remote Job</a>
+                    <a href="#" className={isDarkMode? "text-gray-300" : ""} >Startup</a>
+                    <a href="#" className={isDarkMode? "text-gray-300" : ""}>Investor & Board</a>
+                    <a href="#" className={isDarkMode? "text-gray-300" : ""}>Company</a>
                 </div>
                 <div className="features flex flex-col">
-                    <a href="#" className='text-gray-500 mb-3'>Features</a>
-                    <a href="#">For Candidate</a>
-                    <a href="#">For Company</a>
-                    <a href="#">Society</a>
+                    <a href="#" className={isDarkMode? 'text-white mb-3' : 'text-gray-500 mb-3'}>Features</a>
+                    <a href="#" className={isDarkMode? "text-gray-300" : ""}>For Candidate</a>
+                    <a href="#" className={isDarkMode? "text-gray-300" : ""}>For Company</a>
+                    <a href="#" className={isDarkMode? "text-gray-300" : ""}>Society</a>
                 </div>
                 <div className="aboutUs flex flex-col">
-                    <a href="#" className='text-gray-500 mb-3'>About Us</a>
-                    <a href="#">Documentation</a>
-                    <a href="#">Contact Us</a>
-                    <a href="#">Career</a>
+                    <a href="#" className={isDarkMode? 'text-white mb-3' : 'text-gray-500 mb-3'}>About Us</a>
+                    <a href="#" className={isDarkMode? "text-gray-300" : ""}>Documentation</a>
+                    <a href="#" className={isDarkMode? "text-gray-300" : ""}>Contact Us</a>
+                    <a href="#" className={isDarkMode? "text-gray-300" : ""}>Career</a>
                 </div>
             </div>
         </div>
         <hr className='my-[2rem]' />
-        <div className="footerBottom mb-[2rem] flex justify-between">
-            <p className='text-gray-500'>©2023 Hirace Technologies, Inc.  </p>
+        <div className="footerBottom pb-[2rem] flex justify-between">
+            <p className={isDarkMode? 'text-gray-300' : 'text-gray-500'}>©2023 Hirace Technologies, Inc.  </p>
             <div className="legal flex gap-6">
-                <a href="#">Terms</a>
-                <a href="#">Privacy</a>
-                <a href="#">Legal</a>
+                <a href="#" className={isDarkMode? "text-white" : ""}>Terms</a>
+                <a href="#" className={isDarkMode? "text-white" : ""}>Privacy</a>
+                <a href="#" className={isDarkMode? "text-white" : ""}>Legal</a>
             </div>
             <div className="socials flex gap-3">
             {/* <svg role="img" width={24}  viewBox="0 0 24 24" fill='gray'  xmlns="http://www.w3.org/2000/svg"><title>Facebook</title><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg> */}

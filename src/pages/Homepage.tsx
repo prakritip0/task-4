@@ -11,10 +11,10 @@ const Homepage = () => {
   }
 
   return (
-    <div>
+    <div className={isDarkMode? "bg-gray-800": ""}>
      <Header isDarkMode = {isDarkMode} darkModeFunc={darkModeFunc} />
      <Banner isDarkMode = {isDarkMode} />
-     <hr className='mt-[3rem] mx-[9rem]' />
+     <hr className={isDarkMode? 'mt-[3rem] mx-[9rem] bg-gray-800' : 'mt-[3rem] mx-[9rem]'} />
      <Footer isDarkMode = {isDarkMode} />
     </div>
   )

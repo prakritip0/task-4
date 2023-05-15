@@ -7,7 +7,7 @@ interface BannerProps {
 
 function Banner({isDarkMode}:BannerProps) {
   return (
-    <div className={isDarkMode? 'banner flex justify-between px-[10rem] overflow-hidden bg-gray-800' : 'banner flex justify-between px-[10rem] overflow-hidden'}>
+    <div className={isDarkMode? 'banner flex justify-between px-[10rem] pb-[3rem] overflow-hidden bg-gray-800' : 'banner flex justify-between px-[10rem] overflow-hidden'}>
       <div className="bannerLeft mt-32 flex flex-col mr-[4rem] gap-12">
         <div className="new border rounded-full border-gray-300 flex items-center gap-2 px-1 py-1 w-[13rem]">
             <p className='text-sm bg-indigo-500 py-1.5 px-2  rounded-full text-white' >NEW</p>

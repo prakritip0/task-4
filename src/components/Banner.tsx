@@ -1,13 +1,13 @@
 import React from 'react'
 import GridLayout from '../utils/GridLayout'
 
-interface BannerProps {
-  isDarkMode: boolean,
-}
+// interface BannerProps {
+//   isDarkMode: boolean,
+// }
 
-function Banner({isDarkMode}:BannerProps) {
+function Banner() {
   return (
-    <div className={isDarkMode? 'banner flex justify-between px-[10rem] pb-[3rem] overflow-hidden bg-gray-800' : 'banner flex justify-between px-[10rem] overflow-hidden'}>
+    <div className='banner flex justify-between px-[10rem] overflow-hidden dark:bg-gray-800'>
       <div className="bannerLeft mt-32 flex flex-col mr-[4rem] gap-12">
         <div className="new border rounded-full border-gray-300 flex items-center gap-2 px-1 py-1 w-[13rem]">
             <p className='text-sm bg-indigo-500 py-1.5 px-2  rounded-full text-white' >NEW</p>
@@ -16,8 +16,8 @@ function Banner({isDarkMode}:BannerProps) {
              <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75" />
             </svg>
         </div>
-        <h1 className={isDarkMode ? 'text-7xl text-gray-200' : 'text-7xl'}>The best place to <br /> find your dream job</h1>
-        <p className={isDarkMode? 'font-light text-lg text-gray-200 ' : 'text-black font-light text-lg '}>Find job you love and research the fastest-growing <br /> companies, and hire experienced workers.</p>
+        <h1 className='text-7xl text-black dark:text-gray-200'>The best place to <br /> find your dream job</h1>
+        <p className='text-black font-light text-lg dark:text-gray-200 '>Find job you love and research the fastest-growing <br /> companies, and hire experienced workers.</p>
         
         <form className='border border-gray-300 rounded-lg flex justify-around items-center py-1.5 px-1'>
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 29 29" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 text-gray-300 pt-0.5">
@@ -25,7 +25,7 @@ function Banner({isDarkMode}:BannerProps) {
         </svg>
 
        
-          <input className={isDarkMode? ' outline-none bg-gray-800 text-gray-300' : ' outline-none' }type="text" placeholder='Job Title' />
+          <input className=' outline-none dark:text-gray-300 dark:bg-gray-800' type="text" placeholder='Job Title' />
           
            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 text-gray-300 rotate-90">
             <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 12h-15" />
@@ -37,12 +37,10 @@ function Banner({isDarkMode}:BannerProps) {
             <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
            </svg>
 
-           <input className={isDarkMode? ' placeholder-light outline-none bg-gray-800 text-gray-300' : 'placeholder-light outline-none'} type="text" placeholder='All Location'/>
+           <input className='placeholder-light outline-none dark:bg-gray-800 dark:text-gray-300' type="text" placeholder='All Location'/>
            <button className='bg-indigo-500 text-white rounded-lg text-2xl  flex py-1.5 pl-2 gap-1' type='submit'>
             Search
-            {/* <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 32" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 text-white">
-             <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
-            </svg> */}
+            
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 30 30" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 mt-2">
              <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
             </svg>
@@ -55,11 +53,11 @@ function Banner({isDarkMode}:BannerProps) {
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30" fill="currentColor" className="w-6 h-6 text-indigo-500">
           <path fillRule="evenodd" d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12zm13.36-1.814a.75.75 0 10-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 00-1.06 1.06l2.25 2.25a.75.75 0 001.14-.094l3.75-5.25z" clipRule="evenodd" />
         </svg>
-        <p className={isDarkMode ? 'text-sm mr-8 text-gray-300' : 'text-sm mr-8'}>7 days free trial</p>
+        <p className='text-sm text-black mr-8 dark:text-gray-300'>7 days free trial</p>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30" fill="currentColor" className="w-6 h-6 text-indigo-500">
           <path fillRule="evenodd" d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12zm13.36-1.814a.75.75 0 10-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 00-1.06 1.06l2.25 2.25a.75.75 0 001.14-.094l3.75-5.25z" clipRule="evenodd" />
         </svg>
-        <p className={isDarkMode? 'text-sm text-gray-300' :'text-sm'}>Easy to set up</p>
+        <p className='text-sm text-black dark:text-gray-300'>Easy to set up</p>
 
         </div>
       </div>

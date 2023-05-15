@@ -6,10 +6,6 @@ import Footer from '../components/Footer'
 const Homepage = () => {
   const [isDarkMode, setIsDarkMode]= useState<boolean>(false);
 
-  const darkModeFunc = (opt: boolean) => {
-    setIsDarkMode(opt)
-  }
-
   const darkModeToggle = () => {
     setIsDarkMode(!isDarkMode)
   }

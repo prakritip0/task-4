@@ -6,7 +6,7 @@ import Footer from '../components/Footer'
 const Homepage = () => {
   
   return (
-    <div className='dark:bg-gray-800'>
+    <div className='bg-[#fffaf2] dark:bg-gray-800'>
      <Header/>
      <Banner/>
      <hr className='mt-[3rem] mx-[9rem] bg-gray-800' />

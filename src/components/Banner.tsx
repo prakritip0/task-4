@@ -7,7 +7,7 @@ import GridLayout from '../utils/GridLayout'
 
 function Banner() {
   return (
-    <div className='banner flex justify-between px-[10rem] overflow-hidden dark:bg-gray-800'>
+    <div className='banner flex justify-between px-[10rem] overflow-hidden bg-[#fffaf2] dark:bg-gray-800'>
       <div className="bannerLeft mt-32 flex flex-col mr-[4rem] gap-12">
         <div className="new border rounded-full border-gray-300 flex items-center gap-2 px-1 py-1 w-[13rem]">
             <p className='text-sm bg-indigo-500 py-1.5 px-2  rounded-full text-white' >NEW</p>
@@ -25,7 +25,7 @@ function Banner() {
         </svg>
 
        
-          <input className=' outline-none dark:text-gray-300 dark:bg-gray-800' type="text" placeholder='Job Title' />
+          <input className=' outline-none dark:text-gray-300 bg-[#fffaf2] dark:bg-gray-800' type="text" placeholder='Job Title' />
           
            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 text-gray-300 rotate-90">
             <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 12h-15" />
@@ -37,7 +37,7 @@ function Banner() {
             <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
            </svg>
 
-           <input className='placeholder-light outline-none dark:bg-gray-800 dark:text-gray-300' type="text" placeholder='All Location'/>
+           <input className='placeholder-light outline-none bg-[#fffaf2] dark:bg-gray-800 dark:text-gray-300' type="text" placeholder='All Location'/>
            <button className='bg-indigo-500 text-white rounded-lg text-2xl  flex py-1.5 pl-2 gap-1' type='submit'>
             Search
             

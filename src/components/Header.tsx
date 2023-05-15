@@ -1,4 +1,4 @@
-import React,{useState} from "react";
+import React,{useEffect, useState} from "react";
 
 // interface HeaderProps {
 //   isDarkMode: boolean,
@@ -16,8 +16,13 @@ const Header = () => {
       setIsDarkMode(true)
     }
   }
+ useEffect(()=>{
+   const storedTheme = localStorage.getItem('theme')
+   console.log(storedTheme);
+   
+ },[])
   return (
-    <div className={"flex items-center flex-wrap py-5 px-32 justify-between dark:bg-gray-800"}>
+    <div className={"flex items-center flex-wrap py-5 px-32 justify-between bg-[#fffaf2] dark:bg-gray-800"}>
         <div className="logo">
         <a href="#"><h1 className='text-indigo-500 text-3xl font-semibold'>Hirace</h1></a>
         </div>

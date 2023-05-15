@@ -6,7 +6,7 @@ import React from 'react'
 
 function Footer() {
   return (
-    <div className='bg-white dark:bg-gray-800 px-[9rem]' >
+    <div className=' bg-[#fffaf2] dark:bg-gray-800 px-[9rem]' >
         <div className="footerTop flex justify-between  pt-[3rem]">
             <div>
                 <h2 className='text-indigo-500 text-3xl font-semibold mb-4'>Hirace</h2>

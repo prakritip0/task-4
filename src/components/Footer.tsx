@@ -1,6 +1,10 @@
 import React from 'react'
 
-function Footer() {
+interface FooterProps {
+    isDarkMode: boolean,
+  }
+
+function Footer({isDarkMode}:FooterProps) {
   return (
     <div className='mx-[9rem]' >
         <div className="footerTop flex justify-between  mt-[3rem]">

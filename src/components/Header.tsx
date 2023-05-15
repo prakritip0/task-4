@@ -1,9 +1,14 @@
-import React, { useState } from "react";
+import React from "react";
 
-const Header = () => {
-  const [isDarkMode, setIsDarkMode]= useState(false);
+interface HeaderProps {
+  isDarkMode: boolean,
+  darkModeFunc: (opt:boolean) => void
+}
+
+const Header = ({isDarkMode, darkModeFunc}: HeaderProps) => {
+  
   const toggleDarkMode=()=>{
-    setIsDarkMode(!isDarkMode);
+    darkModeFunc(!isDarkMode);
     console.log('toggled');
     
   }
@@ -14,10 +19,10 @@ const Header = () => {
         </div>
         <div className="nav-items">
             <ul className={"flex flex-row font-light gap-14"}>
-                <li className={isDarkMode? "hover:text-gray-300 focus:text-gray-300 text-md text-white" :"hover:text-gray-500 focus:text-gray-500 text-md"} ><a href="#">Job Vacancy</a></li>
-                <li className={isDarkMode? "hover:text-gray-300 focus:text-gray-300 text-md text-white" :"hover:text-gray-500 focus:text-gray-500 text-md"}><a href="#">Features</a></li>
-                <li className={isDarkMode? "hover:text-gray-300 focus:text-gray-300 text-md text-white" :"hover:text-gray-500 focus:text-gray-500 text-md"}><a href="#">Pricing</a></li>
-                <li className={isDarkMode? "hover:text-gray-300 focus:text-gray-300 text-md text-white" :"hover:text-gray-500 focus:text-gray-500 text-md"}><a href="#">About Us</a></li>
+                <li className={isDarkMode? "hover:text-gray-300 focus:text-gray-400 text-md text-gray-200" :"hover:text-gray-500 focus:text-gray-500 text-md"} ><a href="#">Job Vacancy</a></li>
+                <li className={isDarkMode? "hover:text-gray-300 focus:text-gray-400 text-md text-gray-200" :"hover:text-gray-500 focus:text-gray-500 text-md"}><a href="#">Features</a></li>
+                <li className={isDarkMode? "hover:text-gray-300 focus:text-gray-400 text-md text-gray-200" :"hover:text-gray-500 focus:text-gray-500 text-md"}><a href="#">Pricing</a></li>
+                <li className={isDarkMode? "hover:text-gray-300 focus:text-gray-400 text-md text-gray-200" :"hover:text-gray-500 focus:text-gray-500 text-md"}><a href="#">About Us</a></li>
             </ul>
         </div>
         <div className="right flex items-center gap-6">

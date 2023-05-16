@@ -7,8 +7,8 @@ import GridLayout from '../utils/GridLayout'
 
 function Banner() {
   return (
-    <div className='banner flex justify-between px-[10rem] overflow-hidden bg-[#fffaf2] dark:bg-gray-800'>
-      <div className="bannerLeft mt-32 flex flex-col mr-[4rem] gap-12">
+    <div className='banner flex justify-between px-[8rem] 2xl:px-[10rem] overflow-hidden bg-[#fffaf2] dark:bg-gray-800'>
+      <div className="bannerLeft mt-32 flex flex-col mr-[4rem] gap-7 2xl:gap-12">
         <div className="new border rounded-full border-gray-300 flex items-center gap-2 px-1 py-1 w-[13rem]">
             <p className='text-sm bg-indigo-500 py-1.5 px-2  rounded-full text-white' >NEW</p>
             <p className='text-sm text-indigo-500'>WE ARE HIRING</p>
@@ -16,10 +16,10 @@ function Banner() {
              <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75" />
             </svg>
         </div>
-        <h1 className='text-7xl text-black dark:text-gray-200'>The best place to <br /> find your dream job</h1>
-        <p className='text-black font-light text-lg dark:text-gray-200 '>Find job you love and research the fastest-growing <br /> companies, and hire experienced workers.</p>
+        <h1 className=' text-6xl 2xl:text-7xl text-black dark:text-gray-200'>The best place to <br /> find your dream job</h1>
+        <p className='text-black font-light text-md 2xl:text-lg dark:text-gray-200 '>Find job you love and research the fastest-growing <br /> companies, and hire experienced workers.</p>
         
-        <form className='border border-gray-300 rounded-lg flex justify-around items-center py-1.5 px-1'>
+        <form className='border border-gray-300 rounded-lg w-[100%] flex  justify-between items-center 2xl:py-1.5 2xl:pr-2'>
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 29 29" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 text-gray-300 pt-0.5">
          <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
         </svg>
@@ -38,10 +38,10 @@ function Banner() {
            </svg>
 
            <input className='placeholder-light outline-none bg-[#fffaf2] dark:bg-gray-800 dark:text-gray-300' type="text" placeholder='All Location'/>
-           <button className='bg-indigo-500 text-white rounded-lg text-2xl  flex py-1.5 pl-2 gap-1' type='submit'>
+           <button className='bg-indigo-500 text-white rounded-lg text-xl 2xl:text-2xl  flex py-1.5 pl-2 gap-1 my-1 lg:mr-1' type='submit'>
             Search
             
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 30 30" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 mt-2">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 30 30" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 mt-1.5 2xl:mt-2">
              <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
             </svg>
 
@@ -63,52 +63,50 @@ function Banner() {
       </div>
       <div className="bannerRight relative">
         <GridLayout />
-        <div className="bannerDesign h-[25rem] w-[24rem] absolute top-[10.5rem] left-[10.5rem] rounded-3xl border border-indigo-700 shadow-[4px_4px_0_0] shadow-indigo-500 bg-white flex items-center justify-center">
-         <div className="suggestions w-[22rem] h-[21rem] bg-gray-100 mt-8 rounded-2xl">
-          <h4 className='font-semi-bold mx-4 mt-4'>Suggested Work</h4>
-          <div className="dummyJob border bg-white w-[20rem] h-[15rem] rounded-2xl flex flex-col gap-8 ml-[1rem] mt-[1rem] ">
-            <div className="suggestedTop flex px-2 mt-6 ml-2">
-            <p className='text-white bg-black rounded-full h-[3rem] w-[3rem] text-center pt-2' >-_-</p>
-            <div className="dummyTitle ml-3 mr-14">
-              <h4>Product Designer</h4>
-              <p className='text-gray-400 text-sm '>Framer</p>
+        <div className="bannerDesign h-[15rem] w-[18rem] 2xl:h-[25rem] 2xl:w-[24rem] absolute top-[11.5rem] left-[3.5rem] 2xl:top-[10.5rem] 2xl:left-[10.5rem] rounded-3xl border border-indigo-700 shadow-[4px_4px_0_0] shadow-indigo-500 bg-white flex items-center justify-center">
+         <div className="suggestions w-[15rem] h-[12rem] 2xl:w-[22rem] 2xl:h-[21rem] bg-gray-100 mt-6 2xl:mt-8 rounded-2xl">
+          <h4 className='font-semi-bold text-sm mx-4 mt-1 2xl:mt-4'>Suggested Work</h4>
+          <div className="dummyJob border bg-white w-[14rem] h-[10rem] 2xl:w-[20rem] 2xl:h-[16rem] rounded-2xl flex flex-col gap-6 2xl:gap-8 ml-[0.5rem] 2xl:ml-[1rem] mt-1 2xl:mt-[1rem] ">
+            <div className="suggestedTop flex justify-around 2xl:px-2 mt-2 2xl:mt-6 2xl:ml-2">
+            <p className='text-white text-xs bg-black rounded-full h-[2rem] w-[2rem] 2xl:h-[3rem] 2xl:w-[3rem] text-center pt-1' >-_-</p>
+            <div className="dummyTitle 2xl:ml-3 2xl:mr-14">
+              <h4 className='text-xs'>Product Designer</h4>
+              <p className='text-gray-400 text-xs 2xl:text-sm '>Framer</p>
             </div>
-            <p className='text-indigo-500 text-sm mt-2'>Apply</p>
+            <a className='text-indigo-500 text-xs 2xl:text-sm mt-2' href='#'>Apply</a>
             </div>
-            <div className="suggestedBottom flex flex-col gap-4 ml-5">
-              <div className="longLine h-2 w-[15rem] bg-gray-200 rounded-full">
+            <div className="suggestedBottom flex flex-col gap-4 ml-5 2xl:mb-6">
+              <div className="longLine h-1 w-[10rem] 2xl:h-2 2xl:w-[15rem] bg-gray-200 rounded-full">
               </div>
-              <div className="shortLine w-[5rem] h-2 bg-gray-200 rounded-full">
+              <div className="shortLine h-1 w-[5rem] 2xl:w-[5rem] 2xl:h-2 bg-gray-200 rounded-full">
 
               </div>
-              <div className="shortLine">
-
-              </div>
+              
             </div>
             <hr />
             <div className="suggestedCardIcons flex justify-between mx-6 relative">
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 absolute text-gray-300 top-[-10px] right-[17rem]" viewBox="0 0 20 20" fill="currentColor">
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 absolute text-gray-300 top-[-10px] right-[11rem] 2xl:right-[17rem]" viewBox="0 0 20 20" fill="currentColor">
               <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
             </svg>
-              <div className="lines h-2 w-[4rem] bg-gray-300 rounded-full">
+              <div className="lines h-1 w-[2.5rem] 2xl:h-2 2xl:w-[4rem] bg-gray-300 rounded-full">
               </div>
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 absolute text-gray-300 top-[-10px] right-[11rem]" viewBox="0 0 20 20" fill="currentColor">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 absolute text-gray-300 top-[-10px] right-[6.8rem] 2xl:right-[11rem]" viewBox="0 0 20 20" fill="currentColor">
                <path d="M8.433 7.418c.155-.103.346-.196.567-.267v1.698a2.305 2.305 0 01-.567-.267C8.07 8.34 8 8.114 8 8c0-.114.07-.34.433-.582zM11 12.849v-1.698c.22.071.412.164.567.267.364.243.433.468.433.582 0 .114-.07.34-.433.582a2.305 2.305 0 01-.567.267z" />
                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-13a1 1 0 10-2 0v.092a4.535 4.535 0 00-1.676.662C6.602 6.234 6 7.009 6 8c0 .99.602 1.765 1.324 2.246.48.32 1.054.545 1.676.662v1.941c-.391-.127-.68-.317-.843-.504a1 1 0 10-1.51 1.31c.562.649 1.413 1.076 2.353 1.253V15a1 1 0 102 0v-.092a4.535 4.535 0 001.676-.662C13.398 13.766 14 12.991 14 12c0-.99-.602-1.765-1.324-2.246A4.535 4.535 0 0011 9.092V7.151c.391.127.68.317.843.504a1 1 0 101.511-1.31c-.563-.649-1.413-1.076-2.354-1.253V5z" clipRule="evenodd" />
               </svg>
-              <div className="lines h-2 w-[4rem] bg-gray-300 rounded-full">
+              <div className="lines h-1 w-[2.5rem] 2xl:h-2 2xl:w-[4rem] bg-gray-300 rounded-full">
               </div>
-              <div className="lines h-2 w-[4rem] bg-gray-300 rounded-full">
+              <div className="lines h-1 w-[2.5rem] 2xl:h-2 2xl:w-[4rem] bg-gray-300 rounded-full">
               </div>
             </div>
           </div>
          </div>
         </div>
-        <div className="topRating absolute bottom-[5rem] right-[30rem] flex gap-4 bg-white border shadow-[2px_2px_0_0_black] border-black rounded-xl px-4 py-3">
-          <h3 className='bg-orange-700 h-[3rem] w-[3rem] rounded-full text-center pt-2 text-2xl text-white'>P</h3>
+        <div className="topRating absolute bottom-[5rem] left-[1rem] 2xl:bottom-[4rem] 2xl:right-[30rem] flex gap-2 2xl:gap-4 bg-white border shadow-[2px_2px_0_0_black] border-black rounded-xl px-2 py-1.5 2xl:px-4 2xl:py-3 w-[9rem] 2xl:w-[13rem]">
+          <h3 className='bg-orange-700 px-[0.7rem] py-[0.25rem] 2xl:px-[0.8rem] rounded-full text-center text-md 2xl:text-2xl text-white'>P</h3>
           <div>
-            <p>Top Rating App</p>
-            <p className='text-yellow-400'>★★★★★</p>
+            <p className='text-xs 2xl:text-sm'>Top Rating App</p>
+            <p className='text-yellow-400 text-xs 2xl:text-md'>★★★★★</p>
           </div>
         </div>
       </div>

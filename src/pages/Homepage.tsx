@@ -9,7 +9,7 @@ const Homepage = () => {
     <div className='bg-[#fffaf2] dark:bg-gray-800'>
      <Header/>
      <Banner/>
-     <hr className='mt-[3rem] mx-[9rem] bg-gray-800' />
+     <hr className='mt-[3rem] mx-[7rem] 2xl:mx-[9rem] bg-gray-800' />
      <Footer/>
     </div>
   )

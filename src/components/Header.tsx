@@ -31,7 +31,7 @@ const Header = () => {
    
  },[isDarkMode])
   return (
-    <div className={"flex items-center flex-wrap py-5 px-32 justify-between bg-[#fffaf2] dark:bg-gray-800"}>
+    <div className={"flex items-center border border-gray-300 dark:border-gray-800 flex-wrap py-5 px-32 justify-between bg-[#fffaf2] dark:bg-gray-800"}>
         <div className="logo">
         <a href="#"><h1 className='text-indigo-500 text-3xl font-semibold'>Hirace</h1></a>
         </div>
@@ -54,7 +54,7 @@ const Header = () => {
           </svg>
 
         </div>
-        <button className='bg-indigo-500 rounded-lg text-white px-4 py-2 font-light text-lg'>
+        <button className='bg-indigo-500 rounded-lg text-white  px-4 py-2 font-light  text-lg'>
             Sign Up 
         </button>
         </div>

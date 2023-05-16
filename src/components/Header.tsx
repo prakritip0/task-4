@@ -6,21 +6,30 @@ import React,{useEffect, useState} from "react";
 // }
 
 const Header = () => {
-  const [isDarkMode, setIsDarkMode]= useState<boolean>(false);
-  const darkModeToggle = () => {
+  const [isDarkMode, setIsDarkMode]= useState<boolean | undefined>(undefined);
+  useEffect(()=>{
     if(isDarkMode){
-      document.documentElement.classList.remove('dark')
-      setIsDarkMode(false)
-    } else {
       document.documentElement.classList.add('dark')
-      setIsDarkMode(true)
+      localStorage.setItem('theme', 'dark')
+    } else if(isDarkMode===false) {
+      document.documentElement.classList.remove('dark')
+      localStorage.setItem('theme', 'light')
     }
-  }
+  },[isDarkMode])
+  
+ 
  useEffect(()=>{
    const storedTheme = localStorage.getItem('theme')
-   console.log(storedTheme);
+  //  console.log(storedTheme);
+   if(storedTheme){
+    if(storedTheme==='dark'){
+      setIsDarkMode(true);
+    }else{
+      setIsDarkMode(false);
+    }
+   }
    
- },[])
+ },[isDarkMode])
   return (
     <div className={"flex items-center flex-wrap py-5 px-32 justify-between bg-[#fffaf2] dark:bg-gray-800"}>
         <div className="logo">
@@ -35,7 +44,7 @@ const Header = () => {
             </ul>
         </div>
         <div className="right flex items-center gap-6">
-        <div className="theme border-2 border-gray-500 h-8 w-8 rounded-lg flex items-center justify-center p-1 cursor-pointer dark:border-white dark:bg-gray-800" onClick={darkModeToggle}>
+        <div className="theme border-2 border-gray-500 h-8 w-8 rounded-lg flex items-center justify-center p-1 cursor-pointer dark:border-white dark:bg-gray-800" onClick={()=>{setIsDarkMode(!isDarkMode)}}>
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className='dark:hidden'>
            <path strokeLinecap="round" strokeLinejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" />
           </svg>

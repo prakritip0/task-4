@@ -19,13 +19,13 @@ function Banner() {
         <h1 className=' text-6xl 2xl:text-7xl text-black dark:text-gray-200'>The best place to <br /> find your dream job</h1>
         <p className='text-black font-light text-md 2xl:text-lg dark:text-gray-200 '>Find job you love and research the fastest-growing <br /> companies, and hire experienced workers.</p>
         
-        <form className='border border-gray-300 rounded-lg w-[100%] flex  justify-between items-center 2xl:py-1.5 2xl:pr-2'>
+        <form className='border border-gray-300 rounded-lg w-[100%] flex pl-1  justify-between items-center 2xl:py-1.5 2xl:pr-2'>
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 29 29" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 text-gray-300 pt-0.5">
          <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
         </svg>
 
        
-          <input className=' outline-none dark:text-gray-300 bg-[#fffaf2] dark:bg-gray-800' type="text" placeholder='Job Title' />
+          <input className=' outline-none dark:text-gray-300 bg-[#fffaf2] dark:bg-gray-800 w-[10rem]' type="text" placeholder='Job Title' />
           
            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 text-gray-300 rotate-90">
             <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 12h-15" />
@@ -37,7 +37,7 @@ function Banner() {
             <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
            </svg>
 
-           <input className='placeholder-light outline-none bg-[#fffaf2] dark:bg-gray-800 dark:text-gray-300' type="text" placeholder='All Location'/>
+           <input className='placeholder-light outline-none bg-[#fffaf2] dark:bg-gray-800 dark:text-gray-300 w-[10rem] mr-1' type="text" placeholder='All Location'/>
            <button className='bg-indigo-500 text-white rounded-lg text-xl 2xl:text-2xl  flex py-1.5 pl-2 gap-1 my-1 lg:mr-1' type='submit'>
             Search
             

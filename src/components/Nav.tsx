@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { ThemeContext} from "../pages/Homepage";
 
 const Nav = () => {
- const {darkTheme, changeTheme}=useContext(ThemeContext);
+ const {changeTheme}=useContext(ThemeContext);
   return (
     <nav className={"flex flex-row w-[100vw] items-center border border-gray-300 dark:border-gray-800 flex-wrap py-2 px-3 lg:py-5 lg:px-32 justify-between bg-[#fffaf2] dark:bg-gray-800"}>
         <div className="logo">

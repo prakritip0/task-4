@@ -6,7 +6,7 @@ import React from 'react'
 
 function Footer() {
   return (
-    <div className=' bg-[#fffaf2] dark:bg-gray-800 px-4 md:px-[7rem] 2xl:px-[9rem]' >
+    <div className='w-[100vw] bg-[#fffaf2] dark:bg-gray-800 px-4 md:px-[7rem] 2xl:px-[9rem]' >
         <div className="footerTop flex flex-col-reverse lg:flex-row justify-between  pt-[3rem]">
             <div className='mt-6 md:mt-0'>
                 <h2 className='text-indigo-500 text-3xl font-semibold mb-4 text-center md:text-left'>Hirace</h2>

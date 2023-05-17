@@ -12,21 +12,21 @@ function Footer() {
                 <h2 className='text-indigo-500 text-3xl font-semibold mb-4 text-center md:text-left'>Hirace</h2>
                 <p className='dark:text-gray-300 text-gray-500 text-xs md:text-[1rem] md:leading-5 text-center md:text-left'>Find job you love and research the <br /> fastest-growing companies, and hire experienced workers.</p>
             </div>
-            <div className="footer-items flex flex-col md:flex-row gap-4 md:gap-[4rem] mr-[5rem]">
-                <div className="product flex flex-col">
+            <div className="footer-items flex flex-col items-center md:items-start  md:flex-row gap-4 md:gap-[4rem] md:mr-[5rem]">
+                <div className="product flex flex-col items-center md:items-start">
                     <a href="#" className='dark:text-white dark:mb-3 text-gray-500'>Product</a>
                     <a href="#" className="text-black dark:text-gray-300">Remote Job</a>
                     <a href="#" className="text-black dark:text-gray-300" >Startup</a>
                     <a href="#" className="text-black dark:text-gray-300">Investor & Board</a>
                     <a href="#" className="text-black dark:text-gray-300">Company</a>
                 </div>
-                <div className="features flex flex-col">
+                <div className="features flex flex-col items-center md:items-start">
                     <a href="#" className='dark:text-white dark:mb-3 text-gray-500'>Features</a>
                     <a href="#" className="text-black dark:text-gray-300">For Company</a>
                     <a href="#" className="text-black dark:text-gray-300">For Candidate</a>
                     <a href="#" className="text-black dark:text-gray-300">Society</a>
                 </div>
-                <div className="aboutUs flex flex-col">
+                <div className="aboutUs flex flex-col items-center md:items-start">
                     <a href="#" className='dark:text-white dark:mb-3 text-gray-500'>About Us</a>
                     <a href="#" className="text-black dark:text-gray-300">Documentation</a>
                     <a href="#" className="text-black dark:text-gray-300">Contact Us</a>

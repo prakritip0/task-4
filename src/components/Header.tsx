@@ -1,35 +1,79 @@
-import React,{useEffect, useState} from "react";
-
-// interface HeaderProps {
-//   isDarkMode: boolean,
-//   darkModeToggle: () => void
-// }
+import React from "react";
+// import { ThemeContext } from "../pages/Homepage";
 
 const Header = () => {
-  const [isDarkMode, setIsDarkMode]= useState<boolean | undefined>(undefined);
-  useEffect(()=>{
-    if(isDarkMode){
-      document.documentElement.classList.add('dark')
-      localStorage.setItem('theme', 'dark')
-    } else if(isDarkMode===false) {
-      document.documentElement.classList.remove('dark')
-      localStorage.setItem('theme', 'light')
-    }
-  },[isDarkMode])
+  // const [isDarkMode, setIsDarkMode]= useState<boolean | undefined>(undefined);
+  // useEffect(()=>{
+  //   if(isDarkMode){
+  //     document.documentElement.classList.add('dark')
+  //     localStorage.setItem('theme', 'dark')
+  //   } else if(isDarkMode===false) {
+  //     document.documentElement.classList.remove('dark')
+  //     localStorage.setItem('theme', 'light')
+  //   }
+  // },[isDarkMode])\
+// let darkmode = false;
+let darkTheme:boolean;
+const storedTheme = localStorage.getItem('theme');
+// console.log(storedTheme);
+
+if(storedTheme==='dark'){
+ darkTheme = true;
+ document.documentElement.classList.add('dark');
+}else {
+  darkTheme=false;
+  document.documentElement.classList.remove('dark');
+}
+
+
+function changeTheme(){
+  darkTheme=!darkTheme;
+  if(darkTheme===false){
+    document.documentElement.classList.remove('dark');
+    localStorage.setItem('theme', 'light')
+  }else if (darkTheme === true){
+    document.documentElement.classList.add('dark');
+    localStorage.setItem('theme', 'dark')
+  }
+}
+
+//   function darkModeOn(){
+//     if(darkmode===true){
+//       localStorage.setItem('theme', 'dark')
+//     }else if(darkmode===false){
+//        localStorage.setItem('theme', 'light')
+//     }
+//   }
   
- 
- useEffect(()=>{
-   const storedTheme = localStorage.getItem('theme')
-  //  console.log(storedTheme);
-   if(storedTheme){
-    if(storedTheme==='dark'){
-      setIsDarkMode(true);
-    }else{
-      setIsDarkMode(false);
-    }
-   }
+//   function switchDarkMode(){
+//     const storedTheme = localStorage.getItem('theme');
+//     if(storedTheme){
+//       if(storedTheme==='dark'){
+//         document.documentElement.classList.add('dark')
+//         darkmode=true;
+//       }else{
+//         document.documentElement.classList.remove('dark')
+//         darkmode=false;
+//       }
+//      }
+//   }
+
+
+// const {darkTheme,changeTheme} = useContext(ThemeContext)
+// console.log(darkTheme);
+
+//  useEffect(()=>{
+//    const storedTheme = localStorage.getItem('theme')
+//   //  console.log(storedTheme);
+//    if(storedTheme){
+//     if(storedTheme==='dark'){
+//       setIsDarkMode(true);
+//     }else{
+//       setIsDarkMode(false);
+//     }
+//    }
    
- },[isDarkMode])
+//  },[isDarkMode])
   return (
     <div className={"flex items-center border border-gray-300 dark:border-gray-800 flex-wrap py-5 px-32 justify-between bg-[#fffaf2] dark:bg-gray-800"}>
         <div className="logo">
@@ -44,7 +88,7 @@ const Header = () => {
             </ul>
         </div>
         <div className="right flex items-center gap-6">
-        <div className="theme border-2 border-gray-500 h-8 w-8 rounded-lg flex items-center justify-center p-1 cursor-pointer dark:border-white dark:bg-gray-800" onClick={()=>{setIsDarkMode(!isDarkMode)}}>
+        <div className="theme border-2 border-gray-500 h-8 w-8 rounded-lg flex items-center justify-center p-1 cursor-pointer dark:border-white dark:bg-gray-800" onClick={()=>changeTheme()}>
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className='dark:hidden'>
            <path strokeLinecap="round" strokeLinejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" />
           </svg>

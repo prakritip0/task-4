@@ -6,13 +6,13 @@ import React from 'react'
 
 function Footer() {
   return (
-    <div className=' bg-[#fffaf2] dark:bg-gray-800 px-[7rem] 2xl:px-[9rem]' >
-        <div className="footerTop flex justify-between  pt-[3rem]">
-            <div>
-                <h2 className='text-indigo-500 text-3xl font-semibold mb-4'>Hirace</h2>
-                <p className='dark:text-gray-300 text-gray-500'>Find job you love and research the <br /> fastest-growing companies, and hire experienced workers.</p>
+    <div className=' bg-[#fffaf2] dark:bg-gray-800 px-4 md:px-[7rem] 2xl:px-[9rem]' >
+        <div className="footerTop flex flex-col-reverse lg:flex-row justify-between  pt-[3rem]">
+            <div className='mt-6 md:mt-0'>
+                <h2 className='text-indigo-500 text-3xl font-semibold mb-4 text-center md:text-left'>Hirace</h2>
+                <p className='dark:text-gray-300 text-gray-500 text-xs md:text-[1rem] md:leading-5 text-center md:text-left'>Find job you love and research the <br /> fastest-growing companies, and hire experienced workers.</p>
             </div>
-            <div className="footer-items flex gap-[4rem] mr-[5rem]">
+            <div className="footer-items flex flex-col md:flex-row gap-4 md:gap-[4rem] mr-[5rem]">
                 <div className="product flex flex-col">
                     <a href="#" className='dark:text-white dark:mb-3 text-gray-500'>Product</a>
                     <a href="#" className="text-black dark:text-gray-300">Remote Job</a>
@@ -35,8 +35,8 @@ function Footer() {
             </div>
         </div>
         <hr className='mt-[2rem] mb-6' />
-        <div className="footerBottom pb-[1rem] flex justify-between items-center">
-            <p className='dark:text-gray-300 text-gray-500'>©2023 Hirace Technologies, Inc.  </p>
+        <div className="footerBottom pb-[1rem] flex flex-col md:flex-row justify-between items-center gap-3 md:gap-0">
+            <p className='dark:text-gray-300 text-gray-500 order-3 md:order-1 text-xs md:text-[1rem]'>©2023 Hirace Technologies, Inc.  </p>
             <div className="legal flex gap-6">
                 <a href="#" className="dark:text-white text-black" >Terms</a>
                 <a href="#" className="dark:text-white text-black">Privacy</a>

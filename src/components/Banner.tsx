@@ -7,8 +7,8 @@ import GridLayout from '../utils/GridLayout'
 
 function Banner() {
   return (
-    <div className='banner flex justify-between px-[8rem] 2xl:px-[10rem] overflow-hidden bg-[#fffaf2] dark:bg-gray-800'>
-      <div className="bannerLeft mt-32 flex flex-col mr-[4rem] gap-7 2xl:gap-12">
+    <div className='banner flex flex-col md:flex-row mt-[2rem] md:mt-20 2xl:mt-32 justify-between px-4 md:px-[8rem] 2xl:px-[10rem] overflow-hidden bg-[#fffaf2] dark:bg-gray-800'>
+      <div className="bannerLeft  flex flex-col lg:mr-[4rem] gap-7 2xl:gap-12">
         <div className="new border rounded-full border-gray-300 flex items-center gap-2 px-1 py-1 w-[13rem]">
             <p className='text-sm bg-indigo-500 py-1.5 px-2  rounded-full text-white' >NEW</p>
             <p className='text-sm text-indigo-500'>WE ARE HIRING</p>
@@ -16,32 +16,34 @@ function Banner() {
              <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75" />
             </svg>
         </div>
-        <h1 className=' text-6xl 2xl:text-7xl text-black dark:text-gray-200'>The best place to <br /> find your dream job</h1>
-        <p className='text-black font-light text-md 2xl:text-lg dark:text-gray-200 '>Find job you love and research the fastest-growing <br /> companies, and hire experienced workers.</p>
+        <h1 className=' text-4xl md:text-6xl 2xl:text-7xl text-black dark:text-gray-200'>The best place to <br /> find your dream job</h1>
+        <p className='text-black font-light text-sm md:text-md 2xl:text-lg dark:text-gray-200 '>Find jobs you love and research the fastest-growing <br /> companies, and hire experienced workers.</p>
         
-        <form className='border border-gray-300 rounded-lg w-[100%] flex pl-1  justify-between items-center 2xl:py-1.5 2xl:pr-2'>
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 29 29" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 text-gray-300 pt-0.5">
-         <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
-        </svg>
-
-       
-          <input className=' outline-none dark:text-gray-300 bg-[#fffaf2] dark:bg-gray-800 w-[10rem]' type="text" placeholder='Job Title' />
+        <form className='md:border  md:border-gray-300 md:rounded-lg w-[100%] flex flex-col md:flex-row md:pl-1  justify-between items-center 2xl:py-1.5 2xl:pr-2 gap-4'>
+        <div className="job flex border md:border-0 items-center justify-between border-gray-300 rounded-lg px-1">
+         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 29 29" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 text-gray-300 pt-0.5">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+         </svg>
+         <input className=' outline-none dark:text-gray-300 bg-[#fffaf2] dark:bg-gray-800 w-[15rem] py-2' type="text" placeholder='Job Title' />
           
-           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 text-gray-300 rotate-90">
+        </div>
+        
+           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 text-gray-300 rotate-90 hidden md:block">
             <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 12h-15" />
            </svg>
 
-           
-           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 27 27" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 text-gray-300">
+        <div className="location flex border md:border-0 items-center justify-between border-gray-300 rounded-lg px-1 ">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 27 27" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 text-gray-300">
             <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
             <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
            </svg>
-
-           <input className='placeholder-light outline-none bg-[#fffaf2] dark:bg-gray-800 dark:text-gray-300 w-[10rem] mr-1' type="text" placeholder='All Location'/>
-           <button className='bg-indigo-500 text-white rounded-lg text-xl 2xl:text-2xl  flex py-1.5 pl-2 gap-1 my-1 lg:mr-1' type='submit'>
+           <input className='placeholder-light outline-none bg-[#fffaf2] dark:bg-gray-800 dark:text-gray-300 w-[15rem] py-2' type="text" placeholder='All Location'/>
+        </div>
+           
+           <button className='bg-indigo-500 text-white rounded-lg text-lg md:text-xl 2xl:text-2xl  flex py-1 pl-3 md:py-1.5 md:pl-2 md:gap-1 md:my-1 lg:mr-1' type='submit'>
             Search
             
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 30 30" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 mt-1.5 2xl:mt-2">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 30 30" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 mt-1 md:mt-1.5 2xl:mt-2">
              <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
             </svg>
 
@@ -49,7 +51,7 @@ function Banner() {
 
         </form>
         
-        <div className="checkBoxes flex ">
+        <div className="checkBoxes flex ml-[2.7rem] md:ml-0 ">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30" fill="currentColor" className="w-6 h-6 text-indigo-500">
           <path fillRule="evenodd" d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12zm13.36-1.814a.75.75 0 10-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 00-1.06 1.06l2.25 2.25a.75.75 0 001.14-.094l3.75-5.25z" clipRule="evenodd" />
         </svg>
@@ -61,9 +63,9 @@ function Banner() {
 
         </div>
       </div>
-      <div className="bannerRight relative">
+      <div className="bannerRight relative mt-[5rem] md:mt-0 ">
         <GridLayout />
-        <div className="bannerDesign h-[15rem] w-[18rem] 2xl:h-[25rem] 2xl:w-[24rem] absolute top-[11.5rem] left-[3.5rem] 2xl:top-[10.5rem] 2xl:left-[10.5rem] rounded-3xl border border-indigo-700 shadow-[4px_4px_0_0] shadow-indigo-500 bg-white flex items-center justify-center">
+        <div className="bannerDesign h-[15rem] w-[18rem] 2xl:h-[25rem] 2xl:w-[24rem] absolute top-[3.5rem] left-[2rem] md:top-[3.5rem] md:left-[3.5rem] 2xl:top-[2.5rem] 2xl:left-[10.5rem] rounded-3xl border border-indigo-700 shadow-[4px_4px_0_0] shadow-indigo-500 bg-white flex items-center justify-center">
          <div className="suggestions w-[15rem] h-[12rem] 2xl:w-[22rem] 2xl:h-[21rem] bg-gray-100 mt-6 2xl:mt-8 rounded-2xl">
           <h4 className='font-semi-bold text-sm mx-4 mt-1 2xl:mt-4'>Suggested Work</h4>
           <div className="dummyJob border bg-white w-[14rem] h-[10rem] 2xl:w-[20rem] 2xl:h-[16rem] rounded-2xl flex flex-col gap-6 2xl:gap-8 ml-[0.5rem] 2xl:ml-[1rem] mt-1 2xl:mt-[1rem] ">
@@ -102,7 +104,7 @@ function Banner() {
           </div>
          </div>
         </div>
-        <div className="topRating absolute bottom-[5rem] left-[1rem] 2xl:bottom-[4rem] 2xl:right-[30rem] flex gap-2 2xl:gap-4 bg-white border shadow-[2px_2px_0_0_black] border-black rounded-xl px-2 py-1.5 2xl:px-4 2xl:py-3 w-[9rem] 2xl:w-[13rem]">
+        <div className="topRating absolute bottom-[2rem] left-[1rem] md:bottom-[5rem] md:left-[1rem] 2xl:bottom-[4rem] 2xl:right-[30rem] flex gap-2 2xl:gap-4 bg-white border shadow-[2px_2px_0_0_black] border-black rounded-xl px-2 py-1.5 2xl:px-4 2xl:py-3 md:w-[9rem] 2xl:w-[13rem]">
           <h3 className='bg-orange-700 px-[0.7rem] py-[0.25rem] 2xl:px-[0.8rem] rounded-full text-center text-md 2xl:text-2xl text-white'>P</h3>
           <div>
             <p className='text-xs 2xl:text-sm'>Top Rating App</p>

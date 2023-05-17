@@ -39,7 +39,7 @@ if(storedTheme==='dark'){
       <ThemeContext.Provider value={{darkTheme, changeTheme}}>
      <Nav/>
      <Banner/>
-     <hr className='mt-[3rem] mx-[7rem] 2xl:mx-[9rem] bg-gray-800' />
+     <hr className='mt-[3rem] md:mx-[7rem] 2xl:mx-[9rem] ' />
      <Footer/>
       </ThemeContext.Provider>
     </div>

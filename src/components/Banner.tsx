@@ -24,7 +24,7 @@ function Banner() {
          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 29 29" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 text-gray-300 pt-0.5">
           <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
          </svg>
-         <input className=' outline-none dark:text-gray-300 bg-[#fffaf2] dark:bg-gray-800 w-[15rem] md:w-[10rem] lg:w-[12rem] py-2' type="text" placeholder='Job Title' />
+         <input className=' outline-none dark:text-gray-300 bg-[#fffaf2] dark:bg-gray-800 w-[15rem] md:w-[8rem] lg:w-[9rem] py-2' type="text" placeholder='Job Title' />
           
         </div>
         
@@ -37,7 +37,7 @@ function Banner() {
             <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
             <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
            </svg>
-           <input className='placeholder-light outline-none bg-[#fffaf2] dark:bg-gray-800 dark:text-gray-300 w-[15rem] md:w-[10rem] lg:w-[12rem] py-2' type="text" placeholder='All Location'/>
+           <input className='placeholder-light outline-none bg-[#fffaf2] dark:bg-gray-800 dark:text-gray-300 w-[15rem] md:w-[10rem] lg:w-[9rem] py-2' type="text" placeholder='All Location'/>
         </div>
            
            <button className='bg-indigo-500 text-white rounded-lg text-lg md:text-xl 2xl:text-2xl  flex py-1 pl-3 md:py-1.5 md:pl-2 md:gap-1 md:my-1 lg:mr-1' type='submit'>

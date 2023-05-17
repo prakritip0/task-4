@@ -1,5 +1,5 @@
 import React,{createContext} from 'react'
-import Header from '../components/Header'
+import Nav from '../components/Nav'
 import Banner from '../components/Banner'
 import Footer from '../components/Footer'
 
@@ -37,8 +37,7 @@ if(storedTheme==='dark'){
   return (
     <div className='bg-[#fffaf2] dark:bg-gray-800'>
       <ThemeContext.Provider value={{darkTheme, changeTheme}}>
-
-     <Header/>
+     <Nav/>
      <Banner/>
      <hr className='mt-[3rem] mx-[7rem] 2xl:mx-[9rem] bg-gray-800' />
      <Footer/>

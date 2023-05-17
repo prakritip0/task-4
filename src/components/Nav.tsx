@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { ThemeContext, ThemeContextType } from "../pages/Homepage";
 
-const Header = () => {
+const Nav = () => {
  const {darkTheme, changeTheme}=useContext(ThemeContext);
   return (
     <div className={"flex items-center border border-gray-300 dark:border-gray-800 flex-wrap py-5 px-32 justify-between bg-[#fffaf2] dark:bg-gray-800"}>
@@ -36,4 +36,4 @@ const Header = () => {
   )
 }
 
-export default Header
+export default Nav

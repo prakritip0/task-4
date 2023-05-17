@@ -1,79 +1,8 @@
-import React from "react";
-// import { ThemeContext } from "../pages/Homepage";
+import React, { useContext } from "react";
+import { ThemeContext, ThemeContextType } from "../pages/Homepage";
 
 const Header = () => {
-  // const [isDarkMode, setIsDarkMode]= useState<boolean | undefined>(undefined);
-  // useEffect(()=>{
-  //   if(isDarkMode){
-  //     document.documentElement.classList.add('dark')
-  //     localStorage.setItem('theme', 'dark')
-  //   } else if(isDarkMode===false) {
-  //     document.documentElement.classList.remove('dark')
-  //     localStorage.setItem('theme', 'light')
-  //   }
-  // },[isDarkMode])\
-// let darkmode = false;
-let darkTheme:boolean;
-const storedTheme = localStorage.getItem('theme');
-// console.log(storedTheme);
-
-if(storedTheme==='dark'){
- darkTheme = true;
- document.documentElement.classList.add('dark');
-}else {
-  darkTheme=false;
-  document.documentElement.classList.remove('dark');
-}
-
-
-function changeTheme(){
-  darkTheme=!darkTheme;
-  if(darkTheme===false){
-    document.documentElement.classList.remove('dark');
-    localStorage.setItem('theme', 'light')
-  }else if (darkTheme === true){
-    document.documentElement.classList.add('dark');
-    localStorage.setItem('theme', 'dark')
-  }
-}
-
-//   function darkModeOn(){
-//     if(darkmode===true){
-//       localStorage.setItem('theme', 'dark')
-//     }else if(darkmode===false){
-//        localStorage.setItem('theme', 'light')
-//     }
-//   }
-  
-//   function switchDarkMode(){
-//     const storedTheme = localStorage.getItem('theme');
-//     if(storedTheme){
-//       if(storedTheme==='dark'){
-//         document.documentElement.classList.add('dark')
-//         darkmode=true;
-//       }else{
-//         document.documentElement.classList.remove('dark')
-//         darkmode=false;
-//       }
-//      }
-//   }
-
-
-// const {darkTheme,changeTheme} = useContext(ThemeContext)
-// console.log(darkTheme);
-
-//  useEffect(()=>{
-//    const storedTheme = localStorage.getItem('theme')
-//   //  console.log(storedTheme);
-//    if(storedTheme){
-//     if(storedTheme==='dark'){
-//       setIsDarkMode(true);
-//     }else{
-//       setIsDarkMode(false);
-//     }
-//    }
-   
-//  },[isDarkMode])
+ const {darkTheme, changeTheme}=useContext(ThemeContext);
   return (
     <div className={"flex items-center border border-gray-300 dark:border-gray-800 flex-wrap py-5 px-32 justify-between bg-[#fffaf2] dark:bg-gray-800"}>
         <div className="logo">

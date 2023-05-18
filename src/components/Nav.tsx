@@ -1,26 +1,67 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useRef } from "react";
 import { ThemeContext} from "../pages/Homepage";
 
 const Nav = () => {
  const {changeTheme}=useContext(ThemeContext);
-  return (
-    <nav className={"flex flex-row w-[100vw] items-center border border-gray-300 dark:border-gray-800 flex-wrap py-2 px-3 lg:py-5 lg:px-32 justify-between bg-[#fffaf2] dark:bg-gray-800"}>
-        <div className="logo">
-        <a href="#"><h1 className='text-indigo-500 text-3xl font-semibold'>Hirace</h1></a>
-        </div>
-        <div className="flex items-center justify-between md:gap-[8rem] lg:gap-[10rem] 2xl:gap-[30rem]">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 md:hidden">
-         <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-        </svg>
+//  const hamburgerIconRef =useRef<HTMLDivElement>();
+//  const crossIconRef=useRef<HTMLDivElement>();
+//  const [mobileMenuOn, setMobileMenuOn]= useState(false);
+//  if(mobileMenuOn){
+//   crossIconRef.current.classList.remove('hidden');
+//   hamburgerIconRef.current.classList.add('hidden');
+//  }else{
+//   crossIconRef.current.classList.add('hidden');
+//   hamburgerIconRef.current.classList.remove('hidden');
+//  }
 
-        <div className="nav-items hidden md:block">
+const [mobileMenuOn, setmobileMenuOn]=useState(false);
+ 
+  return (
+    <nav className={"flex flex-row w-[100vw] items-center justify-between border border-gray-300 dark:border-gray-800 flex-wrap py-2 px-3 lg:py-5 lg:px-32  bg-[#fffaf2] dark:bg-gray-800"}>
+        <div className="logo">
+         <a href="#"><h1 className='text-indigo-500 text-3xl font-semibold'>Hirace</h1></a>
+        </div>
+        
+        <div className="hamburger-icons ml-[auto] md:hidden" onClick={()=>setmobileMenuOn(!mobileMenuOn)}>
+        {/* {
+         if(mobileMenuOn){
+          <>
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 hidden" >
+          <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+         </svg>
+         </>
+            
+         }else{
+          <>
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 " >
+           <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+          </svg>
+          </>
+         }
+         } */}
+
+        {mobileMenuOn===true? 
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 hidden" >
+        <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+      </svg>
+        :
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 " >
+        <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+       </svg>
+         }
+         
+
+        </div>
+
+        <div className="flex items-center justify-between md:gap-[8rem] lg:gap-[10rem] 2xl:gap-[30rem]">
+         <div className="nav-items hidden md:block">
             <ul className={"flex flex-row font-light gap-5 2xl:gap-[5rem] lg:gap-[3rem]"}>
                 <li className={"hover:text-gray-300 focus:text-gray-400 text-md text-black dark:text-white"} ><a href="#">Job Vacancy</a></li>
                 <li className={"hover:text-gray-300 focus:text-gray-400 text-md text-black dark:text-white"}><a href="#">Features</a></li>
                 <li className={"hover:text-gray-300 focus:text-gray-400 text-md text-black dark:text-white"}><a href="#">Pricing</a></li>
                 <li className={"hover:text-gray-300 focus:text-gray-400 text-md text-black dark:text-white"}><a href="#">About Us</a></li>
             </ul>
-        </div>
+         </div>
         <div className="right hidden md:flex items-center gap-6">
         <div className="theme border-2 border-gray-500 h-8 w-8 rounded-lg flex items-center justify-center p-1 cursor-pointer dark:border-white dark:bg-gray-800" onClick={()=>changeTheme()}>
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className='dark:hidden'>

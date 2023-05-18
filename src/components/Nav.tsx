@@ -26,9 +26,9 @@ const [mobileMenuOn, setmobileMenuOn]=useState(false);
 
         {mobileMenuOn===true? 
         <>
-        <div className="w-[100vw] h-[100vh]  bg-gray-800 opacity-30 absolute top-0 right-0">
+        <div className="w-[100vw] h-[100vh]  bg-gray-800 opacity-30 fixed top-0 right-0">
          </div>
-        <div className="slide-in-menu hdden w-[70vw] h-[100vh]  bg-[#fffaf2] absolute top-0 right-0 z-20 flex  flex-col items-center gap-10 pt-4 px-4">
+        <div className="slide-in-menu hdden w-[70vw] h-[100vh]  bg-[#fffaf2] fixed top-0 right-0 z-20 flex  flex-col items-center gap-10 pt-4 px-4">
           <div className="w-[100%]  flex justify-end" >
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6" >
            <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />

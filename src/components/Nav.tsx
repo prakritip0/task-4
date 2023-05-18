@@ -1,4 +1,4 @@
-import React, { useContext, useState, useRef } from "react";
+import React, { useContext, useState} from "react";
 import { ThemeContext} from "../pages/Homepage";
 
 const Nav = () => {
@@ -23,35 +23,42 @@ const [mobileMenuOn, setmobileMenuOn]=useState(false);
         </div>
         
         <div className="hamburger-icons ml-[auto] md:hidden" onClick={()=>setmobileMenuOn(!mobileMenuOn)}>
-        {/* {
-         if(mobileMenuOn){
-          <>
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 hidden" >
-          <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-         </svg>
-         </>
-            
-         }else{
-          <>
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 " >
-           <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-          </svg>
-          </>
-         }
-         } */}
 
         {mobileMenuOn===true? 
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 hidden" >
-        <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-      </svg>
+        <>
+        <div className="w-[100vw] h-[100vh]  bg-gray-800 opacity-30 absolute top-0 right-0">
+         </div>
+        <div className="slide-in-menu hdden w-[70vw] h-[100vh]  bg-[#fffaf2] absolute top-0 right-0 z-20 flex  flex-col items-center gap-10 pt-4 px-4">
+          <div className="w-[100%]  flex justify-end" >
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6" >
+           <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+          </div>
+          
+        <ul className={"flex flex-col items-center font-light gap-5 2xl:gap-[5rem] lg:gap-[3rem]"}>
+            <li className={"text-black dark:text-white"} ><a href="#">Job Vacancy</a></li>
+            <li className={"text-black dark:text-white"}><a href="#">Features</a></li>
+            <li className={"text-black dark:text-white"}><a href="#">Pricing</a></li>
+            <li className={"text-black dark:text-white"}><a href="#">About Us</a></li>
+        </ul>
+        <button className="border px-2 rounded-lg py-2 text-white bg-gray-800">Dark Mode</button>
+        <button className="border border-gray-800 px-2 rounded-lg py-2 ">Light Mode</button>
+        <button className='bg-indigo-500 rounded-lg text-white  px-4 py-2 font-light  text-lg'>
+        Sign Up 
+    </button>
+    
+    </div>
+    </>
+        
         :
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 " >
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
         <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-       </svg>
+      </svg>
+      
          }
          
-
         </div>
+        
 
         <div className="flex items-center justify-between md:gap-[8rem] lg:gap-[10rem] 2xl:gap-[30rem]">
          <div className="nav-items hidden md:block">

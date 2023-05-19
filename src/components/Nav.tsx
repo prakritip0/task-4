@@ -2,19 +2,10 @@ import React, { useContext, useState} from "react";
 import { ThemeContext} from "../pages/Homepage";
 
 const Nav = () => {
- const {changeTheme}=useContext(ThemeContext);
-//  const hamburgerIconRef =useRef<HTMLDivElement>();
-//  const crossIconRef=useRef<HTMLDivElement>();
-//  const [mobileMenuOn, setMobileMenuOn]= useState(false);
-//  if(mobileMenuOn){
-//   crossIconRef.current.classList.remove('hidden');
-//   hamburgerIconRef.current.classList.add('hidden');
-//  }else{
-//   crossIconRef.current.classList.add('hidden');
-//   hamburgerIconRef.current.classList.remove('hidden');
-//  }
+ const {isDarkMode,changeTheme}=useContext(ThemeContext);
 
 const [mobileMenuOn, setmobileMenuOn]=useState(false);
+//  console.log(darkTheme);
  
   return (
     <nav className={"flex flex-row w-[100vw] items-center justify-between border border-gray-300 dark:border-gray-800 flex-wrap py-2 px-3 lg:py-5 lg:px-32  bg-[#fffaf2] dark:bg-gray-800"}>
@@ -28,9 +19,9 @@ const [mobileMenuOn, setmobileMenuOn]=useState(false);
         <>
         <div className="w-[100vw] h-[100vh]  bg-gray-800 opacity-30 fixed top-0 right-0">
          </div>
-        <div className="slide-in-menu hdden w-[70vw] h-[100vh]  bg-[#fffaf2] fixed top-0 right-0 z-20 flex  flex-col items-center gap-10 pt-4 px-4">
+        <div className="slide-in-menu hdden w-[70vw] h-[100vh]  bg-[#fffaf2] fixed top-0 right-0 z-20 flex  flex-col items-center gap-10 pt-4 px-4 dark:bg-gray-800">
           <div className="w-[100%]  flex justify-end" >
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6" >
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 dark:text-white" >
            <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
           </svg>
           </div>
@@ -41,8 +32,15 @@ const [mobileMenuOn, setmobileMenuOn]=useState(false);
             <li className={"text-black dark:text-white"}><a href="#">Pricing</a></li>
             <li className={"text-black dark:text-white"}><a href="#">About Us</a></li>
         </ul>
-        <button className="border px-2 rounded-lg py-2 text-white bg-gray-800">Dark Mode</button>
-        <button className="border border-gray-800 px-2 rounded-lg py-2 ">Light Mode</button>
+        {
+          isDarkMode?
+          <button className="border border-gray-800 px-2 rounded-lg py-2 bg-[#fffaf2] " onClick={changeTheme}>Light Mode</button>
+          // document.documentElement.classList.add('dark');
+          : 
+          <button className="border px-2 rounded-lg py-2 text-white bg-gray-800" onClick={changeTheme}>Dark Mode</button>
+          // document.documentElement.classList.remove('dark');
+        }
+        
         <button className='bg-indigo-500 rounded-lg text-white  px-4 py-2 font-light  text-lg'>
         Sign Up 
     </button>
@@ -51,7 +49,7 @@ const [mobileMenuOn, setmobileMenuOn]=useState(false);
     </>
         
         :
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 dark:text-white">
         <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
       </svg>
       

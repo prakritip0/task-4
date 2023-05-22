@@ -7,7 +7,7 @@ import GridLayout from '../utils/GridLayout'
 
 function Banner() {
   return (
-    <div className='banner w-[100vw] flex flex-col md:flex-row pt-[2rem] md:pt-20 2xl:pt-32 justify-between px-4 md:px-[8rem] 2xl:px-[10rem] overflow-hidden bg-[#fffaf2] dark:bg-gray-800'>
+    <div className='banner w-[100vw] h-[80vh] flex flex-col md:flex-row pt-[2rem] md:pt-20 2xl:pt-32 justify-between px-4 md:px-[8rem] 2xl:px-[10rem] overflow-hidden bg-[#fffaf2] dark:bg-gray-800'>
       <div className="bannerLeft m-auto md:m-0 flex flex-col lg:mr-[4rem] gap-7 2xl:gap-12">
         <div className="new border rounded-full border-gray-300 flex items-center gap-2 px-1 py-1 w-[13rem]">
             <p className='text-sm bg-indigo-500 py-1.5 px-2  rounded-full text-white' >NEW</p>

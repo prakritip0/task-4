@@ -8,7 +8,7 @@ import React from 'react'
 
 const FormLabel = ({htmlFor, labelName, className}:FormLabelProps) => {
   return (
-    <label htmlFor={htmlFor} className={`text-xs text-red-300 ${className}`}>{labelName}</label>
+    <label htmlFor={htmlFor} className={`text-xs text-white ${className}`}>{labelName}</label>
   )
 }
 

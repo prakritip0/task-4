@@ -6,6 +6,7 @@ import Features from "./pages/Features";
 import Pricing from "./pages/Pricing";
 import AboutUs from "./pages/AboutUs";
 import ErrorPage from "./pages/ErrorPage";
+import SignUp from "./pages/SignUp";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="/pricing" element={<Pricing />}/>
         <Route path="/aboutus" element={<AboutUs />}/>
         <Route path="*" element={<ErrorPage />}/>
+        <Route path="/signup" element={<SignUp />}/>
       </Routes>
     </Router>
   );

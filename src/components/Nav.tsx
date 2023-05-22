@@ -168,9 +168,11 @@ const Nav = () => {
               />
             </svg>
           </div>
+          <Link to='/signup'>
           <button className='bg-indigo-500 rounded-lg text-white  px-4 py-2 font-light  text-lg'>
             Sign Up
           </button>
+          </Link>
         </div>
       </div>
     </nav>

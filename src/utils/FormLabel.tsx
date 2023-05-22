@@ -1,14 +1,14 @@
 import React from 'react'
 
-interface FormLabelProps{
-    labelName:string,
-    id:string,
-    classes:string
+ export interface FormLabelProps{
+    labelName?:string,
+    htmlFor:string,
+    className?:string
 }
 
-const FormLabel = ({id, labelName, classes}:FormLabelProps) => {
+const FormLabel = ({htmlFor, labelName, className}:FormLabelProps) => {
   return (
-    <label htmlFor={id} className={classes}>{labelName}</label>
+    <label htmlFor={htmlFor} className={`text-xs text-red-300 ${className}`}>{labelName}</label>
   )
 }
 

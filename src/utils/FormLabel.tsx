@@ -2,12 +2,13 @@ import React from 'react'
 
 interface FormLabelProps{
     labelName:string,
-    id:string
+    id:string,
+    classes:string
 }
 
-const FormLabel = ({id, labelName}:FormLabelProps) => {
+const FormLabel = ({id, labelName, classes}:FormLabelProps) => {
   return (
-    <label htmlFor={id}>{labelName}</label>
+    <label htmlFor={id} className={classes}>{labelName}</label>
   )
 }
 

@@ -8,7 +8,7 @@ import GridLayout from '../utils/GridLayout'
 function Banner() {
   return (
     <div className='banner w-[100vw] flex flex-col md:flex-row mt-[2rem] md:mt-20 2xl:mt-32 justify-between px-4 md:px-[8rem] 2xl:px-[10rem] overflow-hidden bg-[#fffaf2] dark:bg-gray-800'>
-      <div className="bannerLeft  flex flex-col lg:mr-[4rem] gap-7 2xl:gap-12">
+      <div className="bannerLeft m-auto md:m-0 flex flex-col lg:mr-[4rem] gap-7 2xl:gap-12">
         <div className="new border rounded-full border-gray-300 flex items-center gap-2 px-1 py-1 w-[13rem]">
             <p className='text-sm bg-indigo-500 py-1.5 px-2  rounded-full text-white' >NEW</p>
             <p className='text-sm text-indigo-500'>WE ARE HIRING</p>
@@ -46,7 +46,6 @@ function Banner() {
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 30 30" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 mt-1 md:mt-1.5 2xl:mt-2">
              <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
             </svg>
-
             </button>
 
         </form>
@@ -63,7 +62,7 @@ function Banner() {
 
         </div>
       </div>
-      <div className="bannerRight relative mt-[5rem] md:mt-0 flex justify-center ">
+      <div className="bannerRight relative m-auto md:m-0 mt-[5rem] md:mt-0 flex justify-center ">
         <GridLayout />
         <div className="bannerDesign h-[15rem] w-[18rem] 2xl:h-[25rem] 2xl:w-[24rem] absolute top-[3.5rem] left-[2rem] md:top-[3.5rem] md:left-[3.5rem] 2xl:top-[2.5rem] 2xl:left-[10.5rem] rounded-3xl border border-indigo-700 shadow-[4px_4px_0_0] shadow-indigo-500 bg-white flex items-center justify-center">
          <div className="suggestions w-[15rem] h-[12rem] 2xl:w-[22rem] 2xl:h-[21rem] bg-gray-100 mt-6 2xl:mt-8 rounded-2xl">

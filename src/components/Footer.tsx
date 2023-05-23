@@ -1,9 +1,5 @@
 import React from 'react'
 
-// interface FooterProps {
-//     isDarkMode: boolean,
-//   }
-
 function Footer() {
   return (
     <div className='w-[100vw] bg-[#fffaf2] dark:bg-gray-800 px-3 lg:px-32' >

@@ -6,7 +6,6 @@ const Nav = () => {
   const { isDarkMode, changeTheme } = useContext(ThemeContext);
 
   const [mobileMenuOn, setmobileMenuOn] = useState(false);
-  //  console.log(darkTheme);
 
   return (
     <nav
@@ -67,7 +66,6 @@ const Nav = () => {
                     Light Mode
                   </button>
                 ) : (
-                  // document.documentElement.classList.add('dark');
                   <button
                     className='border px-2 rounded-lg py-2 text-white bg-gray-800'
                     onClick={changeTheme}
@@ -75,7 +73,6 @@ const Nav = () => {
                     Dark Mode
                   </button>
                 )
-                // document.documentElement.classList.remove('dark');
               }
 
               <button className='bg-indigo-500 rounded-lg text-white  px-4 py-2 font-light  text-lg'>

@@ -22,7 +22,6 @@ const FirstStep = () => {
     e.preventDefault();
     setFormSubmitStatus(true);
   };
-  // console.log(dateOfBirth);
 
   return (
     <div className='flex flex-col justify-start gap-6 2xl:gap-10'>

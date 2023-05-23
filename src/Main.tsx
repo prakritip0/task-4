@@ -35,7 +35,6 @@ function Main() {
     }
   }, []);
 
-
   if (isDarkMode) {
     document.documentElement.classList.add('dark');
   } else {
@@ -43,8 +42,6 @@ function Main() {
   }
 
   function changeTheme() {
-    // console.log("...")
-    console.log('theme: ', isDarkMode);
     if (isDarkMode) {
       document.documentElement.classList.remove('dark');
       localStorage.setItem('theme', 'light');

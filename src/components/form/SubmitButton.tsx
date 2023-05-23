@@ -8,8 +8,6 @@ const SubmitButton = ({ disabled }: SubmitButtonProps) => {
   return (
     <button
       type='submit'
-      // value='Next Step'
-      // disabled={submitDisability}
       disabled={disabled}
       className={`${
         disabled ? 'bg-indigo-300 ' : 'bg-indigo-500'

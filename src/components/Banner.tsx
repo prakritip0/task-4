@@ -1,10 +1,6 @@
 import React from 'react';
 import GridLayout from './GridLayout';
 
-// interface BannerProps {
-//   isDarkMode: boolean,
-// }
-
 function Banner() {
   return (
     <div className='banner w-[100vw] h-[80vh] flex flex-col md:flex-row pt-[2rem] md:pt-20 2xl:pt-32 justify-between px-4 md:px-[8rem] 2xl:px-[10rem] overflow-hidden bg-[#fffaf2] dark:bg-gray-800'>

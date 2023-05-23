@@ -18,15 +18,12 @@ export const ThemeContext = createContext<ThemeContextType>({
 const Homepage = () => {
   const storedTheme = localStorage.getItem('theme');
   const [isDarkMode, setIsDarkMode] = useState(false);
-  //  let darkTheme:boolean;
 
   useEffect(() => {
     if (storedTheme === 'dark') {
       setIsDarkMode(true);
-      // document.documentElement.classList.add('dark');
     } else {
       setIsDarkMode(false);
-      // document.documentElement.classList.remove('dark');
     }
   }, []);
 
@@ -37,7 +34,6 @@ const Homepage = () => {
   }
 
   function changeTheme() {
-    // console.log("...")
     setIsDarkMode(!isDarkMode);
     if (isDarkMode === false) {
       document.documentElement.classList.remove('dark');

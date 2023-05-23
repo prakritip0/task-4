@@ -9,7 +9,7 @@ const FirstStep = () => {
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [gender, setGender] = useState('');
-  const [dateOfBirth, setDateOfBirth]= useState<string|null>(null)
+  const [dateOfBirth, setDateOfBirth] = useState<string | null>(null);
   const [formSubmitStatus, setFormSubmitStatus] = useState<boolean>(false);
   const [disabled, setDisabled] = useState<boolean>(true);
 
@@ -22,19 +22,15 @@ const FirstStep = () => {
     e.preventDefault();
     setFormSubmitStatus(true);
   };
-// console.log(dateOfBirth);
+  // console.log(dateOfBirth);
 
   return (
     <div className='flex flex-col gap-6'>
       <h4 className='text-gray-800 text-2xl font-bold dark:text-white'>
         Lets start with your personal Information
       </h4>
-      <form
-        action='/'
-        className='flex flex-col gap-4 items-center'
-        onSubmit={submitForm}
-      >
-        <div className='name flex flex-row justify-between w-[100%]'>
+      <form action='/' className='flex flex-col gap-4' onSubmit={submitForm}>
+        <div className='name flex flex-row gap-4'>
           <Input
             id='firstName'
             placeholder='Ram'
@@ -53,18 +49,16 @@ const FirstStep = () => {
           />
         </div>
         <Input
-          className='w-[100%]'
           id='email'
           placeholder='ramthapa@gmail.com'
           labelName='Email'
           type='email'
           value={email}
           setValue={setEmail}
-          inputClassName='w-[100%]'
         />
-        <div className='flex flex-row w-[100%]'>
+        <div className='flex gap-4'>
           <Select
-          id='gender'
+            id='gender'
             setValue={setGender}
             value={gender}
             options={[

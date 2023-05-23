@@ -103,7 +103,7 @@ function Banner() {
           </div>
          </div>
         </div>
-        <div className="topRating absolute bottom-[2rem] left-[1rem] md:bottom-[5rem] md:left-[1rem] 2xl:bottom-[4rem] 2xl:right-[30rem] flex items-center gap-2 2xl:gap-4 bg-white border shadow-[2px_2px_0_0_black] border-black rounded-xl px-2 py-1.5 2xl:px-4 2xl:py-3 md:w-[9rem] 2xl:w-[13rem]">
+        <div className="topRating absolute bottom-[2rem] left-[1rem] xl:bottom-[9rem] md:left-[1rem] 2xl:bottom-[13rem] 2xl:right-[30rem] flex items-center gap-2 2xl:gap-4 bg-white border shadow-[2px_2px_0_0_black] border-black rounded-xl px-2 py-1.5 2xl:px-4 2xl:py-3 md:w-[9rem] 2xl:w-[13rem]">
           <h3 className='bg-orange-700 px-[0.7rem] py-[0.25rem] 2xl:px-[0.8rem] rounded-full text-center text-md 2xl:text-2xl text-white'>P</h3>
           <div>
             <p className='text-xs 2xl:text-sm'>Top Rating App</p>

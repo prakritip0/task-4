@@ -1,4 +1,4 @@
-import React, { useState,createContext,useEffect } from 'react';
+import React, { useState, createContext, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 // import Homepage from './pages/Homepage';
 import JobVacancy from './pages/JobVacancy';
@@ -34,6 +34,7 @@ function Main() {
       setIsDarkMode(false);
     }
   }, []);
+  console.log(isDarkMode);
 
   if (isDarkMode) {
     document.documentElement.classList.add('dark');
@@ -43,35 +44,36 @@ function Main() {
 
   function changeTheme() {
     // console.log("...")
-    setIsDarkMode(!isDarkMode);
-    if (isDarkMode === false) {
+    console.log('theme: ', isDarkMode);
+    if (isDarkMode) {
       document.documentElement.classList.remove('dark');
       localStorage.setItem('theme', 'light');
-    } else if (isDarkMode === true) {
+    } else {
       document.documentElement.classList.add('dark');
       localStorage.setItem('theme', 'dark');
     }
+    setIsDarkMode(!isDarkMode);
   }
 
   return (
     <ThemeContext.Provider value={{ isDarkMode, changeTheme }}>
-    <Router>
-      <nav>
-        <Nav />
-      </nav>
-      <Routes>
-        <Route path='/' element={<Banner />} />
-        <Route path='/jobvacancy' element={<JobVacancy />} />
-        <Route path='/features' element={<Features />} />
-        <Route path='/pricing' element={<Pricing />} />
-        <Route path='/aboutus' element={<AboutUs />} />
-        <Route path='*' element={<ErrorPage />} />
-        <Route path='/signup' element={<SignUp />} />
-      </Routes>
-      <footer>
-        <Footer />
-      </footer>
-    </Router>
+      <Router>
+        <nav>
+          <Nav />
+        </nav>
+        <Routes>
+          <Route path='/' element={<Banner />} />
+          <Route path='/jobvacancy' element={<JobVacancy />} />
+          <Route path='/features' element={<Features />} />
+          <Route path='/pricing' element={<Pricing />} />
+          <Route path='/aboutus' element={<AboutUs />} />
+          <Route path='*' element={<ErrorPage />} />
+          <Route path='/signup' element={<SignUp />} />
+        </Routes>
+        <footer>
+          <Footer />
+        </footer>
+      </Router>
     </ThemeContext.Provider>
   );
 }

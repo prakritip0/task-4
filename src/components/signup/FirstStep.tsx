@@ -25,11 +25,11 @@ const FirstStep = () => {
   // console.log(dateOfBirth);
 
   return (
-    <div className='flex flex-col gap-6'>
-      <h4 className='text-gray-800 text-2xl font-bold dark:text-white'>
-        Lets start with your personal Information
+    <div className='flex flex-col gap-6 2xl:gap-10'>
+      <h4 className='text-gray-800 text-2xl 2xl:text-3xl font-bold dark:text-white'>
+        Lets start with your Personal Information
       </h4>
-      <form action='/' className='flex flex-col gap-4' onSubmit={submitForm}>
+      <form action='/' className='flex flex-col gap-4 2xl:gap-10' onSubmit={submitForm}>
         <div className='name flex flex-row gap-4'>
           <Input
             id='firstName'
@@ -75,11 +75,15 @@ const FirstStep = () => {
       </form>
       {formSubmitStatus && (
         <>
-          <h3 className='dark:text-white text-gray-800'>First Name: {firstName}</h3>
-          <h3 className='dark:text-white text-gray-800'>Last Name: {lastName}</h3>
-          <h4 className='dark:text-white text-gray-800'>Email: {email}</h4>
-          <h4 className='dark:text-white text-gray-800'>Gender: {gender}</h4>
-          <h4 className='dark:text-white text-gray-800'>DOB: {dateOfBirth}</h4>
+          <div className='flex gap-8'>
+            <h3 className='dark:text-white text-gray-800'>First Name: {firstName}</h3>
+            <h3 className='dark:text-white text-gray-800'>Last Name: {lastName}</h3>
+          </div>
+          <div className='flex gap-8'>
+            <h4 className='dark:text-white text-gray-800'>Email: {email}</h4>
+            <h4 className='dark:text-white text-gray-800'>Gender: {gender}</h4>
+            <h4 className='dark:text-white text-gray-800'>DOB: {dateOfBirth}</h4>
+          </div>
         </>
       )}
     </div>

@@ -1,10 +1,10 @@
 import React from 'react';
 
-interface FormSubmitProps {
+interface SubmitButtonProps {
   disabled: boolean;
 }
 
-const FormSubmit = ({ disabled }: FormSubmitProps) => {
+const SubmitButton = ({ disabled }: SubmitButtonProps) => {
   return (
     <button
       type='submit'
@@ -20,4 +20,4 @@ const FormSubmit = ({ disabled }: FormSubmitProps) => {
   );
 };
 
-export default FormSubmit;
+export default SubmitButton;

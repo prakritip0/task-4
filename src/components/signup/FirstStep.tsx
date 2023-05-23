@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import FormInput from './form/FormInput';
-import FormSubmit from './form/FormSubmit';
-import FormSelect from './form/FormSelect';
+import Input from '../form/Input';
+import FormSubmit from '../form/SubmitButton';
+import Select from '../form/Select';
 
-const SignUpFirst = () => {
+const FirstStep = () => {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
@@ -27,16 +27,16 @@ const SignUpFirst = () => {
         Lets start with your personal Information
       </h4>
       <form action='/' className='flex flex-col gap-4 items-center' onSubmit={submitForm}>
-        <FormInput
+        <div className='name flex 2xl:gap-10'>
+        <Input
           id='firstName'
           placeholder='Ram'
           labelName='First Name'
           type='text'
           value={firstName}
           setValue={setFirstName}
-          //   setFormValues(...formValues, firstName:{value})
         />
-        <FormInput
+        <Input
           className='w-[15rem] px-4 py-2 border border-gray-300 rounded-lg outline-none'
           id='lastName'
           placeholder='Thapa'
@@ -44,17 +44,18 @@ const SignUpFirst = () => {
           type='text'
           value={lastName}
           setValue={setLastName}
-          //   setFormValues = {setFormValues}
         />
-        <FormInput
+        </div>
+        <Input
+        // className='w-[100%]'
           id='email'
           placeholder='ramthapa@gmail.com'
           labelName='Email'
-          type='text'
+          type='email'
           value={email}
           setValue={setEmail}
         />
-        <FormSelect setGender={setGender} gender={gender} />
+        <Select setGender={setGender} gender={gender} />
         <FormSubmit disabled={disabled} />
       </form>
       {formSubmitStatus && (
@@ -68,4 +69,4 @@ const SignUpFirst = () => {
     </div>
   );
 };
-export default SignUpFirst;
+export default FirstStep;

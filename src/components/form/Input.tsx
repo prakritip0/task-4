@@ -1,19 +1,19 @@
 import React from 'react';
-import FormLabel from './FormLabel';
+import Label from './Label';
 
-interface FormInputProps {
+interface InputProps {
   className?: string;
   id: string;
   placeholder?: string;
   labelName?: string;
-  type: 'text';
+  type: 'text' | 'email';
   value: string;
   setValue: (value: string) => void;
   // setFirstName:()=>void
   // label?: FormLabelProps
 }
 
-const FormInput = ({
+const Input = ({
   className,
   id,
   placeholder,
@@ -21,10 +21,10 @@ const FormInput = ({
   type,
   value,
   setValue,
-}: FormInputProps) => {
+}: InputProps) => {
   return (
     <div className='flex flex-col items-start gap-1'>
-      {labelName && <FormLabel htmlFor={id} labelName={labelName} />}
+      {labelName && <Label htmlFor={id} labelName={labelName} />}
       <input
         className={`w-[15rem] px-4 py-2 border border-gray-300 rounded-lg outline-none ${className}`}
         value={value}
@@ -37,4 +37,4 @@ const FormInput = ({
   );
 };
 
-export default FormInput;
+export default Input;

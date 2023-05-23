@@ -1,15 +1,15 @@
 import React from 'react'
 
- export interface FormLabelProps{
+ export interface LabelProps{
     labelName?:string,
     htmlFor:string,
     className?:string
 }
 
-const FormLabel = ({htmlFor, labelName, className}:FormLabelProps) => {
+const Label = ({htmlFor, labelName, className}:LabelProps) => {
   return (
     <label htmlFor={htmlFor} className={`text-xs text-white ${className}`}>{labelName}</label>
   )
 }
 
-export default FormLabel
+export default Label

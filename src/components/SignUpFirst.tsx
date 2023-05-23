@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import FormInput from './form/FormInput';
 import FormSubmit from './form/FormSubmit';
 import FormSelect from './form/FormSelect';
@@ -9,18 +9,18 @@ const SignUpFirst = () => {
   const [email, setEmail] = useState('');
   const [gender, setGender] = useState('');
   const [formSubmitStatus, setFormSubmitStatus] = useState<boolean>(false);
-  const [submitDisability, setSubmitDisability] = useState<boolean>(true);
+  const [disabled, setDisabled] = useState<boolean>(true);
 
-//   if (firstName !== '' && lastName !== '' && email !== '' && gender !== '') {
-//     setSubmitDisability(false);
-//   }
+  useEffect(() => {
+    const isDisabled = !firstName || !lastName || !email || !gender;
+    setDisabled(isDisabled);
+  }, [firstName, lastName, email, gender]);
 
   const submitForm = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setFormSubmitStatus(true);
   };
-//   console.log(gender);
-  
+
   return (
     <div className='flex flex-col gap-6'>
       <h4 className='text-gray-800 text-2xl font-bold dark:text-white'>
@@ -34,6 +34,7 @@ const SignUpFirst = () => {
           type='text'
           value={firstName}
           setValue={setFirstName}
+          //   setFormValues(...formValues, firstName:{value})
         />
         <FormInput
           className='w-[15rem] px-4 py-2 border border-gray-300 rounded-lg outline-none'
@@ -43,19 +44,18 @@ const SignUpFirst = () => {
           type='text'
           value={lastName}
           setValue={setLastName}
+          //   setFormValues = {setFormValues}
         />
         <FormInput
           id='email'
           placeholder='ramthapa@gmail.com'
           labelName='Email'
-          type='email'
+          type='text'
           value={email}
           setValue={setEmail}
         />
-
         <FormSelect setGender={setGender} gender={gender} />
-
-        <FormSubmit submitDisability={submitDisability} />
+        <FormSubmit disabled={disabled} />
       </form>
       {formSubmitStatus && (
         <>
@@ -68,5 +68,4 @@ const SignUpFirst = () => {
     </div>
   );
 };
-
 export default SignUpFirst;

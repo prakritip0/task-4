@@ -25,7 +25,7 @@ const FirstStep = () => {
   // console.log(dateOfBirth);
 
   return (
-    <div className='flex flex-col gap-6 2xl:gap-10'>
+    <div className='flex flex-col justify-start gap-6 2xl:gap-10'>
       <h4 className='text-gray-800 text-2xl 2xl:text-3xl font-bold dark:text-white'>
         Lets start with your Personal Information
       </h4>

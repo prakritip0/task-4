@@ -11,9 +11,9 @@ const SignUpFirst = () => {
   const [formSubmitStatus, setFormSubmitStatus] = useState<boolean>(false);
   const [submitDisability, setSubmitDisability] = useState<boolean>(true);
 
-  if (firstName !== '' && lastName !== '' && email !== '' && gender !== '') {
-    setSubmitDisability(false);
-  }
+//   if (firstName !== '' && lastName !== '' && email !== '' && gender !== '') {
+//     setSubmitDisability(false);
+//   }
 
   const submitForm = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -62,6 +62,7 @@ const SignUpFirst = () => {
           <h3 className='text-white'>First Name: {firstName}</h3>
           <h3 className='text-white'>Last Name: {lastName}</h3>
           <h4 className='text-white'>Email: {email}</h4>
+          <h4 className='text-white'>Gender: {gender}</h4>
         </>
       )}
     </div>

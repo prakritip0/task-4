@@ -7,10 +7,11 @@ interface FormSelectProps{
 
 const FormSelect = ({setGender, gender}:FormSelectProps) => {
   return (
-    <select className='w-[15rem] py-2 px-2 rounded-lg outline-none' name='gender' value={gender} onChange={(e)=>setGender(e.target.value)} >
-        <option value="male">Male</option>
-        <option value="female">Female</option>
-        <option value="other">Other</option>
+    <select className='w-[15rem] py-2 px-2 rounded-lg outline-none text-gray-800' name='gender' value={gender} onChange={(e)=>setGender(e.target.value)} >
+        <option value="" selected >Choose gender</option>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+        <option value="Other">Other</option>
     </select>
   )
 }

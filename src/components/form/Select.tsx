@@ -1,25 +1,34 @@
 import React from 'react';
+import Label from './Label'
 
 interface SelectProps {
-  gender: string;
-  setGender: (value: string) => void;
+  value: string;
+  setValue: (value: string) => void;
+  options:{value:string, label:string}[]
+  // labels:string[]|number[];
+  placeholder:string
 }
 
-const Select = ({ setGender, gender }: SelectProps) => {
+const Select = ({ setValue, value, options,placeholder }: SelectProps) => {
+  
   return (
+    <>
+    <Label htmlFor='' />
     <select
-      className='w-[15rem] py-2 px-2 rounded-lg outline-none  text-gray-800'
+      className='w-[15rem] py-2 px-2 rounded-lg outline-none  text-gray-800 border' 
       name='gender'
-      value={gender}
-      onChange={(e) => setGender(e.target.value)}
+      value={value}
+      onChange={(e) => setValue(e.target.value)}
     >
       <option value='' selected>
-        Choose gender
+        {placeholder}
       </option>
-      <option value='Male'>I am male</option>
-      <option value='Female'>I am female</option>
-      <option value='Other'>Other</option>
+      {options.length>0 && options.map(option=>
+         <option key={option.value} value={option.value}>{option.label}</option>
+      )}
+      
     </select>
+    </>
   );
 };
 

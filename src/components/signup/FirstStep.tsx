@@ -47,7 +47,7 @@ const FirstStep = () => {
         />
         </div>
         <Input
-        // className='w-[100%]'
+        className='w-[100%]'
           id='email'
           placeholder='ramthapa@gmail.com'
           labelName='Email'
@@ -55,15 +55,15 @@ const FirstStep = () => {
           value={email}
           setValue={setEmail}
         />
-        <Select setGender={setGender} gender={gender} />
+        <Select  setValue={setGender} value={gender} options={[{value: 'Male', label:"I'm a male."}, {value: 'Female', label:"I'm a female."}, {value: 'Other', label:"I'm out of this world."}]} placeholder='Choose gender' />
         <FormSubmit disabled={disabled} />
       </form>
       {formSubmitStatus && (
         <>
-          <h3 className='text-white'>First Name: {firstName}</h3>
-          <h3 className='text-white'>Last Name: {lastName}</h3>
-          <h4 className='text-white'>Email: {email}</h4>
-          <h4 className='text-white'>Gender: {gender}</h4>
+          <h3 className='dark:text-white text-gray-800' >First Name: {firstName}</h3>
+          <h3 className='dark:text-white text-gray-800'>Last Name: {lastName}</h3>
+          <h4 className='dark:text-white text-gray-800'>Email: {email}</h4>
+          <h4 className='dark:text-white text-gray-800'>Gender: {gender}</h4>
         </>
       )}
     </div>

@@ -6,16 +6,17 @@ interface SelectProps {
   setValue: (value: string) => void;
   options:{value:string, label:string}[]
   // labels:string[]|number[];
-  placeholder:string
+  placeholder:string;
+  id:string 
 }
 
-const Select = ({ setValue, value, options,placeholder }: SelectProps) => {
+const Select = ({ setValue, value, options,placeholder, id }: SelectProps) => {
   
   return (
-    <>
-    <Label htmlFor='' />
+    <div className='flex flex-col w-[50%]'>
+    <Label htmlFor={id} labelName='Gender' />
     <select
-      className='w-[15rem] py-2 px-2 rounded-lg outline-none  text-gray-800 border' 
+      className=' py-[0.65rem] px-2 w-[90%] rounded-lg outline-none  text-gray-800 border' 
       name='gender'
       value={value}
       onChange={(e) => setValue(e.target.value)}
@@ -28,7 +29,7 @@ const Select = ({ setValue, value, options,placeholder }: SelectProps) => {
       )}
       
     </select>
-    </>
+    </ div>
   );
 };
 

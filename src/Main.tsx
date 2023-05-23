@@ -34,7 +34,7 @@ function Main() {
       setIsDarkMode(false);
     }
   }, []);
-  console.log(isDarkMode);
+
 
   if (isDarkMode) {
     document.documentElement.classList.add('dark');

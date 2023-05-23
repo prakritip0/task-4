@@ -2,6 +2,7 @@ import React from 'react';
 import Label from './Label';
 
 interface InputProps {
+  inputClassName?:string;
   className?: string;
   id: string;
   placeholder?: string;
@@ -21,12 +22,13 @@ const Input = ({
   type,
   value,
   setValue,
+  inputClassName
 }: InputProps) => {
   return (
-    <div className='flex flex-col items-start gap-1'>
+    <div className={`flex flex-col items-start gap-1 ${className}`}>
       {labelName && <Label htmlFor={id} labelName={labelName} />}
       <input
-        className={`w-[15rem] px-4 py-2 border border-gray-300 rounded-lg outline-none ${className}`}
+        className={`${inputClassName} px-4 py-2 border border-gray-300 rounded-lg outline-none`}
         value={value}
         type={type}
         id={id}

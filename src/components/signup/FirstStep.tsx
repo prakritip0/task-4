@@ -9,16 +9,16 @@ const FirstStep = () => {
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [gender, setGender] = useState('');
-  const [dateOfBirth, setDateOfBirth] = useState<string | null>(null);
+  const [dateOfBirth, setDateOfBirth] = useState('');
   const [formSubmitStatus, setFormSubmitStatus] = useState<boolean>(false);
   const [disabled, setDisabled] = useState<boolean>(true);
-  // const [isValid, setIsValid] = useState({ firstName: false, lastName: false, email: false });
   const [errMessage, setErrMessage] = useState({
     firstName: '',
     lastName: '',
     email: '',
   });
   const [genderRequiredErr, setGenderRequiredErr] = useState('');
+  const [ageErrMessage, setAgeErrMessage] = useState('');
 
   useEffect(() => {
     const isDisabled = !firstName || !lastName || !email || !gender || !dateOfBirth;
@@ -50,11 +50,33 @@ const FirstStep = () => {
       : setErrMessage({ ...errMessage, email: 'Correct email is required.' });
   };
   const handleGenderBlurEvent = () => {
-    gender ? setGenderRequiredErr('') : setGenderRequiredErr('Gender is required.') ;
+    gender ? setGenderRequiredErr('') : setGenderRequiredErr('Gender is required.');
   };
-console.log(gender);
-console.log(genderRequiredErr);
 
+  const setDOB = (value: string) => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    setDateOfBirth(value);
+  };
+
+  const DOBYear = new window.Date(dateOfBirth).getUTCFullYear();
+  const DOBMonth = new window.Date(dateOfBirth).getUTCMonth() + 1;
+  const DOBDay = new window.Date(dateOfBirth).getUTCDate();
+
+  const currentYear = new window.Date().getUTCFullYear();
+  const currentMonth = new window.Date().getUTCMonth() + 1;
+  const currentDay = new window.Date().getUTCDate();
+
+  let ageByYear = DOBYear - currentYear;
+  const ageByMonth = DOBMonth - currentMonth;
+  const ageByDay = DOBDay - currentDay;
+
+  const handleAgeBlur = () => {
+    if (ageByMonth < 0 || (ageByMonth === 0 && ageByDay > 0)) {
+      ageByYear--;
+    }
+    ageByYear < 18 ? setAgeErrMessage('You must be 18 or older.') : setAgeErrMessage('');
+  };
+  console.log(ageErrMessage);
 
   return (
     <div className='flex flex-col justify-start gap-6 2xl:gap-10'>
@@ -111,7 +133,13 @@ console.log(genderRequiredErr);
             onBlur={handleGenderBlurEvent}
             errMessage={genderRequiredErr}
           />
-          <Date id='dateOfBirth' value={dateOfBirth} setValue={setDateOfBirth} />
+          <Date
+            id='date'
+            value={dateOfBirth}
+            setValue={setDOB}
+            onBlur={handleAgeBlur}
+            errMessage={ageErrMessage}
+          />
         </div>
 
         <SubmitButton disabled={disabled} />
@@ -125,7 +153,10 @@ console.log(genderRequiredErr);
           <div className='flex gap-8'>
             <h4 className='dark:text-white text-gray-800'>Email: {email}</h4>
             <h4 className='dark:text-white text-gray-800'>Gender: {gender}</h4>
-            <h4 className='dark:text-white text-gray-800'>DOB: {dateOfBirth}</h4>
+            <h4 className='dark:text-white text-gray-800'>
+              {' '}
+              <>DOB: {dateOfBirth}</>
+            </h4>
           </div>
         </>
       )}

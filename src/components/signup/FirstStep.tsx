@@ -12,6 +12,13 @@ const FirstStep = () => {
   const [dateOfBirth, setDateOfBirth] = useState<string | null>(null);
   const [formSubmitStatus, setFormSubmitStatus] = useState<boolean>(false);
   const [disabled, setDisabled] = useState<boolean>(true);
+  // const [isValid, setIsValid] = useState({ firstName: false, lastName: false, email: false });
+  const [errMessage, setErrMessage] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+  });
+  // console.log(keyof typeof errMessage, 'typeof');
 
   useEffect(() => {
     const isDisabled = !firstName || !lastName || !email || !gender || !dateOfBirth;
@@ -21,6 +28,26 @@ const FirstStep = () => {
   const submitForm = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setFormSubmitStatus(true);
+  };
+
+  // eslint-disable-next-line no-useless-escape
+  const regex = /^([a-zA-Z0-9\._]+)@([a-zA-Z0-9])+.([a-z]+)(.[a-z]+)?$/;
+
+  const handleFristNameBlurEvent = () => {
+    firstName
+      ? setErrMessage({ ...errMessage, firstName: '' })
+      : (setErrMessage({ ...errMessage, firstName: 'First name is required.' }),
+        console.log('errrr'));
+  };
+  const handleLastNameBlurEvent = () => {
+    lastName
+      ? setErrMessage({ ...errMessage, lastName: '' })
+      : setErrMessage({ ...errMessage, lastName: 'Last name is required.' });
+  };
+  const handleEmailBlurEvent = () => {
+    regex.test(email)
+      ? setErrMessage({ ...errMessage, email: '' })
+      : setErrMessage({ ...errMessage, email: 'Correct email is required.' });
   };
 
   return (
@@ -37,6 +64,9 @@ const FirstStep = () => {
             type='text'
             value={firstName}
             setValue={setFirstName}
+            formSubmitStatus={formSubmitStatus}
+            onBlur={handleFristNameBlurEvent}
+            errMessage={errMessage}
           />
           <Input
             id='lastName'
@@ -45,6 +75,9 @@ const FirstStep = () => {
             type='text'
             value={lastName}
             setValue={setLastName}
+            formSubmitStatus={formSubmitStatus}
+            onBlur={handleLastNameBlurEvent}
+            errMessage={errMessage}
           />
         </div>
         <Input
@@ -54,6 +87,9 @@ const FirstStep = () => {
           type='email'
           value={email}
           setValue={setEmail}
+          formSubmitStatus={formSubmitStatus}
+          onBlur={handleEmailBlurEvent}
+          errMessage={errMessage}
         />
         <div className='flex gap-4'>
           <Select

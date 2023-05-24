@@ -20,7 +20,7 @@ const Date = ({ id, value, setValue, onBlur, errMessage }: DateProps) => {
           setValue(e.target.value);
         }}
         onBlur={onBlur}
-        className='py-1 px-2 md:py-2 md:px-4 text-xs md:text-sm 2xl:text-lg rounded-lg border w-[100%]'
+        className='py-1 px-2 md:py-2 md:px-4 text-xs md:text-sm 2xl:text-lg text-indigo-500 rounded-lg border w-[100%]'
       />
       {errMessage&& <Label htmlFor='id' labelName={errMessage} className='text-red-700' />}
     </div>

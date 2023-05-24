@@ -10,6 +10,7 @@ const FirstStep = () => {
   const [email, setEmail] = useState('');
   const [gender, setGender] = useState('');
   const [dateOfBirth, setDateOfBirth] = useState('');
+  const [age, setAge] = useState(0);
   const [formSubmitStatus, setFormSubmitStatus] = useState<boolean>(false);
   const [disabled, setDisabled] = useState<boolean>(true);
   const [errMessage, setErrMessage] = useState({
@@ -17,13 +18,29 @@ const FirstStep = () => {
     lastName: '',
     email: '',
   });
-  const [genderRequiredErr, setGenderRequiredErr] = useState('');
+  const [genderErrMessage, setGenderErrMessage] = useState('');
   const [ageErrMessage, setAgeErrMessage] = useState('');
 
+  // useEffect(() => {
+  //   const isDisabled = !firstName || !lastName || !email || !gender || !dateOfBirth;
+  //   setDisabled(isDisabled);
+  // }, [firstName, lastName, email, gender, dateOfBirth]);
+
   useEffect(() => {
-    const isDisabled = !firstName || !lastName || !email || !gender || !dateOfBirth;
-    setDisabled(isDisabled);
-  }, [firstName, lastName, email, gender, dateOfBirth]);
+    const errExists: boolean =
+      !errMessage['firstName'] ||
+      !errMessage['lastName'] ||
+      !errMessage['email'] ||
+      !genderErrMessage ||
+      !ageErrMessage;
+    setDisabled(errExists);
+  }, [
+    errMessage['firstName'],
+    errMessage['lastName'],
+    errMessage['firstName'],
+    genderErrMessage,
+    ageErrMessage,
+  ]);
 
   const submitForm = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -50,7 +67,7 @@ const FirstStep = () => {
       : setErrMessage({ ...errMessage, email: 'Correct email is required.' });
   };
   const handleGenderBlurEvent = () => {
-    gender ? setGenderRequiredErr('') : setGenderRequiredErr('Gender is required.');
+    gender ? setGenderErrMessage('') : setGenderErrMessage('Gender is required.');
   };
 
   const setDOB = (value: string) => {
@@ -66,17 +83,18 @@ const FirstStep = () => {
   const currentMonth = new window.Date().getUTCMonth() + 1;
   const currentDay = new window.Date().getUTCDate();
 
-  let ageByYear = DOBYear - currentYear;
+  let ageByYear =  currentYear - DOBYear;
+  // console.log('init', ageByYear);
   const ageByMonth = DOBMonth - currentMonth;
   const ageByDay = DOBDay - currentDay;
-
+  // console.log(ageByYear);
   const handleAgeBlur = () => {
     if (ageByMonth < 0 || (ageByMonth === 0 && ageByDay > 0)) {
-      ageByYear--;
+      ageByYear--; 
     }
-    ageByYear < 18 ? setAgeErrMessage('You must be 18 or older.') : setAgeErrMessage('');
+    setAge(ageByYear);
+    age && age < 18 ? setAgeErrMessage('You must be 18 or older.') : setAgeErrMessage('');
   };
-  console.log(ageErrMessage);
 
   return (
     <div className='flex flex-col justify-start gap-6 2xl:gap-10'>
@@ -131,7 +149,7 @@ const FirstStep = () => {
             ]}
             placeholder='Choose gender'
             onBlur={handleGenderBlurEvent}
-            errMessage={genderRequiredErr}
+            errMessage={genderErrMessage}
           />
           <Date
             id='date'

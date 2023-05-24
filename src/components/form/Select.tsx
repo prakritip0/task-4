@@ -8,9 +8,11 @@ interface SelectProps {
   // labels:string[]|number[];
   placeholder: string;
   id: string;
+  errMessage:string
+  onBlur:()=>void
 }
 
-const Select = ({ setValue, value, options, placeholder, id }: SelectProps) => {
+const Select = ({ setValue, value, options, placeholder, id, errMessage,onBlur }: SelectProps) => {
   return (
     <div className='flex flex-col w-full'>
       <Label htmlFor={id} labelName='Gender' />
@@ -19,6 +21,7 @@ const Select = ({ setValue, value, options, placeholder, id }: SelectProps) => {
         name='gender'
         value={value}
         onChange={(e) => setValue(e.target.value)}
+        onBlur={onBlur}
       >
         <option value='' selected>
           {placeholder}
@@ -30,6 +33,7 @@ const Select = ({ setValue, value, options, placeholder, id }: SelectProps) => {
             </option>
           ))}
       </select>
+      {errMessage && <Label htmlFor={id} labelName={errMessage} className='text-red-700' />}
     </div>
   );
 };

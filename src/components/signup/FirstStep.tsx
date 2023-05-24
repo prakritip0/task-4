@@ -18,7 +18,7 @@ const FirstStep = () => {
     lastName: '',
     email: '',
   });
-  // console.log(keyof typeof errMessage, 'typeof');
+  const [genderRequiredErr, setGenderRequiredErr] = useState('');
 
   useEffect(() => {
     const isDisabled = !firstName || !lastName || !email || !gender || !dateOfBirth;
@@ -49,6 +49,12 @@ const FirstStep = () => {
       ? setErrMessage({ ...errMessage, email: '' })
       : setErrMessage({ ...errMessage, email: 'Correct email is required.' });
   };
+  const handleGenderBlurEvent = () => {
+    gender ? setGenderRequiredErr('') : setGenderRequiredErr('Gender is required.') ;
+  };
+console.log(gender);
+console.log(genderRequiredErr);
+
 
   return (
     <div className='flex flex-col justify-start gap-6 2xl:gap-10'>
@@ -102,6 +108,8 @@ const FirstStep = () => {
               { value: 'Other', label: "I'm out of this world." },
             ]}
             placeholder='Choose gender'
+            onBlur={handleGenderBlurEvent}
+            errMessage={genderRequiredErr}
           />
           <Date id='dateOfBirth' value={dateOfBirth} setValue={setDateOfBirth} />
         </div>

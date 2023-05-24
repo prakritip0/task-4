@@ -28,7 +28,7 @@ const Input = ({
     <div className={`flex flex-col w-full items-start gap-1 ${className}`}>
       {labelName && <Label htmlFor={id} labelName={labelName} />}
       <input
-        className={`${inputClassName} px-4 py-2 border border-gray-300 rounded-lg outline-none w-full`}
+        className={`${inputClassName} px-2 py-1 md:px-4 md:py-2 text-xs md:text-lg border border-gray-300 rounded-lg outline-none w-full`}
         value={value}
         type={type}
         id={id}

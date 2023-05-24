@@ -11,7 +11,7 @@ const SubmitButton = ({ disabled }: SubmitButtonProps) => {
       disabled={disabled}
       className={`${
         disabled ? 'bg-indigo-300 ' : 'bg-indigo-500'
-      } text-white px-4 py-2 w-[7rem] rounded-lg`}
+      } text-white text-xs md:text-lg py-1 md:py-2 w-[5rem] md:w-[7rem] rounded-lg`}
     >
       Next Step
     </button>

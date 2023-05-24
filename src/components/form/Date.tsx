@@ -15,7 +15,7 @@ const Date = ({ id, value, setValue }: DateProps) => {
         type='date'
         value={JSON.stringify(value)}
         onChange={(e) => setValue(e.target.value)}
-        className='py-2 px-4 rounded-lg border w-[100%]'
+        className='py-1 px-2 md:py-2 md:px-4 text-xs md:text-lg rounded-lg border w-[100%]'
       />
     </div>
   );

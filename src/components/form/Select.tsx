@@ -15,7 +15,7 @@ const Select = ({ setValue, value, options, placeholder, id }: SelectProps) => {
     <div className='flex flex-col w-full'>
       <Label htmlFor={id} labelName='Gender' />
       <select
-        className=' py-[0.65rem] px-2 w-full rounded-lg outline-none  text-gray-800 border'
+        className='px-1 py-1 md:py-[0.65rem] md:px-2 w-full text-xs md:text-lg rounded-lg outline-none  text-gray-800 border'
         name='gender'
         value={value}
         onChange={(e) => setValue(e.target.value)}

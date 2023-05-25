@@ -77,21 +77,21 @@ const FirstStep = () => {
   // };
 
   const handleAgeBlur = () => {
-    console.log(dateOfBirth);
+    // console.log(dateOfBirth);
     
     const DOB = new window.Date(dateOfBirth);
-    console.log('DOB',DOB);
+    // console.log('DOB',DOB);
     
     const currentDate = new window.Date();
-    console.log('currentDate', currentDate);
+    // console.log('currentDate', currentDate);
     
     const eighteenYrs = new window.Date(
       currentDate.getUTCFullYear() - 18,
       currentDate.getMonth(),
       currentDate.getDate(),
     );
-    console.log('age:        ', currentDate.valueOf() - DOB.valueOf());
-    console.log('eighteenyrs:', eighteenYrs.valueOf());
+    // console.log('age:        ', currentDate.valueOf() - DOB.valueOf());
+    // console.log('eighteenyrs:', eighteenYrs.valueOf());
 
     if (currentDate.valueOf() - DOB.valueOf() >= eighteenYrs.valueOf()) {
       setAgeErrMessage('');

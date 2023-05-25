@@ -66,6 +66,7 @@ function Main() {
           <Route path='/aboutus' element={<AboutUs />} />
           <Route path='*' element={<ErrorPage />} />
           <Route path='/signup' element={<SignUp />} />
+          
         </Routes>
         <footer>
           <Footer />

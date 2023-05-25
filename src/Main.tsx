@@ -10,6 +10,10 @@ import SignUp from './pages/SignUp';
 import Nav from './components/Nav';
 import Footer from './components/Footer';
 import Banner from './components/Banner';
+import FirstStep from './components/signup/FirstStep';
+import SecondStep from './components/signup/SecondStep';
+import ThirdStep from './components/signup/ThirdStep';
+import FinalStep from './components/signup/FinalStep';
 
 export interface ThemeContextType {
   isDarkMode: boolean;
@@ -66,7 +70,10 @@ function Main() {
           <Route path='/aboutus' element={<AboutUs />} />
           <Route path='*' element={<ErrorPage />} />
           <Route path='/signup' element={<SignUp />} />
-          
+          <Route path='/signup/first-step' element={<FirstStep />} />
+          <Route path='/signup/second-step' element={<SecondStep />} />
+          <Route path='/signup/third-step' element={<ThirdStep />} />
+          <Route path='/signup/final-step' element={<FinalStep />} />
         </Routes>
         <footer>
           <Footer />

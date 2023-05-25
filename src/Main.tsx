@@ -70,10 +70,10 @@ function Main() {
           <Route path='/aboutus' element={<AboutUs />} />
           <Route path='*' element={<ErrorPage />} />
           <Route path='/signup' element={<SignUp />} />
-          <Route path='/signup/first-step' element={<FirstStep />} />
+          {/* <Route path='/signup/first-step' element={<FirstStep />} />
           <Route path='/signup/second-step' element={<SecondStep />} />
           <Route path='/signup/third-step' element={<ThirdStep />} />
-          <Route path='/signup/final-step' element={<FinalStep />} />
+          <Route path='/signup/final-step' element={<FinalStep />} /> */}
         </Routes>
         <footer>
           <Footer />

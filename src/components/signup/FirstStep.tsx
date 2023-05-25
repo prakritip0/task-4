@@ -12,7 +12,7 @@ const FirstStep = () => {
   const [dateOfBirth, setDateOfBirth] = useState('');
   // const [age, setAge] = useState(0);
   const [formSubmitStatus, setFormSubmitStatus] = useState<boolean>(false);
-  const [disabled, setDisabled] = useState<boolean>(true);
+  
 
   const [errMessage, setErrMessage] = useState({
     firstName: '',
@@ -27,21 +27,21 @@ const FirstStep = () => {
   //   setDisabled(isDisabled);
   // }, [firstName, lastName, email, gender, dateOfBirth]);
 
-  useEffect(() => {
-    const errExists: boolean =
-      !errMessage['firstName'] ||
-      !errMessage['lastName'] ||
-      !errMessage['email'] ||
-      !genderErrMessage ||
-      !ageErrMessage;
-    setDisabled(errExists);
-  }, [
-    errMessage['firstName'],
-    errMessage['lastName'],
-    errMessage['firstName'],
-    genderErrMessage,
-    ageErrMessage,
-  ]);
+  // useEffect(() => {
+  //   const errExists: boolean =
+  //     !errMessage['firstName'] ||
+  //     !errMessage['lastName'] ||
+  //     !errMessage['email'] ||
+  //     !genderErrMessage ||
+  //     !ageErrMessage;
+  //   setDisabled(errExists);
+  // }, [
+  //   errMessage['firstName'],
+  //   errMessage['lastName'],
+  //   errMessage['firstName'],
+  //   genderErrMessage,
+  //   ageErrMessage,
+  // ]);
   // console.log('disability:',disabled);
 
   const submitForm = (e: React.FormEvent<HTMLFormElement>) => {
@@ -90,10 +90,9 @@ const FirstStep = () => {
       currentDate.getMonth(),
       currentDate.getDate(),
     );
-    // console.log('age:        ', currentDate.valueOf() - DOB.valueOf());
-    // console.log('eighteenyrs:', eighteenYrs.valueOf());
 
-    if (currentDate.valueOf() - DOB.valueOf() >= eighteenYrs.valueOf()) {
+
+    if (DOB.valueOf() <= eighteenYrs.valueOf()) {
       setAgeErrMessage('');
     } else {
       setAgeErrMessage('You must be 18 or older.');
@@ -102,10 +101,8 @@ const FirstStep = () => {
 
   return (
     <div className='flex flex-col justify-start gap-6 2xl:gap-10'>
-      <h4 className='text-gray-800 text-2xl 2xl:text-3xl font-bold dark:text-white'>
-        Lets start with your Personal Information
-      </h4>
-      <form action='/' className='flex flex-col gap-4 2xl:gap-10' onSubmit={submitForm}>
+      
+      <form action='/' className='flex flex-col gap-10 2xl:gap-10' onSubmit={submitForm}>
         <div className='name flex flex-row gap-4'>
           <Input
             id='firstName'
@@ -164,7 +161,7 @@ const FirstStep = () => {
           />
         </div>
 
-        <SubmitButton disabled={disabled} />
+        
       </form>
       {formSubmitStatus && (
         <>

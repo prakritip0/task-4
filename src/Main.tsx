@@ -1,20 +1,8 @@
 import React, { useState, createContext, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-// import Homepage from './pages/Homepage';
-import JobVacancy from './pages/JobVacancy';
-import Features from './pages/Features';
-import Pricing from './pages/Pricing';
-import AboutUs from './pages/AboutUs';
-import ErrorPage from './pages/ErrorPage';
-import SignUp from './pages/SignUp';
+import { BrowserRouter as Router, Routes, Route, Outlet } from 'react-router-dom';
+
 import Nav from './components/Nav';
 import Footer from './components/Footer';
-import Banner from './components/Banner';
-import FirstStep from './components/signup/FirstStep';
-import SecondStep from './components/signup/SecondStep';
-import ThirdStep from './components/signup/ThirdStep';
-import FinalStep from './components/signup/FinalStep';
-
 export interface ThemeContextType {
   isDarkMode: boolean;
   changeTheme: () => void;
@@ -58,27 +46,15 @@ function Main() {
 
   return (
     <ThemeContext.Provider value={{ isDarkMode, changeTheme }}>
-      <Router>
-        <nav>
-          <Nav />
-        </nav>
-        <Routes>
-          <Route path='/' element={<Banner />} />
-          <Route path='/jobvacancy' element={<JobVacancy />} />
-          <Route path='/features' element={<Features />} />
-          <Route path='/pricing' element={<Pricing />} />
-          <Route path='/aboutus' element={<AboutUs />} />
-          <Route path='*' element={<ErrorPage />} />
-          <Route path='/signup' element={<SignUp />} />
-          {/* <Route path='/signup/first-step' element={<FirstStep />} />
-          <Route path='/signup/second-step' element={<SecondStep />} />
-          <Route path='/signup/third-step' element={<ThirdStep />} />
-          <Route path='/signup/final-step' element={<FinalStep />} /> */}
-        </Routes>
-        <footer>
-          <Footer />
-        </footer>
-      </Router>
+      <nav>
+        <Nav />
+      </nav>
+      <div>
+        <Outlet />
+      </div>
+      <footer>
+        <Footer />
+      </footer>
     </ThemeContext.Provider>
   );
 }

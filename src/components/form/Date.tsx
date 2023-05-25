@@ -5,11 +5,13 @@ interface DateProps {
   id: string;
   value: string | null;
   setValue: (value: string) => void;
-  onBlur:()=>void;
+  onChange:()=>void;
   errMessage: string
 }
 
-const Date = ({ id, value, setValue, onBlur, errMessage }: DateProps) => {
+const Date = ({ id, value, setValue, onChange, errMessage }: DateProps) => {
+  console.log(errMessage);
+  
   return (
     <div className='flex flex-col w-full'>
       <Label htmlFor={id} labelName='Date of birth' />
@@ -18,8 +20,10 @@ const Date = ({ id, value, setValue, onBlur, errMessage }: DateProps) => {
         value={value || ''}
         onChange={(e) => {
           setValue(e.target.value);
+          console.log('e.target.value',e.target.value);
+          
         }}
-        onBlur={onBlur}
+        onInput={onChange}
         className='py-1 px-2 md:py-2 md:px-4 text-xs md:text-sm 2xl:text-lg text-indigo-500 rounded-lg border w-[100%]'
       />
       {errMessage&& <Label htmlFor='id' labelName={errMessage} className='text-red-700' />}

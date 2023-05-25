@@ -10,9 +10,10 @@ const FirstStep = () => {
   const [email, setEmail] = useState('');
   const [gender, setGender] = useState('');
   const [dateOfBirth, setDateOfBirth] = useState('');
-  const [age, setAge] = useState(0);
+  // const [age, setAge] = useState(0);
   const [formSubmitStatus, setFormSubmitStatus] = useState<boolean>(false);
   const [disabled, setDisabled] = useState<boolean>(true);
+
   const [errMessage, setErrMessage] = useState({
     firstName: '',
     lastName: '',
@@ -41,6 +42,7 @@ const FirstStep = () => {
     genderErrMessage,
     ageErrMessage,
   ]);
+  // console.log('disability:',disabled);
 
   const submitForm = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -53,8 +55,7 @@ const FirstStep = () => {
   const handleFristNameBlurEvent = () => {
     firstName
       ? setErrMessage({ ...errMessage, firstName: '' })
-      : (setErrMessage({ ...errMessage, firstName: 'First name is required.' }),
-        console.log('errrr'));
+      : setErrMessage({ ...errMessage, firstName: 'First name is required.' });
   };
   const handleLastNameBlurEvent = () => {
     lastName
@@ -70,30 +71,33 @@ const FirstStep = () => {
     gender ? setGenderErrMessage('') : setGenderErrMessage('Gender is required.');
   };
 
-  const setDOB = (value: string) => {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    setDateOfBirth(value);
-  };
+  // const setDOB = (value: string) => {
+  //   // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  //   setDateOfBirth(value);
+  // };
 
-  const DOBYear = new window.Date(dateOfBirth).getUTCFullYear();
-  const DOBMonth = new window.Date(dateOfBirth).getUTCMonth() + 1;
-  const DOBDay = new window.Date(dateOfBirth).getUTCDate();
-
-  const currentYear = new window.Date().getUTCFullYear();
-  const currentMonth = new window.Date().getUTCMonth() + 1;
-  const currentDay = new window.Date().getUTCDate();
-
-  let ageByYear =  currentYear - DOBYear;
-  // console.log('init', ageByYear);
-  const ageByMonth = DOBMonth - currentMonth;
-  const ageByDay = DOBDay - currentDay;
-  // console.log(ageByYear);
   const handleAgeBlur = () => {
-    if (ageByMonth < 0 || (ageByMonth === 0 && ageByDay > 0)) {
-      ageByYear--; 
+    // console.log(dateOfBirth);
+    
+    const DOB = new window.Date(dateOfBirth);
+    // console.log('DOB',DOB);
+    
+    const currentDate = new window.Date();
+    // console.log('currentDate', currentDate);
+    
+    const eighteenYrs = new window.Date(
+      currentDate.getUTCFullYear() - 18,
+      currentDate.getMonth(),
+      currentDate.getDate(),
+    );
+    // console.log('age:        ', currentDate.valueOf() - DOB.valueOf());
+    // console.log('eighteenyrs:', eighteenYrs.valueOf());
+
+    if (currentDate.valueOf() - DOB.valueOf() >= eighteenYrs.valueOf()) {
+      setAgeErrMessage('');
+    } else {
+      setAgeErrMessage('You must be 18 or older.');
     }
-    setAge(ageByYear);
-    age && age < 18 ? setAgeErrMessage('You must be 18 or older.') : setAgeErrMessage('');
   };
 
   return (
@@ -154,8 +158,8 @@ const FirstStep = () => {
           <Date
             id='date'
             value={dateOfBirth}
-            setValue={setDOB}
-            onBlur={handleAgeBlur}
+            setValue={setDateOfBirth}
+            onChange={handleAgeBlur}
             errMessage={ageErrMessage}
           />
         </div>

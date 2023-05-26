@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Dispatch, SetStateAction } from 'react';
 import Label from './Label';
 
 interface ErrMessage {
@@ -13,11 +13,12 @@ interface InputProps {
   placeholder?: string;
   labelName?: string;
   type: 'text' | 'email';
-  value: string;
+  value: string | string[];
   setValue: (value: string) => void;
-  // formSubmitStatus: boolean;
   onBlur: () => void;
   errMessage: ErrMessage | string;
+  setSkillTags?: (tags: string[]) => void;
+  skillTags?: string[];
 }
 
 const Input = ({
@@ -31,7 +32,10 @@ const Input = ({
   inputClassName,
   onBlur,
   errMessage,
+  setSkillTags,
+  skillTags,
 }: InputProps) => {
+  // const skills = skillTags;
   return (
     <div className={`flex flex-col w-full items-start gap-1 ${className}`}>
       {labelName && <Label htmlFor={id} labelName={labelName} />}
@@ -43,6 +47,13 @@ const Input = ({
         placeholder={placeholder}
         onChange={(e) => {
           setValue(e.target.value);
+        }}
+        onKeyPress={(e) => {
+          if (e.key === 'Enter') {
+            console.log(e.key);
+            console.log('skills', [value]);
+            setSkillTags && setSkillTags([...skillTags as string[], value as string]);
+          }
         }}
         onBlur={onBlur}
       />

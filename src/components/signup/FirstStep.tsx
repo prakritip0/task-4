@@ -72,7 +72,7 @@ const FirstStep = () => {
   };
 
   return (
-    <div className='flex flex-col justify-start gap-6 2xl:gap-10'>
+    <div className='flex flex-col justify-start align-start gap-6 2xl:gap-10'>
       <form action='/' className='flex flex-col gap-10 2xl:gap-10' onSubmit={submitForm}>
         <div className='name flex flex-row gap-4'>
           <Input
@@ -122,6 +122,7 @@ const FirstStep = () => {
             placeholder='Choose gender'
             onBlur={handleGenderBlurEvent}
             errMessage={genderErrMessage}
+            labelName='Gender'
           />
           <Date
             id='date'

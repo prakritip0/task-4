@@ -10,12 +10,13 @@ interface SelectProps {
   id: string;
   errMessage:string
   onBlur:()=>void
+  labelName:string
 }
 
-const Select = ({ setValue, value, options, placeholder, id, errMessage,onBlur }: SelectProps) => {
+const Select = ({ setValue, value, options, placeholder, id, errMessage,onBlur, labelName }: SelectProps) => {
   return (
     <div className='flex flex-col w-full'>
-      <Label htmlFor={id} labelName='Gender' />
+      <Label htmlFor={id} labelName={labelName} />
       <select
         className='px-1 py-1 md:py-[0.65rem] md:px-2 w-full text-xs md:text-sm 2xl:text-lg text-indigo-500 rounded-lg outline-none  text-gray-800 border'
         name='gender'

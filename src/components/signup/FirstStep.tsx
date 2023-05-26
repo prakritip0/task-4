@@ -1,8 +1,8 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Input from '../form/Input';
-import SubmitButton from '../form/SubmitButton';
 import Select from '../form/Select';
 import Date from '../form/Date';
+
 
 const FirstStep = () => {
   const [firstName, setFirstName] = useState('');

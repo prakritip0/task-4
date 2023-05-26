@@ -65,12 +65,12 @@ const SignUp = () => {
   console.log('backward', backwardRoutes);
   return (
     <div className=' py-10 px-4 md:px-[8rem] 2xl:px-[10rem] bg-[#fffaf2] dark:bg-gray-800 '>
-      <div className=' md:py-6 px-1 md:pl-4 h-[33rem] w-[90%] rounded-2xl m-auto  bg-[#f1f1f1]  dark:bg-gray-900 2xl:h-[40rem]'>
+      <div className='flex flex-col md:py-6 px-1 md:pl-4 2xl:pl-16 h-[33rem] w-[90%] rounded-2xl m-auto  bg-[#f1f1f1]  dark:bg-gray-900 2xl:h-[45rem]'>
         <h4 className='text-gray-800 text-2xl 2xl:text-3xl font-bold dark:text-white'>
           {titles[signupStep]}
         </h4>
 
-        <div className='flex justify-between  items-center m-auto   '>
+        <div className='flex justify-between  items-center m-auto  w-full '>
           <Outlet />
           <SignUpDesign />
         </div>

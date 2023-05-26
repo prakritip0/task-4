@@ -15,9 +15,9 @@ interface InputProps {
   type: 'text' | 'email';
   value: string;
   setValue: (value: string) => void;
-  formSubmitStatus: boolean;
+  // formSubmitStatus: boolean;
   onBlur: () => void;
-  errMessage: ErrMessage;
+  errMessage: ErrMessage | string;
 }
 
 const Input = ({

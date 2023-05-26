@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Input from '../form/Input';
 import SubmitButton from '../form/SubmitButton';
 import Select from '../form/Select';
@@ -21,32 +21,14 @@ const FirstStep = () => {
   const [genderErrMessage, setGenderErrMessage] = useState('');
   const [ageErrMessage, setAgeErrMessage] = useState('');
 
-  // useEffect(() => {
-  //   const isDisabled = !firstName || !lastName || !email || !gender || !dateOfBirth;
-  //   setDisabled(isDisabled);
-  // }, [firstName, lastName, email, gender, dateOfBirth]);
-
-  // useEffect(() => {
-  //   const errExists: boolean =
-  //     !errMessage['firstName'] ||
-  //     !errMessage['lastName'] ||
-  //     !errMessage['email'] ||
-  //     !genderErrMessage ||
-  //     !ageErrMessage;
-  //   setDisabled(errExists);
-  // }, [
-  //   errMessage['firstName'],
-  //   errMessage['lastName'],
-  //   errMessage['firstName'],
-  //   genderErrMessage,
-  //   ageErrMessage,
-  // ]);
-  // console.log('disability:',disabled);
-
   const submitForm = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setFormSubmitStatus(true);
   };
+
+  useEffect(() => {
+    dateOfBirth && handleAgeChange();
+  }, [dateOfBirth]);
 
   // eslint-disable-next-line no-useless-escape
   const regex = /^([a-zA-Z0-9\._]+)@([a-zA-Z0-9])+.([a-z]+)(.[a-z]+)?$/;
@@ -70,20 +52,10 @@ const FirstStep = () => {
     gender ? setGenderErrMessage('') : setGenderErrMessage('Gender is required.');
   };
 
-  // const setDOB = (value: string) => {
-  //   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  //   setDateOfBirth(value);
-  // };
-
-  const handleAgeBlur = () => {
+  const handleAgeChange = () => {
     console.log('state value', dateOfBirth);
-
     const DOB = new window.Date(dateOfBirth);
-    // console.log('DOB',DOB);
-
     const currentDate = new window.Date();
-    // console.log('currentDate', currentDate);
-
     const eighteenYrs = new window.Date(
       currentDate.getUTCFullYear() - 18,
       currentDate.getMonth(),
@@ -99,10 +71,6 @@ const FirstStep = () => {
     }
   };
 
-  useEffect(() => {
-    handleAgeBlur();
-  }, [dateOfBirth]);
-
   return (
     <div className='flex flex-col justify-start gap-6 2xl:gap-10'>
       <form action='/' className='flex flex-col gap-10 2xl:gap-10' onSubmit={submitForm}>
@@ -114,7 +82,7 @@ const FirstStep = () => {
             type='text'
             value={firstName}
             setValue={setFirstName}
-            formSubmitStatus={formSubmitStatus}
+            // formSubmitStatus={formSubmitStatus}
             onBlur={handleFristNameBlurEvent}
             errMessage={errMessage}
           />
@@ -125,7 +93,7 @@ const FirstStep = () => {
             type='text'
             value={lastName}
             setValue={setLastName}
-            formSubmitStatus={formSubmitStatus}
+            // formSubmitStatus={formSubmitStatus}
             onBlur={handleLastNameBlurEvent}
             errMessage={errMessage}
           />
@@ -137,7 +105,7 @@ const FirstStep = () => {
           type='email'
           value={email}
           setValue={setEmail}
-          formSubmitStatus={formSubmitStatus}
+          // formSubmitStatus={formSubmitStatus}
           onBlur={handleEmailBlurEvent}
           errMessage={errMessage}
         />
@@ -159,7 +127,7 @@ const FirstStep = () => {
             id='date'
             value={dateOfBirth}
             setValue={setDateOfBirth}
-            onInput={handleAgeBlur}
+            onInput={handleAgeChange}
             errMessage={ageErrMessage}
           />
         </div>

@@ -9,7 +9,8 @@ const SignUp = () => {
   const [forwardDisabled, setForwardDisabled] = useState<boolean>(false);
   const [backwardDisabled, setBackwardDisabled] = useState<boolean>(true);
   const [nextButtonLabel, setNextButtonLabel] = useState('Next Step');
-  const [signupRoutes, setSignupRoutes] = useState('');
+  const [forwardRoutes, setForwardRoutes] = useState('');
+  const [backwardRoutes, setBackwardRoutes] = useState('');
   const titles = [
     'Lets start with your Personal Information',
     'Your Skills and Certifications',
@@ -24,6 +25,7 @@ const SignUp = () => {
   };
   // console.log(signupStep);
 
+
   useEffect(() => {
     setNextButtonLabel('Next Step')
     if (signupStep > 0) {
@@ -35,22 +37,31 @@ const SignUp = () => {
     }
 
     if (signupStep > titles.length - 2) {
-      console.log('signupf', signupStep);
+      // console.log('signupf', signupStep);
       // setForwardDisabled(true);
       setNextButtonLabel('Submit');
     }
   }, [signupStep]);
 
+
   useEffect(() => {
     if (signupStep === 0) {
-      setSignupRoutes('/signup/second-step');
+      setForwardRoutes('/signup/second-step');
+      setBackwardRoutes('')
     } else if (signupStep === 1) {
-      setSignupRoutes('/signup/third-step');
+      setForwardRoutes('/signup/third-step');
+      setBackwardRoutes('/signup')
     } else if (signupStep === 2) {
-      setSignupRoutes('/signup/final-step');
+      setForwardRoutes('/signup/final-step');
+      setBackwardRoutes('/signup/second-step')
+    } else if (signupStep === 3) {
+      setBackwardRoutes('/signup/third-step')
     } 
-  }, [signupStep]);
 
+  }, [signupStep]);
+  console.log(signupStep);
+  console.log('forward',forwardRoutes);
+  console.log('backward',backwardRoutes);
   return (
     <div className=' py-10 px-4 md:px-[8rem] 2xl:px-[10rem] bg-[#fffaf2] dark:bg-gray-800 '>
       <div className=' md:py-6 px-1 md:pl-4 h-[33rem] w-[90%] rounded-2xl m-auto  bg-[#f1f1f1]  dark:bg-gray-900 2xl:h-[40rem]'>
@@ -63,7 +74,7 @@ const SignUp = () => {
           <SignUpDesign />
         </div>
         <div className='flex gap-6'>
-          <Link to={signupRoutes}>
+          <Link to={forwardRoutes}>
             <SubmitButton
               label='Go back'
               disabled={backwardDisabled}
@@ -71,7 +82,7 @@ const SignUp = () => {
               signupStep={signupStep}
             />
           </Link>
-          <Link to={signupRoutes}>
+          <Link to={backwardRoutes}>
             <SubmitButton
               label={nextButtonLabel}
               disabled={forwardDisabled}

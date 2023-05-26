@@ -12,7 +12,6 @@ const FirstStep = () => {
   const [dateOfBirth, setDateOfBirth] = useState('');
   // const [age, setAge] = useState(0);
   const [formSubmitStatus, setFormSubmitStatus] = useState<boolean>(false);
-  
 
   const [errMessage, setErrMessage] = useState({
     firstName: '',
@@ -77,20 +76,21 @@ const FirstStep = () => {
   // };
 
   const handleAgeBlur = () => {
-    // console.log(dateOfBirth);
-    
+    console.log('state value', dateOfBirth);
+
     const DOB = new window.Date(dateOfBirth);
     // console.log('DOB',DOB);
-    
+
     const currentDate = new window.Date();
     // console.log('currentDate', currentDate);
-    
+
     const eighteenYrs = new window.Date(
       currentDate.getUTCFullYear() - 18,
       currentDate.getMonth(),
       currentDate.getDate(),
     );
-
+    console.log('Date eighteen years ago', eighteenYrs);
+    console.log('DOB', DOB);
 
     if (DOB.valueOf() <= eighteenYrs.valueOf()) {
       setAgeErrMessage('');
@@ -99,9 +99,12 @@ const FirstStep = () => {
     }
   };
 
+  useEffect(() => {
+    handleAgeBlur();
+  }, [dateOfBirth]);
+
   return (
     <div className='flex flex-col justify-start gap-6 2xl:gap-10'>
-      
       <form action='/' className='flex flex-col gap-10 2xl:gap-10' onSubmit={submitForm}>
         <div className='name flex flex-row gap-4'>
           <Input
@@ -160,8 +163,6 @@ const FirstStep = () => {
             errMessage={ageErrMessage}
           />
         </div>
-
-        
       </form>
       {formSubmitStatus && (
         <>

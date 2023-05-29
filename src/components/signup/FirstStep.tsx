@@ -75,8 +75,8 @@ const FirstStep = () => {
   }>();
 
   return (
-    <div className='flex flex-col justify-start align-start gap-6 2xl:gap-10 h-full'>
-      <form action='/' className='flex flex-col gap-10 2xl:gap-10' onSubmit={submitForm}>
+    <div className='flex flex-col align-start justify-center gap-6 2xl:gap-10 h-full  '>
+      <form action='/' className='flex flex-col  gap-10  2xl:gap-10' onSubmit={submitForm}>
         <div className='name flex flex-row gap-4'>
           <Input
             id='firstName'
@@ -138,7 +138,7 @@ const FirstStep = () => {
       </form>
 
       <div className='flex gap-6'>
-        <Button label='Go back' disabled={true} onClick={goBackward} />
+        <Button label='Back' disabled={true} onClick={goBackward} />
         <Button label={'Next'} disabled={false} onClick={moveForward} />
       </div>
     </div>

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useOutletContext } from 'react-router-dom';
+import { useOutletContext, Link } from 'react-router-dom';
 import Input from '../form/Input';
 import Select from '../form/Select';
 import SkillTag from '../form/SkillTag';
@@ -32,8 +32,8 @@ const SecondStep = () => {
   // console.log('skillz',skillTags);
 
   return (
-    <div className='flex flex-col justify-between gap-12'>
-      <div className='flex flex-col items-start gap-6'>
+    <div className='flex flex-col h-full align-start justify-center  gap-12'>
+      <form className='flex flex-col items-start  gap-6'>
         <Input
           id='skills'
           value={skills}
@@ -41,7 +41,7 @@ const SecondStep = () => {
           placeholder='Your Skills'
           labelName='Skills'
           type='text'
-          className='w-[20rem]'
+          className='w-[25rem]'
           onBlur={handleSkillBlur}
           errMessage={skillErrMessage}
           setSkillTags={setTags}
@@ -77,10 +77,14 @@ const SecondStep = () => {
             errMessage={skillErrMessage}
           />
         )}
-      </div>
+      </form>
       <div className='flex gap-6'>
-        <Button label='Go back' disabled={true} onClick={goBackward} />
-        <Button label={'Next'} disabled={false} onClick={moveForward} />
+        <Link to='/signup'>
+          <Button label='Back' disabled={false} onClick={goBackward} />
+        </Link>
+        <Link to='/signup/third-step'>
+          <Button label={'Next'} disabled={false} onClick={moveForward} />
+        </Link>
       </div>
     </div>
   );

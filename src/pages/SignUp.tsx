@@ -3,6 +3,10 @@ import SignUpDesign from '../components/signup/SignUpDesign';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import StepGuide from '../components/signup/StepGuide';
 
+const stripTrailingChar = (str: string, char: string) => {
+  return str.endsWith(char) ? str.slice(0, -1) : str;
+};
+
 const SignUp = () => {
   const location = useLocation();
 
@@ -15,28 +19,19 @@ const SignUp = () => {
     'Your Job Preferences',
   ];
   const navigate = useNavigate();
-  const routes = ['/', '/second-step', '/third-step'];
+  const routes = ['/signup', '/signup/second-step', '/signup/third-step'];
 
-  useEffect(()=>{
-    if (location.pathname === '/signup') {
-      setSignupStep(0);
-    }else if(location.pathname === '/signup/second-step'){
-      setSignupStep(1);
-    }else if(location.pathname === '/signup/third-step'){
-      setSignupStep(2);
-    }else if(location.pathname === '/signup/final-step'){
-      setSignupStep(3);
-    }
-  },[location])
-  
-// console.log(signupStep);
+  useEffect(() => {
+    const pathname = stripTrailingChar(location.pathname, '/');
+    setSignupStep(routes.indexOf(pathname));
+  }, [location]);
 
   const moveForward = () => {
     const currentStep = signupStep;
     const nextStep = currentStep + 1;
     setSignupStep(nextStep);
     const route = routes[nextStep];
-    navigate(`/signup${route}`);
+    navigate(`${route}`);
   };
 
   const goBackward = () => {
@@ -44,7 +39,7 @@ const SignUp = () => {
     const prevStep = currentStep - 1;
     setSignupStep(prevStep);
     const route = routes[prevStep];
-    navigate(`/signup${route}`);
+    navigate(`${route}`);
   };
   console.log('fromSignUp', signupStep);
   return (
@@ -55,7 +50,7 @@ const SignUp = () => {
         </h4>
 
         <div className='flex justify-between  items-center m-auto  w-full '>
-          <StepGuide signupStep= {signupStep} />
+          <StepGuide signupStep={signupStep} />
           <Outlet
             context={{
               moveForward,

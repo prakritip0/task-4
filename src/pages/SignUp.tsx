@@ -1,68 +1,52 @@
 import React, { useEffect, useState } from 'react';
-import FirstStep from '../components/signup/FirstStep';
 import SignUpDesign from '../components/signup/SignUpDesign';
-import SubmitButton from '../components/form/SubmitButton';
-import { Outlet, Link } from 'react-router-dom';
+import { Outlet, useLocation, useNavigate } from 'react-router-dom';
+import StepGuide from '../components/signup/StepGuide';
 
 const SignUp = () => {
-  // const router = useLocation();
+  const location = useLocation();
 
   const [signupStep, setSignupStep] = useState(0);
-  const [forwardDisabled, setForwardDisabled] = useState<boolean>(false);
-  const [backwardDisabled, setBackwardDisabled] = useState<boolean>(true);
-  const [nextButtonLabel, setNextButtonLabel] = useState('Next Step');
-  const [forwardRoutes, setForwardRoutes] = useState('');
-  const [backwardRoutes, setBackwardRoutes] = useState('');
+
   const titles = [
     'Lets start with your Personal Information',
     'Your Skills and Certifications',
     'Your Work Experience',
     'Your Job Preferences',
   ];
+  const navigate = useNavigate();
+  const routes = ['/', '/second-step', '/third-step'];
+
+  useEffect(()=>{
+    if (location.pathname === '/signup') {
+      setSignupStep(0);
+    }else if(location.pathname === '/signup/second-step'){
+      setSignupStep(1);
+    }else if(location.pathname === '/signup/third-step'){
+      setSignupStep(2);
+    }else if(location.pathname === '/signup/final-step'){
+      setSignupStep(3);
+    }
+  },[location])
+  
+// console.log(signupStep);
+
   const moveForward = () => {
-    setSignupStep(signupStep + 1);
+    const currentStep = signupStep;
+    const nextStep = currentStep + 1;
+    setSignupStep(nextStep);
+    const route = routes[nextStep];
+    navigate(`/signup${route}`);
   };
+
   const goBackward = () => {
-    setSignupStep(signupStep - 1);
+    const currentStep = signupStep;
+    const prevStep = currentStep - 1;
+    setSignupStep(prevStep);
+    const route = routes[prevStep];
+    navigate(`/signup${route}`);
   };
-  // console.log(signupStep);
-
-  // console.log('Signup state', signupStep);
-
-  useEffect(() => {
-    setNextButtonLabel('Next Step');
-    if (signupStep > 0) {
-      // console.log('signupb', signupStep);
-      setBackwardDisabled(false);
-    }
-    if (signupStep === 0) {
-      setBackwardDisabled(true);
-    }
-
-    if (signupStep > titles.length - 2) {
-      // console.log('signupf', signupStep);
-      // setForwardDisabled(true);
-      setNextButtonLabel('Submit');
-    }
-  }, [signupStep]);
-
-  useEffect(() => {
-    if (signupStep === 0) {
-      setForwardRoutes('/signup/second-step');
-      setBackwardRoutes('');
-    } else if (signupStep === 1) {
-      setForwardRoutes('/signup/third-step');
-      setBackwardRoutes('/signup');
-    } else if (signupStep === 2) {
-      setForwardRoutes('/signup/final-step');
-      setBackwardRoutes('/signup/second-step');
-    } else if (signupStep === 3) {
-      setBackwardRoutes('/signup/third-step');
-    }
-  }, [signupStep]);
-  // console.log(signupStep);
-  // console.log('forward', forwardRoutes);
-  // console.log('backward', backwardRoutes);
+  console.log('fromSignUp', signupStep);
   return (
     <div className=' py-10 px-4 md:px-[8rem] 2xl:px-[10rem] bg-[#fffaf2] dark:bg-gray-800 '>
       <div className='flex flex-col md:py-6 px-1 md:pl-4 2xl:pl-16 h-[33rem] w-[90%] rounded-2xl m-auto  bg-[#f1f1f1]  dark:bg-gray-900 2xl:h-[45rem]'>
@@ -71,27 +55,27 @@ const SignUp = () => {
         </h4>
 
         <div className='flex justify-between  items-center m-auto  w-full '>
-          <Outlet />
+          <StepGuide signupStep= {signupStep} />
+          <Outlet
+            context={{
+              moveForward,
+              goBackward,
+            }}
+          />
           <SignUpDesign />
         </div>
-        <div className='flex gap-6'>
+        {/* <div className='flex gap-6'>
           <Link to={backwardRoutes}>
-            <SubmitButton
-              label='Go back'
-              disabled={backwardDisabled}
-              onClick={goBackward}
-              signupStep={signupStep}
-            />
+            <SubmitButton label='Go back' disabled={backwardDisabled} onClick={goBackward} />
           </Link>
           <Link to={forwardRoutes}>
             <SubmitButton
               label={nextButtonLabel}
               disabled={forwardDisabled}
               onClick={moveForward}
-              signupStep={signupStep}
             />
           </Link>
-        </div>
+        </div> */}
       </div>
     </div>
   );

@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import Input from '../form/Input';
 import Select from '../form/Select';
 import Date from '../form/Date';
-
+import { useOutletContext } from 'react-router-dom';
+import Button from '../form/Button';
 
 const FirstStep = () => {
   const [firstName, setFirstName] = useState('');
@@ -10,7 +11,7 @@ const FirstStep = () => {
   const [email, setEmail] = useState('');
   const [gender, setGender] = useState('');
   const [dateOfBirth, setDateOfBirth] = useState('');
-  
+
   const [errMessage, setErrMessage] = useState({
     firstName: '',
     lastName: '',
@@ -68,8 +69,13 @@ const FirstStep = () => {
     }
   };
 
+  const { moveForward, goBackward } = useOutletContext<{
+    moveForward: () => void;
+    goBackward: () => void;
+  }>();
+
   return (
-    <div className='flex flex-col justify-start align-start gap-6 2xl:gap-10'>
+    <div className='flex flex-col justify-start align-start gap-6 2xl:gap-10 h-full'>
       <form action='/' className='flex flex-col gap-10 2xl:gap-10' onSubmit={submitForm}>
         <div className='name flex flex-row gap-4'>
           <Input
@@ -130,7 +136,11 @@ const FirstStep = () => {
           />
         </div>
       </form>
-      
+
+      <div className='flex gap-6'>
+        <Button label='Go back' disabled={true} onClick={goBackward} />
+        <Button label={'Next'} disabled={false} onClick={moveForward} />
+      </div>
     </div>
   );
 };

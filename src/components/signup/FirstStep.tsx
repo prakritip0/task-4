@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { SetStateAction, useEffect, useState } from 'react';
 import Input from '../form/Input';
 import Select from '../form/Select';
 import Date from '../form/Date';
@@ -19,10 +19,17 @@ const FirstStep = () => {
   });
   const [genderErrMessage, setGenderErrMessage] = useState('');
   const [ageErrMessage, setAgeErrMessage] = useState('');
+  const [firstNextDisabled, setFirstNextDisabled] = useState(true);
 
   const submitForm = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
   };
+  const { moveForward, goBackward } = useOutletContext<{
+    moveForward: () => void;
+    goBackward: () => void;
+    isNextDisabled: boolean;
+    setIsNextDisabled: () => void;
+  }>();
 
   useEffect(() => {
     dateOfBirth && handleAgeChange();
@@ -51,7 +58,6 @@ const FirstStep = () => {
   };
 
   const handleAgeChange = () => {
-    console.log('state value', dateOfBirth);
     const DOB = new window.Date(dateOfBirth);
     const currentDate = new window.Date();
     const eighteenYrs = new window.Date(
@@ -59,20 +65,36 @@ const FirstStep = () => {
       currentDate.getMonth(),
       currentDate.getDate(),
     );
-    console.log('Date eighteen years ago', eighteenYrs);
-    console.log('DOB', DOB);
-
     if (DOB.valueOf() <= eighteenYrs.valueOf()) {
       setAgeErrMessage('');
     } else {
       setAgeErrMessage('You must be 18 or older.');
     }
   };
+  useEffect(() => {
+    const noErrMessage =
+      !errMessage.firstName &&
+      !errMessage.lastName &&
+      !errMessage.email &&
+      !genderErrMessage &&
+      !ageErrMessage;
+    // console.log(noErrMessage);
 
-  const { moveForward, goBackward } = useOutletContext<{
-    moveForward: () => void;
-    goBackward: () => void;
-  }>();
+    const isDisabled =
+      !firstName || !lastName || !email || !gender || !dateOfBirth || !noErrMessage;
+    setFirstNextDisabled(isDisabled);
+  }, [
+    firstName,
+    lastName,
+    email,
+    gender,
+    dateOfBirth,
+    errMessage.firstName,
+    errMessage.lastName,
+    errMessage.email,
+    genderErrMessage,
+    ageErrMessage,
+  ]);
 
   return (
     <div className='flex flex-col align-start justify-center gap-6 2xl:gap-10 h-full  '>
@@ -139,7 +161,7 @@ const FirstStep = () => {
 
       <div className='flex gap-6'>
         <Button label='Back' disabled={true} onClick={goBackward} />
-        <Button label={'Next'} disabled={false} onClick={moveForward} />
+        <Button label={'Next'} disabled={firstNextDisabled} onClick={moveForward} />
       </div>
     </div>
   );

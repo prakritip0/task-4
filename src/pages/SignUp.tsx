@@ -11,6 +11,7 @@ const SignUp = () => {
   const location = useLocation();
 
   const [signupStep, setSignupStep] = useState(0);
+  const [isNextDisabled, setIsNextDisabled]= useState(true);
 
   const titles = [
     'Lets start with your Personal Information',
@@ -44,7 +45,7 @@ const SignUp = () => {
   console.log('fromSignUp', signupStep);
   return (
     <div className=' py-10 px-4 md:px-[8rem] 2xl:px-[10rem] bg-[#fffaf2] dark:bg-gray-800 '>
-      <div className='flex flex-col md:py-6 px-1 md:pl-4 2xl:pl-16 h-[33rem] w-[90%] rounded-2xl m-auto  bg-[#f1f1f1]  dark:bg-gray-900 2xl:h-[45rem]'>
+      <div className='flex flex-col md:py-6 px-1 md:pl-4 2xl:pl-16 h-[33rem] 2xl:w-[90%] rounded-2xl m-auto  bg-[#f1f1f1]  dark:bg-gray-900 2xl:h-[45rem]'>
         <h4 className='text-gray-800 text-2xl 2xl:text-3xl font-bold dark:text-white'>
           {titles[signupStep]}
         </h4>
@@ -55,22 +56,12 @@ const SignUp = () => {
             context={{
               moveForward,
               goBackward,
+              
             }}
           />
           <SignUpDesign />
         </div>
-        {/* <div className='flex gap-6'>
-          <Link to={backwardRoutes}>
-            <SubmitButton label='Go back' disabled={backwardDisabled} onClick={goBackward} />
-          </Link>
-          <Link to={forwardRoutes}>
-            <SubmitButton
-              label={nextButtonLabel}
-              disabled={forwardDisabled}
-              onClick={moveForward}
-            />
-          </Link>
-        </div> */}
+        
       </div>
     </div>
   );

@@ -8,7 +8,7 @@ const StepGuide = ({ signupStep }: StepGuideProps) => {
     console.log('fromGuide', signupStep);
     
   return (
-    <div className='flex flex-col justify-between h-full py-[3rem]'>
+    <div className='flex flex-col justify-between pl-2 h-full lg:py-[3rem]'>
       <div
         className={`profile border  rounded-full p-3 cursor-pointer  ${
           signupStep === 0 ? 'bg-indigo-500 border-white' : 'bg-[#f1f1f1] border-gray-500 '

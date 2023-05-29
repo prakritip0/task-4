@@ -10,9 +10,7 @@ const FirstStep = () => {
   const [email, setEmail] = useState('');
   const [gender, setGender] = useState('');
   const [dateOfBirth, setDateOfBirth] = useState('');
-  // const [age, setAge] = useState(0);
-  const [formSubmitStatus, setFormSubmitStatus] = useState<boolean>(false);
-
+  
   const [errMessage, setErrMessage] = useState({
     firstName: '',
     lastName: '',
@@ -23,7 +21,6 @@ const FirstStep = () => {
 
   const submitForm = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setFormSubmitStatus(true);
   };
 
   useEffect(() => {
@@ -133,22 +130,7 @@ const FirstStep = () => {
           />
         </div>
       </form>
-      {formSubmitStatus && (
-        <>
-          <div className='flex gap-8'>
-            <h3 className='dark:text-white text-gray-800'>First Name: {firstName}</h3>
-            <h3 className='dark:text-white text-gray-800'>Last Name: {lastName}</h3>
-          </div>
-          <div className='flex gap-8'>
-            <h4 className='dark:text-white text-gray-800'>Email: {email}</h4>
-            <h4 className='dark:text-white text-gray-800'>Gender: {gender}</h4>
-            <h4 className='dark:text-white text-gray-800'>
-              {' '}
-              <>DOB: {dateOfBirth}</>
-            </h4>
-          </div>
-        </>
-      )}
+      
     </div>
   );
 };

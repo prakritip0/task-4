@@ -14,7 +14,7 @@ const SubmitButton = ({ disabled, onClick, label }: SubmitButtonProps) => {
       onClick={onClick}
       className={`${
         disabled ? 'bg-indigo-300 ' : 'bg-indigo-500'
-      } text-white text-xs md:text-md lg:text-lg  py-1 px-1  lg:py-[0.35rem] lg:px-2 2xl:py-2 2xl:px-3 rounded-lg`}
+      } text-white text-xs md:text-md lg:text-lg  py-1 px-1  lg:py-[0.35rem] lg:px-2 2xl:py-1 2xl:px-3 rounded-lg`}
     >
       {label}
     </button>

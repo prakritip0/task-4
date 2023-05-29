@@ -11,7 +11,6 @@ const SignUp = () => {
   const location = useLocation();
 
   const [signupStep, setSignupStep] = useState(0);
-  const [isNextDisabled, setIsNextDisabled]= useState(true);
 
   const titles = [
     'Lets start with your Personal Information',
@@ -20,10 +19,12 @@ const SignUp = () => {
     'Your Job Preferences',
   ];
   const navigate = useNavigate();
-  const routes = ['/signup', '/signup/second-step', '/signup/third-step'];
+  const routes = ['/signup', '/signup/second-step', '/signup/third-step', '/signup/final-step'];
 
   useEffect(() => {
     const pathname = stripTrailingChar(location.pathname, '/');
+    console.log(routes.indexOf(pathname));
+    
     setSignupStep(routes.indexOf(pathname));
   }, [location]);
 
@@ -42,7 +43,7 @@ const SignUp = () => {
     const route = routes[prevStep];
     navigate(`${route}`);
   };
-  // console.log('fromSignUp', signupStep);
+  console.log('fromSignUp', signupStep);
   return (
     <div className=' py-10 px-4 md:px-[8rem] 2xl:px-[10rem] bg-[#fffaf2] dark:bg-gray-800 '>
       <div className='flex flex-col md:py-6 px-1 md:pl-4 2xl:pl-16 h-[33rem] 2xl:w-[90%] rounded-2xl m-auto  bg-[#f1f1f1]  dark:bg-gray-900 2xl:h-[45rem]'>

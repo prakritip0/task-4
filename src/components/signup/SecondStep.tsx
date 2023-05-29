@@ -12,6 +12,7 @@ const SecondStep = () => {
   const [degreeType, setDegreeType] = useState('');
   const [formalDegreeErrMessage] = useState('');
   const [skillTags, setSkillTags] = useState<string[]>([]);
+  const [isDisabled, setIsDisabled]= useState(true);
 
   const { moveForward, goBackward } = useOutletContext<{
     moveForward: () => void;
@@ -34,7 +35,7 @@ const SecondStep = () => {
   console.log('skillz', skillTags);
 
   return (
-    <div className='flex flex-col h-full align-start justify-center w-full gap-12 px-20 py-8'>
+    <div className='flex flex-col h-full align-start justify-between w-[30rem] mx-[7rem] pt-[6rem]'>
       <div className='flex flex-col items-start  gap-6'>
         <Input
           id='skills'
@@ -88,7 +89,7 @@ const SecondStep = () => {
           <Button label='Back' disabled={false} onClick={goBackward} />
         </Link>
         <Link to='/signup/third-step'>
-          <Button label={'Next'} disabled={false} onClick={moveForward} />
+          <Button label={'Next'} disabled={isDisabled} onClick={moveForward} />
         </Link>
       </div>
     </div>

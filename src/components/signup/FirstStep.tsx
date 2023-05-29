@@ -6,6 +6,8 @@ import { useOutletContext } from 'react-router-dom';
 import Button from '../form/Button';
 import { ChangeEvent } from 'react';
 
+export let firstStepComplete:boolean;
+
 const FirstStep = () => {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
@@ -22,9 +24,7 @@ const FirstStep = () => {
   const [ageErrMessage, setAgeErrMessage] = useState('');
   const [firstNextDisabled, setFirstNextDisabled] = useState(true);
 
-  const submitForm = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-  };
+
   const { moveForward, goBackward } = useOutletContext<{
     moveForward: () => void;
     goBackward: () => void;
@@ -105,10 +105,11 @@ const FirstStep = () => {
     genderErrMessage,
     ageErrMessage,
   ]);
+  firstStepComplete = !firstNextDisabled
 
   return (
-    <div className='flex flex-col align-start justify-center gap-6 2xl:gap-10 h-full  '>
-      <form action='/' className='flex flex-col  gap-10  2xl:gap-10' onSubmit={submitForm}>
+    <div className='flex flex-col align-start justify-between pt-[6rem] h-full w-[30rem] mx-[7rem]'>
+      <div className='flex flex-col  gap-10  2xl:gap-10'>
         <div className='name flex flex-row gap-4'>
           <Input
             id='firstName'
@@ -165,9 +166,9 @@ const FirstStep = () => {
             errMessage={ageErrMessage}
           />
         </div>
-      </form>
+      </div>
 
-      <div className='flex gap-6'>
+      <div className='flex gap-6 pt-[4rem]'>
         <Button label='Back' disabled={true} onClick={goBackward} />
         <Button label={'Next'} disabled={firstNextDisabled} onClick={moveForward} />
       </div>

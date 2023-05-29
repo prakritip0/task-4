@@ -20,7 +20,7 @@ const SkillTag = ({ skillTags, setSkillTags }: SkillTagProps) => {
               className=' flex items-center gap-1 border border-indigo-500 bg-indigo-100 text-indigo-500 rounded-xl  2xl:py-1 px-1'
             >
               <p className='text-xs'>{skill}</p>
-              <p
+              <button
                 className='lg:text-[0.3rem] 2xl:text-[0.5rem] cursor-pointer'
                 onClick={() => {
                   console.log('skills', skillTags);
@@ -29,8 +29,8 @@ const SkillTag = ({ skillTags, setSkillTags }: SkillTagProps) => {
                   setSkillTags(oldSkillTags);
                 }}
               >
-                ✕
-              </p>
+                
+              </button>
             </div>
           );
         })}

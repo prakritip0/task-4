@@ -42,7 +42,7 @@ const SignUp = () => {
     const route = routes[prevStep];
     navigate(`${route}`);
   };
-  console.log('fromSignUp', signupStep);
+  // console.log('fromSignUp', signupStep);
   return (
     <div className=' py-10 px-4 md:px-[8rem] 2xl:px-[10rem] bg-[#fffaf2] dark:bg-gray-800 '>
       <div className='flex flex-col md:py-6 px-1 md:pl-4 2xl:pl-16 h-[33rem] 2xl:w-[90%] rounded-2xl m-auto  bg-[#f1f1f1]  dark:bg-gray-900 2xl:h-[45rem]'>

@@ -1,9 +1,10 @@
-import React, { SetStateAction, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Input from '../form/Input';
 import Select from '../form/Select';
 import Date from '../form/Date';
 import { useOutletContext } from 'react-router-dom';
 import Button from '../form/Button';
+import { ChangeEvent } from 'react';
 
 const FirstStep = () => {
   const [firstName, setFirstName] = useState('');
@@ -31,33 +32,30 @@ const FirstStep = () => {
     setIsNextDisabled: () => void;
   }>();
 
-  useEffect(() => {
-    dateOfBirth && handleAgeChange();
-  }, [dateOfBirth]);
-
   // eslint-disable-next-line no-useless-escape
   const regex = /^([a-zA-Z0-9\._]+)@([a-zA-Z0-9])+.([a-z]+)(.[a-z]+)?$/;
 
-  const handleFristNameBlurEvent = () => {
+  const validateFirstName = () => {
     firstName
       ? setErrMessage({ ...errMessage, firstName: '' })
       : setErrMessage({ ...errMessage, firstName: 'First name is required.' });
   };
-  const handleLastNameBlurEvent = () => {
+  const validateLastName = () => {
     lastName
       ? setErrMessage({ ...errMessage, lastName: '' })
       : setErrMessage({ ...errMessage, lastName: 'Last name is required.' });
   };
-  const handleEmailBlurEvent = () => {
+  const validateEmail = () => {
     regex.test(email)
       ? setErrMessage({ ...errMessage, email: '' })
       : setErrMessage({ ...errMessage, email: 'Correct email is required.' });
   };
-  const handleGenderBlurEvent = () => {
+  const validateGender = () => {
     gender ? setGenderErrMessage('') : setGenderErrMessage('Gender is required.');
   };
 
   const handleAgeChange = () => {
+    let isValid = true;
     const DOB = new window.Date(dateOfBirth);
     const currentDate = new window.Date();
     const eighteenYrs = new window.Date(
@@ -66,11 +64,23 @@ const FirstStep = () => {
       currentDate.getDate(),
     );
     if (DOB.valueOf() <= eighteenYrs.valueOf()) {
-      setAgeErrMessage('');
+      return isValid;
     } else {
-      setAgeErrMessage('You must be 18 or older.');
+      isValid = false;
     }
+    return isValid;
   };
+
+  const handleDobChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const isValid = handleAgeChange();
+    if (!isValid) {
+      setAgeErrMessage('You must be 18 or older.');
+    } else {
+      setAgeErrMessage('');
+    }
+    setDateOfBirth(e.target.value);
+  };
+
   useEffect(() => {
     const noErrMessage =
       !errMessage.firstName &&
@@ -106,10 +116,10 @@ const FirstStep = () => {
             labelName='First Name'
             type='text'
             value={firstName}
-            setValue={setFirstName}
+            onChange={(e: ChangeEvent<HTMLInputElement>) => setFirstName(e.target.value)}
             // formSubmitStatus={formSubmitStatus}
-            onBlur={handleFristNameBlurEvent}
-            errMessage={errMessage}
+            onBlur={validateFirstName}
+            error={errMessage.firstName}
           />
           <Input
             id='lastName'
@@ -117,10 +127,9 @@ const FirstStep = () => {
             labelName='Last Name'
             type='text'
             value={lastName}
-            setValue={setLastName}
-            // formSubmitStatus={formSubmitStatus}
-            onBlur={handleLastNameBlurEvent}
-            errMessage={errMessage}
+            onChange={(e: ChangeEvent<HTMLInputElement>) => setLastName(e.target.value)}
+            onBlur={validateLastName}
+            error={errMessage.lastName}
           />
         </div>
         <Input
@@ -129,10 +138,10 @@ const FirstStep = () => {
           labelName='Email'
           type='email'
           value={email}
-          setValue={setEmail}
+          onChange={(e: ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
           // formSubmitStatus={formSubmitStatus}
-          onBlur={handleEmailBlurEvent}
-          errMessage={errMessage}
+          onBlur={validateEmail}
+          error={errMessage.email}
         />
         <div className='flex gap-4'>
           <Select
@@ -145,15 +154,14 @@ const FirstStep = () => {
               { value: 'Other', label: "I'm out of this world." },
             ]}
             placeholder='Choose gender'
-            onBlur={handleGenderBlurEvent}
+            onBlur={validateGender}
             errMessage={genderErrMessage}
             labelName='Gender'
           />
           <Date
             id='date'
             value={dateOfBirth}
-            setValue={setDateOfBirth}
-            onInput={handleAgeChange}
+            onChange={handleDobChange}
             errMessage={ageErrMessage}
           />
         </div>

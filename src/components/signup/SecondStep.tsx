@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { ChangeEvent, useState } from 'react';
 import { useOutletContext, Link } from 'react-router-dom';
 import Input from '../form/Input';
 import Select from '../form/Select';
@@ -7,10 +7,10 @@ import Button from '../form/Button';
 
 const SecondStep = () => {
   const [skills, setSkills] = useState('');
-  const [skillErrMessage, setSkillErrMessage] = useState('');
+  const [skillErrMessage] = useState('');
   const [formalDegree, setFormalDegree] = useState('');
   const [degreeType, setDegreeType] = useState('');
-  const [formalDegreeErrMessage, setFormalDegreeErrMessage] = useState('');
+  const [formalDegreeErrMessage] = useState('');
   const [skillTags, setSkillTags] = useState<string[]>([]);
 
   const { moveForward, goBackward } = useOutletContext<{
@@ -24,30 +24,35 @@ const SecondStep = () => {
   const handleFormalDegreeBlur = () => {
     console.log('i log the degree');
   };
-  // console.log(skillTags);
 
-  const setTags = (tags: string[]) => {
-    setSkillTags(tags);
+  const removeTag = (i: number) => {
+    const updatedSkills = skillTags;
+    updatedSkills.splice(i, 1);
+    setSkillTags([...updatedSkills]);
   };
-  // console.log('skillz',skillTags);
+
+  console.log('skillz', skillTags);
 
   return (
-    <div className='flex flex-col h-full align-start justify-center  gap-12'>
-      <form className='flex flex-col items-start  gap-6'>
+    <div className='flex flex-col h-full align-start justify-center w-full gap-12 px-20 py-8'>
+      <div className='flex flex-col items-start  gap-6'>
         <Input
           id='skills'
           value={skills}
-          setValue={setSkills}
+          onChange={(e: ChangeEvent<HTMLInputElement>) => setSkills(e.target.value)}
           placeholder='Your Skills'
           labelName='Skills'
           type='text'
-          className='w-[25rem]'
           onBlur={handleSkillBlur}
-          errMessage={skillErrMessage}
-          setSkillTags={setTags}
-          skillTags={skillTags}
+          error={skillErrMessage}
+          onKeyPress={(e) => {
+            if (e.key === 'Enter') {
+              setSkillTags((prevVal) => [...prevVal, skills]);
+              setSkills('');
+            }
+          }}
         />
-        <SkillTag skillTags={skillTags} setSkillTags={setSkillTags} />
+        <SkillTag skillTags={skillTags} removeSkill={removeTag} />
         <Select
           id='foramlDegree'
           placeholder='Highest Formal Degree'
@@ -68,16 +73,16 @@ const SecondStep = () => {
           <Input
             id='degreeType'
             value={degreeType}
-            setValue={setDegreeType}
+            onChange={(e: ChangeEvent<HTMLInputElement>) => setDegreeType(e.target.value)}
             placeholder='Formal Degree Name'
             labelName='Degree Name'
             type='text'
             className='w-[20rem]'
-            onBlur={handleSkillBlur}
-            errMessage={skillErrMessage}
+            onBlur={handleFormalDegreeBlur}
+            error={'error.formalDegre'}
           />
         )}
-      </form>
+      </div>
       <div className='flex gap-6'>
         <Link to='/signup'>
           <Button label='Back' disabled={false} onClick={goBackward} />

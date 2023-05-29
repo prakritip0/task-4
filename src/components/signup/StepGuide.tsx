@@ -5,7 +5,7 @@ interface StepGuideProps {
 }
 
 const StepGuide = ({ signupStep }: StepGuideProps) => {
-    console.log('fromGuide', signupStep);
+    // console.log('fromGuide', signupStep);
     
   return (
     <div className='flex flex-col justify-between pl-2 h-full lg:py-[3rem]'>

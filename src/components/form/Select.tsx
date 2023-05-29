@@ -24,7 +24,7 @@ const Select = ({ setValue, value, options, placeholder, id, errMessage,onBlur, 
         onChange={(e) => setValue(e.target.value)}
         onBlur={onBlur}
       >
-        <option value='' selected>
+        <option value='' >
           {placeholder}
         </option>
         {options.length > 0 &&

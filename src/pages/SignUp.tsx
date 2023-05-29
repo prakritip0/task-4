@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react';
 import FirstStep from '../components/signup/FirstStep';
 import SignUpDesign from '../components/signup/SignUpDesign';
 import SubmitButton from '../components/form/SubmitButton';
-import { Outlet, Link, useLocation } from 'react-router-dom';
+import { Outlet, Link } from 'react-router-dom';
 
 const SignUp = () => {
-  const router = useLocation();
+  // const router = useLocation();
 
   const [signupStep, setSignupStep] = useState(0);
   const [forwardDisabled, setForwardDisabled] = useState<boolean>(false);
@@ -27,7 +27,7 @@ const SignUp = () => {
   };
   // console.log(signupStep);
 
-  console.log('Signup state', signupStep);
+  // console.log('Signup state', signupStep);
 
   useEffect(() => {
     setNextButtonLabel('Next Step');
@@ -60,9 +60,9 @@ const SignUp = () => {
       setBackwardRoutes('/signup/third-step');
     }
   }, [signupStep]);
-  console.log(signupStep);
-  console.log('forward', forwardRoutes);
-  console.log('backward', backwardRoutes);
+  // console.log(signupStep);
+  // console.log('forward', forwardRoutes);
+  // console.log('backward', backwardRoutes);
   return (
     <div className=' py-10 px-4 md:px-[8rem] 2xl:px-[10rem] bg-[#fffaf2] dark:bg-gray-800 '>
       <div className='flex flex-col md:py-6 px-1 md:pl-4 2xl:pl-16 h-[33rem] w-[90%] rounded-2xl m-auto  bg-[#f1f1f1]  dark:bg-gray-900 2xl:h-[45rem]'>

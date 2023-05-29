@@ -17,11 +17,12 @@ const SecondStep = () => {
   const handleFormalDegreeBlur = () => {
     console.log('i log the degree');
   };
-  console.log(skillTags);
+  // console.log(skillTags);
 
   const setTags = (tags: string[]) => {
     setSkillTags(tags);
   };
+// console.log('skillz',skillTags);
 
   return (
     <div className='flex flex-col items-start gap-6'>
@@ -38,7 +39,7 @@ const SecondStep = () => {
         setSkillTags={setTags}
         skillTags={skillTags}
       />
-      <SkillTag />
+      <SkillTag skillTags={skillTags} setSkillTags={setSkillTags} />
       <Select
         id='foramlDegree'
         placeholder='Highest Formal Degree'

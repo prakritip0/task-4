@@ -50,9 +50,10 @@ const Input = ({
         }}
         onKeyPress={(e) => {
           if (e.key === 'Enter') {
-            console.log(e.key);
-            console.log('skills', [value]);
+            // console.log(e.key);
+            // console.log('skills', [value]);
             setSkillTags && setSkillTags([...skillTags as string[], value as string]);
+            setValue('')
           }
         }}
         onBlur={onBlur}

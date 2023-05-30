@@ -115,13 +115,13 @@ const SecondStep = () => {
           disabled={formalDegree ? false : true}
         />
       </div>
-      <div className='flex gap-6 pt-[2rem] 2xl:pt-[4rem]'>
-        <Link to='/signup'>
+      <div className='flex gap-6 pt-[2rem] 2xl:pt-[4rem] w-full'>
+        {/* <Link to='/signup'> */}
           <Button label='Back' disabled={false} onClick={goBackward} />
-        </Link>
-        <Link to='/signup/third-step'>
+        {/* </Link> */}
+        {/* <Link to='/signup/third-step'> */}
           <Button label={'Next'} disabled={secondNextDisabled} onClick={moveForward} />
-        </Link>
+        {/* </Link> */}
       </div>
     </div>
   );

@@ -10,8 +10,9 @@ const StepGuide = ({ signupStep }: StepGuideProps) => {
 console.log('firstStepComplete',firstStepComplete);
 
   return (
-    <div className='flex flex-col  justify-between h-full  lg:py-[2rem]'>
-      <div className='profile flex justify-center items-center gap-1'>
+    <div className='flex flex-col relative  justify-between h-full lg:py-[2rem]'>
+      <div className='absolute h-[80%] w-[1.25px] bg-gray-300 left-[23%] z-0'></div>
+      <div className='profile flex justify-center items-center gap-1 z-10'>
         <div
           className={` border rounded-full p-3 cursor-pointer  ${
             signupStep === 0 ? 'bg-indigo-500 border-white' : (firstStepComplete?'bg-green-500 border-white':'bg-[#f1f1f1] border-gray-500' )
@@ -48,7 +49,7 @@ console.log('firstStepComplete',firstStepComplete);
           Step 1
         </span>
       </div>
-      <div className='skills flex justify-center items-center gap-1'>
+      <div className='skills flex justify-center items-center gap-1 z-10'>
         <div
           className={` border cursor-pointer  rounded-full p-3  ${
             signupStep === 1 ? 'bg-indigo-500 border-white' : 'bg-[#f1f1f1] border-gray-500 '
@@ -68,6 +69,7 @@ console.log('firstStepComplete',firstStepComplete);
               d='M4.26 10.147a60.436 60.436 0 00-.491 6.347A48.627 48.627 0 0112 20.904a48.627 48.627 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.57 50.57 0 00-2.658-.813A59.905 59.905 0 0112 3.493a59.902 59.902 0 0110.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.697 50.697 0 0112 13.489a50.702 50.702 0 017.74-3.342M6.75 15a.75.75 0 100-1.5.75.75 0 000 1.5zm0 0v-3.675A55.378 55.378 0 0112 8.443m-7.007 11.55A5.981 5.981 0 006.75 15.75v-1.5'
             />
           </svg>
+          
         </div>
         <span
           className={`w-max font-bold ${signupStep === 1 ? 'text-indigo-500' : 'text-gray-500'}`}
@@ -75,7 +77,7 @@ console.log('firstStepComplete',firstStepComplete);
           Step 2
         </span>
       </div>
-      <div className='work flex justify-center items-center gap-1'>
+      <div className='work flex justify-center items-center gap-1 z-10'>
         <div
           className={` border cursor-pointer  rounded-full p-3  ${
             signupStep === 2 ? 'bg-indigo-500 border-white' : 'bg-[#f1f1f1] border-gray-500 '
@@ -102,7 +104,7 @@ console.log('firstStepComplete',firstStepComplete);
           Step 3
         </span>
       </div>
-      <div className='preferences flex justify-center items-center gap-1'>
+      <div className='preferences flex justify-center items-center gap-1 z-10'>
         <div
           className={` border cursor-pointer  rounded-full p-3  ${
             signupStep === 3 ? 'bg-indigo-500 border-white' : 'bg-[#f1f1f1] border-gray-500 '

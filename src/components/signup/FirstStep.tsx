@@ -31,6 +31,19 @@ const FirstStep = () => {
     setIsNextDisabled: () => void;
   }>();
 
+  const handleFirstNameChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setFirstName(e.target.value);
+  };
+  const handleLastNameChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setLastName(e.target.value)
+  };
+  const handleEmailChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setEmail(e.target.value)
+  };
+  const handleGenderChange=(e:ChangeEvent<HTMLSelectElement>)=>{
+   setGender(e.target.value)
+  }
+
   // eslint-disable-next-line no-useless-escape
   const regex = /^([a-zA-Z0-9\._]+)@([a-zA-Z0-9])+.([a-z]+)(.[a-z]+)?$/;
 
@@ -81,12 +94,7 @@ const FirstStep = () => {
   };
 
   useEffect(() => {
-    const noErrMessage =
-      !err.firstName &&
-      !err.lastName &&
-      !err.email &&
-      !genderErr &&
-      !ageErr;
+    const noErrMessage = !err.firstName && !err.lastName && !err.email && !genderErr && !ageErr;
 
     const isDisabled =
       !firstName || !lastName || !email || !gender || !dateOfBirth || !noErrMessage;
@@ -115,10 +123,10 @@ const FirstStep = () => {
             labelName='First Name'
             type='text'
             value={firstName}
-            onChange={(e: ChangeEvent<HTMLInputElement>) => setFirstName(e.target.value)}
+            onChange={handleFirstNameChange}
             // formSubmitStatus={formSubmitStatus}
             onBlur={validateFirstName}
-            error={err.firstName}
+            err={err.firstName}
           />
           <Input
             id='lastName'
@@ -126,9 +134,9 @@ const FirstStep = () => {
             labelName='Last Name'
             type='text'
             value={lastName}
-            onChange={(e: ChangeEvent<HTMLInputElement>) => setLastName(e.target.value)}
+            onChange={handleLastNameChange}
             onBlur={validateLastName}
-            error={err.lastName}
+            err={err.lastName}
           />
         </div>
         <Input
@@ -137,14 +145,15 @@ const FirstStep = () => {
           labelName='Email'
           type='email'
           value={email}
-          onChange={(e: ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
+          onChange={handleEmailChange}
           onBlur={validateEmail}
-          error={err.email}
+          err={err.email}
         />
         <div className='flex gap-4 w-full'>
           <Select
             id='gender'
-            setValue={setGender}
+            onChange={handleGenderChange}
+           
             value={gender}
             options={[
               { value: 'Male', label: "I'm a male." },
@@ -153,15 +162,10 @@ const FirstStep = () => {
             ]}
             placeholder='Choose gender'
             onBlur={validateGender}
-            errMessage={genderErr}
+            err={genderErr}
             labelName='Gender'
           />
-          <Date
-            id='date'
-            value={dateOfBirth}
-            onChange={handleDobChange}
-            errMessage={ageErr}
-          />
+          <Date id='date' value={dateOfBirth} onChange={handleDobChange} errMessage={ageErr} />
         </div>
       </div>
 

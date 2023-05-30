@@ -6,14 +6,14 @@ interface InputProps extends React.ComponentPropsWithoutRef<'input'> {
   className?: string;
   labelName?: string;
   type: 'text' | 'email';
-  error: string;
+  err: string;
 }
 
 const Input = ({
   className,
   labelName,
   inputClassName,
-  error,
+  err,
   ...props
 }: InputProps) => {
   return (
@@ -23,8 +23,8 @@ const Input = ({
         className={`${inputClassName} px-2 py-1 md:px-4 md:py-2 text-xs md:text-sm 2xl:text-lg border  border-gray-300 rounded-lg outline-none w-full`}
         {...props}
       />
-      {error && (
-        <p className='text-red-700 dark:text-red-400 text-[0.7rem]'>{error}</p>
+      {err && (
+        <p className='text-red-700 dark:text-red-400 text-[0.7rem]'>{err}</p>
       )}
     </div>
   );

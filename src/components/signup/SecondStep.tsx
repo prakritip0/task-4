@@ -1,5 +1,5 @@
 import React, { ChangeEvent, useEffect, useState } from 'react';
-import { useOutletContext, Link } from 'react-router-dom';
+import { useOutletContext } from 'react-router-dom';
 import Input from '../form/Input';
 import Select from '../form/Select';
 import SkillTag from '../form/SkillTag';
@@ -29,16 +29,18 @@ const SecondStep = () => {
   //     setSkills('');
   //   }
   // }
+  const handleFormalDegreeChange = (e: ChangeEvent<HTMLSelectElement>) => {
+    setFormalDegree(e.target.value);
+  };
   const validateFormalDegree = () => {
     formalDegree ? setFormalDegreeErr('') : setFormalDegreeErr('Formal Degree is required.');
   };
   const validateSkill = () => {
-    if(skillTags.length===0){
+    if (skillTags.length === 0) {
       skill ? setSkillErr('') : setSkillErr('Skills are required.');
-    }else{
-      setSkillErr('')
+    } else {
+      setSkillErr('');
     }
-    
   };
   const validateDegreeType = () => {
     degreeType ? setDegreeTypeErr('') : setDegreeTypeErr("Please mention your degree's name.");
@@ -56,10 +58,10 @@ const SecondStep = () => {
 
     const noErrMessage = !skillErr && !formalDegreeErr && !degreeTypeErr;
     const isDisabled = skillTags.length <= 0 || !formalDegree || !degreeType || !noErrMessage;
-    console.log('noerr',noErrMessage);
-    
+    console.log('noerr', noErrMessage);
+
     setSecondNextDisabled(isDisabled);
-  }, [skillTags, formalDegree, skillErr,degreeType, formalDegreeErr, degreeTypeErr]);
+  }, [skillTags, formalDegree, skillErr, degreeType, formalDegreeErr, degreeTypeErr]);
 
   return (
     <div className='flex flex-col h-full align-start justify-between w-[30rem] mx-[7rem] pt-[6rem]'>
@@ -73,7 +75,7 @@ const SecondStep = () => {
             labelName='Skills'
             type='text'
             onBlur={validateSkill}
-            error={skillErr}
+            err={skillErr}
             onKeyPress={(e) => {
               if (e.key === 'Enter') {
                 setSkillTags((prevVal) => [...prevVal, skill]);
@@ -90,7 +92,7 @@ const SecondStep = () => {
           id='foramlDegree'
           placeholder='Highest Formal Degree'
           value={formalDegree}
-          setValue={setFormalDegree}
+          onChange={handleFormalDegreeChange}
           options={[
             { value: 'phd', label: 'PHD' },
             { value: 'masters', label: 'Bachelors' },
@@ -99,7 +101,7 @@ const SecondStep = () => {
             { value: 'other', label: 'Other' },
           ]}
           onBlur={validateFormalDegree}
-          errMessage={formalDegreeErr}
+          err={formalDegreeErr}
           labelName='Formal Degree'
         />
 
@@ -111,17 +113,13 @@ const SecondStep = () => {
           labelName='Degree Name'
           type='text'
           onBlur={validateDegreeType}
-          error={degreeTypeErr}
+          err={degreeTypeErr}
           disabled={formalDegree ? false : true}
         />
       </div>
       <div className='flex gap-6 pt-[2rem] 2xl:pt-[4rem] w-full'>
-        {/* <Link to='/signup'> */}
-          <Button label='Back' disabled={false} onClick={goBackward} />
-        {/* </Link> */}
-        {/* <Link to='/signup/third-step'> */}
-          <Button label={'Next'} disabled={secondNextDisabled} onClick={moveForward} />
-        {/* </Link> */}
+        <Button label='Back' disabled={false} onClick={goBackward} />
+        <Button label={'Next'} disabled={secondNextDisabled} onClick={moveForward} />
       </div>
     </div>
   );

@@ -10,8 +10,8 @@ const StepGuide = ({ signupStep }: StepGuideProps) => {
 console.log('firstStepComplete',firstStepComplete);
 
   return (
-    <div className='flex flex-col justify-between h-full lg:py-[2rem]'>
-      <div className='profile flex flex-col items-center gap-1'>
+    <div className='flex flex-col  justify-between h-full  lg:py-[2rem]'>
+      <div className='profile flex justify-center items-center gap-1'>
         <div
           className={` border rounded-full p-3 cursor-pointer  ${
             signupStep === 0 ? 'bg-indigo-500 border-white' : (firstStepComplete?'bg-green-500 border-white':'bg-[#f1f1f1] border-gray-500' )
@@ -48,7 +48,7 @@ console.log('firstStepComplete',firstStepComplete);
           Step 1
         </span>
       </div>
-      <div className='skills flex flex-col items-center gap-2'>
+      <div className='skills flex justify-center items-center gap-1'>
         <div
           className={` border cursor-pointer  rounded-full p-3  ${
             signupStep === 1 ? 'bg-indigo-500 border-white' : 'bg-[#f1f1f1] border-gray-500 '
@@ -75,7 +75,7 @@ console.log('firstStepComplete',firstStepComplete);
           Step 2
         </span>
       </div>
-      <div className='work flex flex-col items-center gap-2'>
+      <div className='work flex justify-center items-center gap-1'>
         <div
           className={` border cursor-pointer  rounded-full p-3  ${
             signupStep === 2 ? 'bg-indigo-500 border-white' : 'bg-[#f1f1f1] border-gray-500 '
@@ -102,7 +102,7 @@ console.log('firstStepComplete',firstStepComplete);
           Step 3
         </span>
       </div>
-      <div className='preferences flex flex-col items-center gap-2'>
+      <div className='preferences flex justify-center items-center gap-1'>
         <div
           className={` border cursor-pointer  rounded-full p-3  ${
             signupStep === 3 ? 'bg-indigo-500 border-white' : 'bg-[#f1f1f1] border-gray-500 '

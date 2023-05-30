@@ -6,7 +6,7 @@ import { useOutletContext } from 'react-router-dom';
 import Button from '../form/Button';
 import { ChangeEvent } from 'react';
 
-export let firstStepComplete:boolean;
+export let firstStepComplete: boolean;
 
 const FirstStep = () => {
   const [firstName, setFirstName] = useState('');
@@ -23,7 +23,6 @@ const FirstStep = () => {
   const [genderErrMessage, setGenderErrMessage] = useState('');
   const [ageErrMessage, setAgeErrMessage] = useState('');
   const [firstNextDisabled, setFirstNextDisabled] = useState(true);
-
 
   const { moveForward, goBackward } = useOutletContext<{
     moveForward: () => void;
@@ -105,11 +104,11 @@ const FirstStep = () => {
     genderErrMessage,
     ageErrMessage,
   ]);
-  firstStepComplete = !firstNextDisabled
+  firstStepComplete = !firstNextDisabled;
 
   return (
     <div className='flex flex-col align-start justify-between pt-[6rem] h-full w-[30rem] mx-[7rem]'>
-      <div className='flex flex-col  gap-10  2xl:gap-10'>
+      <div className='flex flex-col  gap-10 items-start 2xl:gap-10'>
         <div className='name flex flex-row gap-4'>
           <Input
             id='firstName'
@@ -168,7 +167,7 @@ const FirstStep = () => {
         </div>
       </div>
 
-      <div className='flex gap-6 pt-[4rem]'>
+      <div className='flex gap-6 pt-[2rem] 2xl:pt-[4rem]'>
         <Button label='Back' disabled={true} onClick={goBackward} />
         <Button label={'Next'} disabled={firstNextDisabled} onClick={moveForward} />
       </div>

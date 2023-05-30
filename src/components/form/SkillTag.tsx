@@ -8,8 +8,9 @@ interface SkillTagProps {
 console.log('Hello' && 'World');
 
 const SkillTag = ({ skillTags = [], removeSkill }: SkillTagProps) => (
-  <div className='flex gap-1 max-w-[15rem]  flex-wrap '>
-    {!!skillTags.length &&
+  <div className='flex gap-1 min-w-[15rem]  flex-wrap '>
+    {skillTags.length > 0 &&
+      skillTags.length < 11 &&
       skillTags.map((skill, i) => {
         return (
           <div

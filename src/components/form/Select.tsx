@@ -14,7 +14,7 @@ const Select = ({ options, placeholder, err,onBlur, labelName, ...props }: Selec
     <div className='flex flex-col w-full'>
       <Label htmlFor={props.id as string} labelName={labelName} />
       <select
-        className='px-1 py-1 md:py-[0.65rem] md:px-2 w-full text-xs md:text-sm 2xl:text-lg rounded-lg outline-none  text-gray-800 border'
+        className={`px-1 py-1 md:py-[0.65rem] md:px-2 w-full text-xs md:text-sm 2xl:text-lg rounded-lg ${ err? 'outline-red-700 dark:outline-red-500' :'outline-none'}  text-gray-800 border`}
         name='gender'
         value={props.value}
         onChange={props.onChange}

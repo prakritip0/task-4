@@ -21,14 +21,12 @@ const FirstStep = () => {
   const [genderErr, setGenderErr] = useState('');
   const [ageErr, setAgeErr] = useState('');
   const [firstNextDisabled, setFirstNextDisabled] = useState(true);
-
   const { moveForward, goBackward } = useOutletContext<{
     moveForward: () => void;
     goBackward: () => void;
     isNextDisabled: boolean;
     setIsNextDisabled: () => void;
   }>();
-
   const handleFirstNameChange = (e: ChangeEvent<HTMLInputElement>) => {
     setUserDetails({ ...userDetails, firstName: e.target.value });
   };
@@ -90,10 +88,8 @@ const FirstStep = () => {
     }
     setUserDetails({ ...userDetails, dateOfBirth: e.target.value });
   };
-
   useEffect(() => {
     const noErrMessage = !err.firstName && !err.lastName && !err.email && !genderErr && !ageErr;
-
     const isDisabled =
       !userDetails.firstName ||
       !userDetails.lastName ||
@@ -148,44 +144,44 @@ const FirstStep = () => {
           </div>
         </div>
         <div className='w-full'>
-        <Input
-          id='email'
-          placeholder='ramthapa@gmail.com'
-          labelName='Email'
-          type='email'
-          value={userDetails.email}
-          onChange={handleEmailChange}
-          onBlur={validateEmail}
-          err={err.email}
-        />
-        <Err err={err.email} />
+          <Input
+            id='email'
+            placeholder='ramthapa@gmail.com'
+            labelName='Email'
+            type='email'
+            value={userDetails.email}
+            onChange={handleEmailChange}
+            onBlur={validateEmail}
+            err={err.email}
+          />
+          <Err err={err.email} />
         </div>
         <div className='flex gap-4 w-full'>
           <div>
-          <Select
-            id='gender'
-            onChange={handleGenderChange}
-            value={userDetails.gender}
-            options={[
-              { value: 'Male', label: "I'm a male." },
-              { value: 'Female', label: "I'm a female." },
-              { value: 'Other', label: "I'm out of this world." },
-            ]}
-            placeholder='Choose gender'
-            onBlur={validateGender}
-            err={genderErr}
-            labelName='Gender'
-          />
-          <Err err={genderErr} />
+            <Select
+              id='gender'
+              onChange={handleGenderChange}
+              value={userDetails.gender}
+              options={[
+                { value: 'Male', label: "I'm a male." },
+                { value: 'Female', label: "I'm a female." },
+                { value: 'Other', label: "I'm out of this world." },
+              ]}
+              placeholder='Choose gender'
+              onBlur={validateGender}
+              err={genderErr}
+              labelName='Gender'
+            />
+            <Err err={genderErr} />
           </div>
           <div>
-          <Date
-            id='date'
-            value={userDetails.dateOfBirth}
-            onChange={handleDobChange}
-            err={ageErr}
-          />
-          <Err err={ageErr} />
+            <Date
+              id='date'
+              value={userDetails.dateOfBirth}
+              onChange={handleDobChange}
+              err={ageErr}
+            />
+            <Err err={ageErr} />
           </div>
         </div>
       </div>

@@ -1,6 +1,6 @@
-import React from 'react'
-import { useOutletContext,Link } from 'react-router-dom';
-import Button from '../form/Button'
+import React from 'react';
+import { useOutletContext, Link } from 'react-router-dom';
+import Button from '../form/Button';
 
 const FinalStep = () => {
   const { moveForward, goBackward } = useOutletContext<{
@@ -8,14 +8,20 @@ const FinalStep = () => {
     goBackward: () => void;
   }>();
   return (
-    <div><Link to='/signup/third-step'>
-    <Button label='Back' disabled={false} onClick={()=>{console.log('bye');
-    }} />
-    </Link>
-    <Link to='/signup/final-step'>
-    <Button label='Submit' disabled={false} onClick={()=>{console.log('hello')}} />
-    </Link></div>
-  )
-}
+    <div>
+      <Button
+        label='Back'
+        disabled={false}
+        onClick={goBackward}
+      />
 
-export default FinalStep
+      <Button
+        label='Submit'
+        disabled={false}
+        onClick={moveForward}
+      />
+    </div>
+  );
+};
+
+export default FinalStep;

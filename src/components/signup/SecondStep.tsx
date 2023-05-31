@@ -109,9 +109,9 @@ const SecondStep = () => {
             onKeyPress={(e) => {
               if (e.key === 'Enter') {
                 // setSkillTags((prevVal) => [...prevVal, userDetails.skill]);
-                setUserDetails({ ...userDetails, skillTags: [userDetails.skill] });
+                setUserDetails({ ...userDetails, skillTags: [userDetails.skill], skill:'' });
                 // setSkills('');
-                setUserDetails({ ...userDetails, skill: '' });
+                // setUserDetails({ ...userDetails, skill: '' });
               }
             }}
           />

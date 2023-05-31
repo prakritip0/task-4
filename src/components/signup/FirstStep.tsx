@@ -15,10 +15,10 @@ const FirstStep = () => {
 const {userDetails, setUserDetails}=useContext(SignUpContext)
 
   // const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [email, setEmail] = useState('');
-  const [gender, setGender] = useState('');
-  const [dateOfBirth, setDateOfBirth] = useState('');
+  // const [lastName, setLastName] = useState('');
+  // const [email, setEmail] = useState('');
+  // const [gender, setGender] = useState('');
+  // const [dateOfBirth, setDateOfBirth] = useState('');
 
   const [err, setErr] = useState({
     firstName: '',
@@ -38,17 +38,19 @@ const {userDetails, setUserDetails}=useContext(SignUpContext)
 
   const handleFirstNameChange = (e: ChangeEvent<HTMLInputElement>) => {
     // setFirstName(e.target.value);
-    // setUserDetails((prevValue)=>({...prevValue, prevValue.firstName = e.target.value}))
     setUserDetails({...userDetails, firstName:e.target.value})
   };
   const handleLastNameChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setLastName(e.target.value);
+    // setLastName(e.target.value);
+    setUserDetails({...userDetails, lastName:e.target.value})
   };
   const handleEmailChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setEmail(e.target.value);
+    // setEmail(e.target.value);
+    setUserDetails({...userDetails, email:e.target.value})
   };
   const handleGenderChange = (e: ChangeEvent<HTMLSelectElement>) => {
-    setGender(e.target.value);
+    // setGender(e.target.value);
+    setUserDetails({...userDetails, gender:e.target.value})
   };
 
   // eslint-disable-next-line no-useless-escape
@@ -60,22 +62,22 @@ const {userDetails, setUserDetails}=useContext(SignUpContext)
       : setErr({ ...err, firstName: 'First name is required.' });
   };
   const validateLastName = () => {
-    lastName
+    userDetails.lastName
       ? setErr({ ...err, lastName: '' })
       : setErr({ ...err, lastName: 'Last name is required.' });
   };
   const validateEmail = () => {
-    regex.test(email)
+    regex.test(userDetails.email)
       ? setErr({ ...err, email: '' })
       : setErr({ ...err, email: 'Correct email is required.' });
   };
   const validateGender = () => {
-    gender ? setGenderErr('') : setGenderErr('Gender is required.');
+    userDetails.gender ? setGenderErr('') : setGenderErr('Gender is required.');
   };
 
   const handleAgeChange = () => {
     let isValid = true;
-    const DOB = new window.Date(dateOfBirth);
+    const DOB = new window.Date(userDetails.dateOfBirth);
     const currentDate = new window.Date();
     const eighteenYrs = new window.Date(
       currentDate.getUTCFullYear() - 18,
@@ -97,21 +99,21 @@ const {userDetails, setUserDetails}=useContext(SignUpContext)
     } else {
       setAgeErr('');
     }
-    setDateOfBirth(e.target.value);
+    setUserDetails({...userDetails, dateOfBirth:e.target.value});
   };
 
   useEffect(() => {
     const noErrMessage = !err.firstName && !err.lastName && !err.email && !genderErr && !ageErr;
 
     const isDisabled =
-      !userDetails.firstName || !lastName || !email || !gender || !dateOfBirth || !noErrMessage;
+      !userDetails.firstName || !userDetails.lastName || !userDetails.email || !userDetails.gender || !userDetails.dateOfBirth || !noErrMessage;
     setFirstNextDisabled(isDisabled);
   }, [
     userDetails.firstName,
-    lastName,
-    email,
-    gender,
-    dateOfBirth,
+    userDetails.lastName,
+    userDetails.email,
+    userDetails.gender,
+    userDetails.dateOfBirth,
     err.firstName,
     err.lastName,
     err.email,
@@ -140,7 +142,7 @@ const {userDetails, setUserDetails}=useContext(SignUpContext)
             placeholder='Thapa'
             labelName='Last Name'
             type='text'
-            value={lastName}
+            value={userDetails.lastName}
             onChange={handleLastNameChange}
             onBlur={validateLastName}
             err={err.lastName}
@@ -151,7 +153,7 @@ const {userDetails, setUserDetails}=useContext(SignUpContext)
           placeholder='ramthapa@gmail.com'
           labelName='Email'
           type='email'
-          value={email}
+          value={userDetails.email}
           onChange={handleEmailChange}
           onBlur={validateEmail}
           err={err.email}
@@ -160,7 +162,7 @@ const {userDetails, setUserDetails}=useContext(SignUpContext)
           <Select
             id='gender'
             onChange={handleGenderChange}
-            value={gender}
+            value={userDetails.gender}
             options={[
               { value: 'Male', label: "I'm a male." },
               { value: 'Female', label: "I'm a female." },
@@ -171,7 +173,7 @@ const {userDetails, setUserDetails}=useContext(SignUpContext)
             err={genderErr}
             labelName='Gender'
           />
-          <Date id='date' value={dateOfBirth} onChange={handleDobChange} errMessage={ageErr} />
+          <Date id='date' value={userDetails.dateOfBirth} onChange={handleDobChange} errMessage={ageErr} />
         </div>
       </div>
 

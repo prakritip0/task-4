@@ -12,38 +12,28 @@ interface userDetailsType {
   skill: string;
   formalDegree: string;
   degreeName: string;
+  skillTags: string[] 
 }
 
-interface SignUpContextType{
-  userDetails: userDetailsType,
-  setUserDetails: Dispatch<SetStateAction<{ firstName: string; lastName: string; email: string; gender: string; dateOfBirth: string; skill: string; formalDegree: string; degreeName: string; }>>
+interface SignUpContextType {
+  userDetails: userDetailsType;
+  setUserDetails: Dispatch<
+    SetStateAction<{
+      firstName: string;
+      lastName: string;
+      email: string;
+      gender: string;
+      dateOfBirth: string;
+      skill: string;
+      formalDegree: string;
+      degreeName: string;
+      skillTags: string[] 
+    }>
+  >;
 }
 
 export const SignUpContext = createContext<SignUpContextType>({
-userDetails:{
-  firstName: '',
-  lastName: '',
-  email: '',
-  gender: '',
-  dateOfBirth: '',
-  skill: '',
-  formalDegree: '',
-  degreeName: '',
-}, 
-setUserDetails:()=>{
-  return;
-}
-});
-
-
-
-const stripTrailingChar = (str: string, char: string) => {
-  return str.endsWith(char) ? str.slice(0, -1) : str;
-};
-
-const SignUp = () => {
-  const location = useLocation();
-  const [userDetails, setUserDetails]=useState({
+  userDetails: {
     firstName: '',
     lastName: '',
     email: '',
@@ -52,7 +42,30 @@ const SignUp = () => {
     skill: '',
     formalDegree: '',
     degreeName: '',
-  })
+    skillTags: [],
+  },
+  setUserDetails: () => {
+    return;
+  },
+});
+
+const stripTrailingChar = (str: string, char: string) => {
+  return str.endsWith(char) ? str.slice(0, -1) : str;
+};
+
+const SignUp = () => {
+  const location = useLocation();
+  const [userDetails, setUserDetails] = useState<userDetailsType>({
+    firstName: '',
+    lastName: '',
+    email: '',
+    gender: '',
+    dateOfBirth: '',
+    skill: '',
+    formalDegree: '',
+    degreeName: '',
+    skillTags: [],
+  });
 
   const [signupStep, setSignupStep] = useState(0);
 
@@ -67,8 +80,6 @@ const SignUp = () => {
 
   useEffect(() => {
     const pathname = stripTrailingChar(location.pathname, '/');
-    console.log(routes.indexOf(pathname));
-
     setSignupStep(routes.indexOf(pathname));
   }, [location]);
 
@@ -88,6 +99,8 @@ const SignUp = () => {
     navigate(`${route}`);
   };
   console.log('fromSignUp', signupStep);
+  console.log(userDetails.skillTags);
+
   return (
     <div className=' py-10 px-4 md:px-[8rem] 2xl:px-[10rem] bg-[#fffaf2] dark:bg-gray-800 '>
       <div className='flex flex-col md:py-6 px-1 md:pl-4 2xl:pl-16 h-[33rem] 2xl:w-[90%] rounded-2xl m-auto  bg-[#f1f1f1]  dark:bg-gray-900 2xl:h-[45rem]'>
@@ -97,7 +110,7 @@ const SignUp = () => {
 
         <div className='flex justify-between  items-center m-auto  w-full '>
           <StepGuide signupStep={signupStep} />
-          <SignUpContext.Provider value={{userDetails, setUserDetails }}>
+          <SignUpContext.Provider value={{ userDetails, setUserDetails }}>
             <Outlet
               context={{
                 moveForward,

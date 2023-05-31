@@ -61,10 +61,9 @@ const SecondStep = () => {
   };
   const removeTag = (i: number) => {
     const updatedSkills = userDetails.skillTags;
-      updatedSkills.splice(i, 1);
-      // setSkillTags([...updatedSkills]);
-      setUserDetails({ ...userDetails, skillTags: [...updatedSkills] });
-    
+    updatedSkills.splice(i, 1);
+    // setSkillTags([...updatedSkills]);
+    setUserDetails({ ...userDetails, skillTags: [...updatedSkills] });
   };
   //  skillTags.length>=10 && setSkillTags((prevValue)=>[...prevValue.length===0])
   // console.log('skillz', skillTags);
@@ -90,8 +89,7 @@ const SecondStep = () => {
     degreeNameErr,
   ]);
 
-  console.log("skillTags",userDetails.skillTags);
-  
+  console.log('skillTags', userDetails.skillTags);
 
   return (
     <div className='flex flex-col h-full align-start justify-between w-[30rem] mx-[7rem] pt-[6rem]'>
@@ -109,9 +107,12 @@ const SecondStep = () => {
             onKeyPress={(e) => {
               if (e.key === 'Enter') {
                 // setSkillTags((prevVal) => [...prevVal, userDetails.skill]);
-                setUserDetails({ ...userDetails, skillTags: [userDetails.skill], skill:'' });
-                // setSkills('');
-                // setUserDetails({ ...userDetails, skill: '' });
+                setUserDetails({
+                  ...userDetails,
+                  skillTags: [...userDetails.skillTags, userDetails.skill],
+                  skill: '',
+                });
+               
               }
             }}
           />
@@ -151,7 +152,7 @@ const SecondStep = () => {
       </div>
       <div className='flex gap-6 pt-[2rem] 2xl:pt-[4rem] w-full'>
         <Button label='Back' disabled={false} onClick={goBackward} />
-        <Button label={'Next'} disabled={secondNextDisabled} onClick={moveForward} />
+        <Button label='Next' disabled={secondNextDisabled} onClick={moveForward} />
       </div>
     </div>
   );

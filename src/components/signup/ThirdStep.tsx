@@ -1,5 +1,5 @@
 import React from 'react'
-import {Link, useOutletContext} from 'react-router-dom'
+import { useOutletContext} from 'react-router-dom'
 import Button from '../form/Button'
 
 const ThirdStep = () => {
@@ -9,13 +9,10 @@ const ThirdStep = () => {
   }>();
   return (
     <div>
-      <Link to='/signup/second-step'>
-        <Button label='Back' disabled={false} onClick={()=>{console.log('bye');
-        }} />
-        </Link>
-        <Link to='/signup/final-step'>
-        <Button label='Next' disabled={false} onClick={()=>{console.log('hello')}} />
-        </Link>
+
+        <Button label='Back' disabled={false} onClick={goBackward} />
+        <Button label='Next' disabled={false} onClick={moveForward} />
+      
     </div>
   )
 }

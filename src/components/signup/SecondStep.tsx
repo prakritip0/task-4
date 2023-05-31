@@ -9,12 +9,8 @@ import { SignUpContext } from '../../pages/SignUp';
 const SecondStep = () => {
   const { userDetails, setUserDetails } = useContext(SignUpContext);
 
-  // const [skill, setSkills] = useState('');
   const [skillErr, setSkillErr] = useState('');
-  // const [formalDegree, setFormalDegree] = useState('');
-  // const [degreeName, setDegreeName] = useState('');
   const [formalDegreeErr, setFormalDegreeErr] = useState('');
-  // const [skillTags, setSkillTags] = useState<string[]>([]);
   const [secondNextDisabled, setSecondNextDisabled] = useState(true);
   const [degreeNameErr, setDegreeNameErr] = useState('');
 

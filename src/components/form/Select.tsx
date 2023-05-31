@@ -31,7 +31,7 @@ const Select = ({ options, placeholder, err,onBlur, labelName, ...props }: Selec
             </option>
           ))}
       </select>
-      {err && <Label htmlFor={props.id as string} labelName={err} className='text-red-700' />}
+     
     </div>
   );
 };

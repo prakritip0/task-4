@@ -6,13 +6,12 @@ import { useOutletContext } from 'react-router-dom';
 import Button from '../form/Button';
 import { ChangeEvent } from 'react';
 import { SignUpContext } from '../../pages/SignUp';
-
+import Err from '../form/Err';
 
 export let firstStepComplete: boolean;
 
 const FirstStep = () => {
-  
-const {userDetails, setUserDetails}=useContext(SignUpContext)
+  const { userDetails, setUserDetails } = useContext(SignUpContext);
 
   const [err, setErr] = useState({
     firstName: '',
@@ -31,16 +30,16 @@ const {userDetails, setUserDetails}=useContext(SignUpContext)
   }>();
 
   const handleFirstNameChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setUserDetails({...userDetails, firstName:e.target.value})
+    setUserDetails({ ...userDetails, firstName: e.target.value });
   };
   const handleLastNameChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setUserDetails({...userDetails, lastName:e.target.value})
+    setUserDetails({ ...userDetails, lastName: e.target.value });
   };
   const handleEmailChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setUserDetails({...userDetails, email:e.target.value})
+    setUserDetails({ ...userDetails, email: e.target.value });
   };
   const handleGenderChange = (e: ChangeEvent<HTMLSelectElement>) => {
-    setUserDetails({...userDetails, gender:e.target.value})
+    setUserDetails({ ...userDetails, gender: e.target.value });
   };
 
   // eslint-disable-next-line no-useless-escape
@@ -89,14 +88,19 @@ const {userDetails, setUserDetails}=useContext(SignUpContext)
     } else {
       setAgeErr('');
     }
-    setUserDetails({...userDetails, dateOfBirth:e.target.value});
+    setUserDetails({ ...userDetails, dateOfBirth: e.target.value });
   };
 
   useEffect(() => {
     const noErrMessage = !err.firstName && !err.lastName && !err.email && !genderErr && !ageErr;
 
     const isDisabled =
-      !userDetails.firstName || !userDetails.lastName || !userDetails.email || !userDetails.gender || !userDetails.dateOfBirth || !noErrMessage;
+      !userDetails.firstName ||
+      !userDetails.lastName ||
+      !userDetails.email ||
+      !userDetails.gender ||
+      !userDetails.dateOfBirth ||
+      !noErrMessage;
     setFirstNextDisabled(isDisabled);
   }, [
     userDetails.firstName,
@@ -116,27 +120,34 @@ const {userDetails, setUserDetails}=useContext(SignUpContext)
     <div className='flex flex-col align-start justify-between pt-[6rem] h-full w-[30rem] mx-[7rem]'>
       <div className='flex flex-col  gap-10 items-start 2xl:gap-10'>
         <div className='name flex flex-row gap-4 w-full'>
-          <Input
-            id='firstName'
-            placeholder='Ram'
-            labelName='First Name'
-            type='text'
-            value={userDetails.firstName}
-            onChange={handleFirstNameChange}
-            onBlur={validateFirstName}
-            err={err.firstName}
-          />
-          <Input
-            id='lastName'
-            placeholder='Thapa'
-            labelName='Last Name'
-            type='text'
-            value={userDetails.lastName}
-            onChange={handleLastNameChange}
-            onBlur={validateLastName}
-            err={err.lastName}
-          />
+          <div>
+            <Input
+              id='firstName'
+              placeholder='Ram'
+              labelName='First Name'
+              type='text'
+              value={userDetails.firstName}
+              onChange={handleFirstNameChange}
+              onBlur={validateFirstName}
+              err={err.firstName}
+            />
+            <Err err={err.firstName} />
+          </div>
+          <div>
+            <Input
+              id='lastName'
+              placeholder='Thapa'
+              labelName='Last Name'
+              type='text'
+              value={userDetails.lastName}
+              onChange={handleLastNameChange}
+              onBlur={validateLastName}
+              err={err.lastName}
+            />
+            <Err err={err.lastName} />
+          </div>
         </div>
+        <div className='w-full'>
         <Input
           id='email'
           placeholder='ramthapa@gmail.com'
@@ -147,7 +158,10 @@ const {userDetails, setUserDetails}=useContext(SignUpContext)
           onBlur={validateEmail}
           err={err.email}
         />
+        <Err err={err.email} />
+        </div>
         <div className='flex gap-4 w-full'>
+          <div>
           <Select
             id='gender'
             onChange={handleGenderChange}
@@ -162,7 +176,17 @@ const {userDetails, setUserDetails}=useContext(SignUpContext)
             err={genderErr}
             labelName='Gender'
           />
-          <Date id='date' value={userDetails.dateOfBirth} onChange={handleDobChange} errMessage={ageErr} />
+          <Err err={genderErr} />
+          </div>
+          <div>
+          <Date
+            id='date'
+            value={userDetails.dateOfBirth}
+            onChange={handleDobChange}
+            err={ageErr}
+          />
+          <Err err={ageErr} />
+          </div>
         </div>
       </div>
 

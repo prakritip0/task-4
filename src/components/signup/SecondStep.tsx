@@ -116,7 +116,7 @@ const SecondStep = () => {
             }}
           />
           <SkillTag skillTags={userDetails.skillTags} removeSkill={removeTag} />
-          {userDetails.skillTags && userDetails.skillTags.length === 10 && (
+          {userDetails.skillTags.length === 10 && (
             <p className='text-xs text-red-700'>10 skills are enough, mate.</p>
           )}
         </div>

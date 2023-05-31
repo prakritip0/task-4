@@ -11,7 +11,7 @@ console.log('firstStepComplete',firstStepComplete);
 
   return (
     <div className='flex flex-col relative  justify-between h-full lg:py-[2rem]'>
-      <div className='absolute h-[80%] w-[1.25px] bg-gray-300 left-[23%] z-0'></div>
+      <div className='absolute h-[85%] w-[1.25px] bg-gray-300 left-[23%] z-0'></div>
       <div className='profile flex justify-center items-center gap-1 z-10'>
         <div
           className={` border rounded-full p-3 cursor-pointer  ${

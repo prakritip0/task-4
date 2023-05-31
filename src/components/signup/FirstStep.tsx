@@ -1,15 +1,20 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Input from '../form/Input';
 import Select from '../form/Select';
 import Date from '../form/Date';
 import { useOutletContext } from 'react-router-dom';
 import Button from '../form/Button';
 import { ChangeEvent } from 'react';
+import { SignUpContext } from '../../pages/SignUp';
+
 
 export let firstStepComplete: boolean;
 
 const FirstStep = () => {
-  const [firstName, setFirstName] = useState('');
+  
+const {userDetails, setUserDetails}=useContext(SignUpContext)
+
+  // const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [gender, setGender] = useState('');
@@ -32,23 +37,25 @@ const FirstStep = () => {
   }>();
 
   const handleFirstNameChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setFirstName(e.target.value);
+    // setFirstName(e.target.value);
+    // setUserDetails((prevValue)=>({...prevValue, prevValue.firstName = e.target.value}))
+    setUserDetails({...userDetails, firstName:e.target.value})
   };
   const handleLastNameChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setLastName(e.target.value)
+    setLastName(e.target.value);
   };
   const handleEmailChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setEmail(e.target.value)
+    setEmail(e.target.value);
   };
-  const handleGenderChange=(e:ChangeEvent<HTMLSelectElement>)=>{
-   setGender(e.target.value)
-  }
+  const handleGenderChange = (e: ChangeEvent<HTMLSelectElement>) => {
+    setGender(e.target.value);
+  };
 
   // eslint-disable-next-line no-useless-escape
   const regex = /^([a-zA-Z0-9\._]+)@([a-zA-Z0-9])+.([a-z]+)(.[a-z]+)?$/;
 
   const validateFirstName = () => {
-    firstName
+    userDetails.firstName
       ? setErr({ ...err, firstName: '' })
       : setErr({ ...err, firstName: 'First name is required.' });
   };
@@ -97,10 +104,10 @@ const FirstStep = () => {
     const noErrMessage = !err.firstName && !err.lastName && !err.email && !genderErr && !ageErr;
 
     const isDisabled =
-      !firstName || !lastName || !email || !gender || !dateOfBirth || !noErrMessage;
+      !userDetails.firstName || !lastName || !email || !gender || !dateOfBirth || !noErrMessage;
     setFirstNextDisabled(isDisabled);
   }, [
-    firstName,
+    userDetails.firstName,
     lastName,
     email,
     gender,
@@ -122,7 +129,7 @@ const FirstStep = () => {
             placeholder='Ram'
             labelName='First Name'
             type='text'
-            value={firstName}
+            value={userDetails.firstName}
             onChange={handleFirstNameChange}
             // formSubmitStatus={formSubmitStatus}
             onBlur={validateFirstName}
@@ -153,7 +160,6 @@ const FirstStep = () => {
           <Select
             id='gender'
             onChange={handleGenderChange}
-           
             value={gender}
             options={[
               { value: 'Male', label: "I'm a male." },

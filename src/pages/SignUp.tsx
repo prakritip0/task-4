@@ -1,7 +1,41 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, Dispatch, SetStateAction } from 'react';
 import SignUpDesign from '../components/signup/SignUpDesign';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import StepGuide from '../components/signup/StepGuide';
+import { createContext } from 'react';
+interface userDetailsType {
+  firstName: string;
+  lastName: string;
+  email: string;
+  gender: string;
+  dateOfBirth: string;
+  skill: string;
+  formalDegree: string;
+  degreeName: string;
+}
+
+interface SignUpContextType{
+  userDetails: userDetailsType,
+  setUserDetails: Dispatch<SetStateAction<{ firstName: string; lastName: string; email: string; gender: string; dateOfBirth: string; skill: string; formalDegree: string; degreeName: string; }>>
+}
+
+export const SignUpContext = createContext<SignUpContextType>({
+userDetails:{
+  firstName: '',
+  lastName: '',
+  email: '',
+  gender: '',
+  dateOfBirth: '',
+  skill: '',
+  formalDegree: '',
+  degreeName: '',
+}, 
+setUserDetails:()=>{
+  return;
+}
+});
+
+
 
 const stripTrailingChar = (str: string, char: string) => {
   return str.endsWith(char) ? str.slice(0, -1) : str;
@@ -9,6 +43,16 @@ const stripTrailingChar = (str: string, char: string) => {
 
 const SignUp = () => {
   const location = useLocation();
+  const [userDetails, setUserDetails]=useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    gender: '',
+    dateOfBirth: '',
+    skill: '',
+    formalDegree: '',
+    degreeName: '',
+  })
 
   const [signupStep, setSignupStep] = useState(0);
 
@@ -24,7 +68,7 @@ const SignUp = () => {
   useEffect(() => {
     const pathname = stripTrailingChar(location.pathname, '/');
     console.log(routes.indexOf(pathname));
-    
+
     setSignupStep(routes.indexOf(pathname));
   }, [location]);
 
@@ -53,16 +97,16 @@ const SignUp = () => {
 
         <div className='flex justify-between  items-center m-auto  w-full '>
           <StepGuide signupStep={signupStep} />
-          <Outlet
-            context={{
-              moveForward,
-              goBackward,
-              
-            }}
-          />
+          <SignUpContext.Provider value={{userDetails, setUserDetails }}>
+            <Outlet
+              context={{
+                moveForward,
+                goBackward,
+              }}
+            />
+          </SignUpContext.Provider>
           <SignUpDesign />
         </div>
-        
       </div>
     </div>
   );

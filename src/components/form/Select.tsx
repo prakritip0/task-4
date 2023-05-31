@@ -1,29 +1,27 @@
 import React from 'react';
 import Label from './Label';
 
-interface SelectProps {
-  value: string;
-  setValue: (value: string) => void;
+interface SelectProps extends React.ComponentPropsWithoutRef <'select'> {
   options: { value: string; label: string }[];
-  // labels:string[]|number[];
   placeholder: string;
-  id: string;
-  errMessage:string
+  err:string
   onBlur:()=>void
+  labelName:string
 }
 
-const Select = ({ setValue, value, options, placeholder, id, errMessage,onBlur }: SelectProps) => {
+const Select = ({ options, placeholder, err,onBlur, labelName, ...props }: SelectProps) => {
   return (
     <div className='flex flex-col w-full'>
-      <Label htmlFor={id} labelName='Gender' />
+      <Label htmlFor={props.id as string} labelName={labelName} />
       <select
-        className='px-1 py-1 md:py-[0.65rem] md:px-2 w-full text-xs md:text-sm 2xl:text-lg text-indigo-500 rounded-lg outline-none  text-gray-800 border'
+        className={`px-1 py-1 md:py-[0.65rem] md:px-2 w-full text-xs md:text-sm 2xl:text-lg rounded-lg ${ err? 'outline-red-700 dark:outline-red-500' :'outline-none'}  text-gray-800 border`}
         name='gender'
-        value={value}
-        onChange={(e) => setValue(e.target.value)}
+        value={props.value}
+        onChange={props.onChange}
         onBlur={onBlur}
+        {...props}
       >
-        <option value='' selected>
+        <option value='' >
           {placeholder}
         </option>
         {options.length > 0 &&
@@ -33,7 +31,7 @@ const Select = ({ setValue, value, options, placeholder, id, errMessage,onBlur }
             </option>
           ))}
       </select>
-      {errMessage && <Label htmlFor={id} labelName={errMessage} className='text-red-700' />}
+     
     </div>
   );
 };

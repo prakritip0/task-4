@@ -1,14 +1,12 @@
 import React from 'react'
 
- export interface LabelProps{
+ export interface LabelProps extends React.ComponentPropsWithoutRef <'label'>{
     labelName?:string,
-    htmlFor:string,
-    className?:string
 }
 
-const Label = ({htmlFor, labelName, className}:LabelProps) => {
+const Label = ({ labelName, ...props }:LabelProps) => {
   return (
-    <label htmlFor={htmlFor} className={`text-xs text-gray-800 dark:text-white ${className}`}>{labelName}</label>
+    <label htmlFor={props.htmlFor} className={`text-xs text-gray-800 dark:text-white`}>{labelName}</label>
   )
 }
 

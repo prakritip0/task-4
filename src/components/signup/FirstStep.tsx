@@ -1,187 +1,194 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Input from '../form/Input';
-import SubmitButton from '../form/SubmitButton';
 import Select from '../form/Select';
 import Date from '../form/Date';
+import { useOutletContext } from 'react-router-dom';
+import Button from '../form/Button';
+import { ChangeEvent } from 'react';
+import { SignUpContext } from '../../pages/SignUp';
+import Err from '../form/Err';
+
+export let firstStepComplete: boolean;
 
 const FirstStep = () => {
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [email, setEmail] = useState('');
-  const [gender, setGender] = useState('');
-  const [dateOfBirth, setDateOfBirth] = useState('');
-  // const [age, setAge] = useState(0);
-  const [formSubmitStatus, setFormSubmitStatus] = useState<boolean>(false);
-  const [disabled, setDisabled] = useState<boolean>(true);
-
-  const [errMessage, setErrMessage] = useState({
+  const { userDetails, setUserDetails } = useContext(SignUpContext);
+  const [err, setErr] = useState({
     firstName: '',
     lastName: '',
     email: '',
   });
-  const [genderErrMessage, setGenderErrMessage] = useState('');
-  const [ageErrMessage, setAgeErrMessage] = useState('');
-
-  // useEffect(() => {
-  //   const isDisabled = !firstName || !lastName || !email || !gender || !dateOfBirth;
-  //   setDisabled(isDisabled);
-  // }, [firstName, lastName, email, gender, dateOfBirth]);
-
-  useEffect(() => {
-    const errExists: boolean =
-      !errMessage['firstName'] ||
-      !errMessage['lastName'] ||
-      !errMessage['email'] ||
-      !genderErrMessage ||
-      !ageErrMessage;
-    setDisabled(errExists);
-  }, [
-    errMessage['firstName'],
-    errMessage['lastName'],
-    errMessage['firstName'],
-    genderErrMessage,
-    ageErrMessage,
-  ]);
-  // console.log('disability:',disabled);
-
-  const submitForm = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setFormSubmitStatus(true);
+  const [genderErr, setGenderErr] = useState('');
+  const [ageErr, setAgeErr] = useState('');
+  const [firstNextDisabled, setFirstNextDisabled] = useState(true);
+  const { moveForward, goBackward } = useOutletContext<{
+    moveForward: () => void;
+    goBackward: () => void;
+    isNextDisabled: boolean;
+    setIsNextDisabled: () => void;
+  }>();
+  const handleFirstNameChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setUserDetails({ ...userDetails, firstName: e.target.value });
+  };
+  const handleLastNameChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setUserDetails({ ...userDetails, lastName: e.target.value });
+  };
+  const handleEmailChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setUserDetails({ ...userDetails, email: e.target.value });
+  };
+  const handleGenderChange = (e: ChangeEvent<HTMLSelectElement>) => {
+    setUserDetails({ ...userDetails, gender: e.target.value });
   };
 
   // eslint-disable-next-line no-useless-escape
   const regex = /^([a-zA-Z0-9\._]+)@([a-zA-Z0-9])+.([a-z]+)(.[a-z]+)?$/;
 
-  const handleFristNameBlurEvent = () => {
-    firstName
-      ? setErrMessage({ ...errMessage, firstName: '' })
-      : setErrMessage({ ...errMessage, firstName: 'First name is required.' });
+  const validateFirstName = () => {
+    userDetails.firstName
+      ? setErr({ ...err, firstName: '' })
+      : setErr({ ...err, firstName: 'First name is required.' });
   };
-  const handleLastNameBlurEvent = () => {
-    lastName
-      ? setErrMessage({ ...errMessage, lastName: '' })
-      : setErrMessage({ ...errMessage, lastName: 'Last name is required.' });
+  const validateLastName = () => {
+    userDetails.lastName
+      ? setErr({ ...err, lastName: '' })
+      : setErr({ ...err, lastName: 'Last name is required.' });
   };
-  const handleEmailBlurEvent = () => {
-    regex.test(email)
-      ? setErrMessage({ ...errMessage, email: '' })
-      : setErrMessage({ ...errMessage, email: 'Correct email is required.' });
+  const validateEmail = () => {
+    regex.test(userDetails.email)
+      ? setErr({ ...err, email: '' })
+      : setErr({ ...err, email: 'Correct email is required.' });
   };
-  const handleGenderBlurEvent = () => {
-    gender ? setGenderErrMessage('') : setGenderErrMessage('Gender is required.');
+  const validateGender = () => {
+    userDetails.gender ? setGenderErr('') : setGenderErr('Gender is required.');
   };
 
-  // const setDOB = (value: string) => {
-  //   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  //   setDateOfBirth(value);
-  // };
-
-  const handleAgeBlur = () => {
-    // console.log(dateOfBirth);
-    
-    const DOB = new window.Date(dateOfBirth);
-    // console.log('DOB',DOB);
-    
+  const handleAgeChange = () => {
+    let isValid = true;
+    const DOB = new window.Date(userDetails.dateOfBirth);
     const currentDate = new window.Date();
-    // console.log('currentDate', currentDate);
-    
     const eighteenYrs = new window.Date(
       currentDate.getUTCFullYear() - 18,
       currentDate.getMonth(),
       currentDate.getDate(),
     );
-    // console.log('age:        ', currentDate.valueOf() - DOB.valueOf());
-    // console.log('eighteenyrs:', eighteenYrs.valueOf());
-
-    if (currentDate.valueOf() - DOB.valueOf() >= eighteenYrs.valueOf()) {
-      setAgeErrMessage('');
+    if (DOB.valueOf() <= eighteenYrs.valueOf()) {
+      return isValid;
     } else {
-      setAgeErrMessage('You must be 18 or older.');
+      isValid = false;
     }
+    return isValid;
   };
 
-  return (
-    <div className='flex flex-col justify-start gap-6 2xl:gap-10'>
-      <h4 className='text-gray-800 text-2xl 2xl:text-3xl font-bold dark:text-white'>
-        Lets start with your Personal Information
-      </h4>
-      <form action='/' className='flex flex-col gap-4 2xl:gap-10' onSubmit={submitForm}>
-        <div className='name flex flex-row gap-4'>
-          <Input
-            id='firstName'
-            placeholder='Ram'
-            labelName='First Name'
-            type='text'
-            value={firstName}
-            setValue={setFirstName}
-            formSubmitStatus={formSubmitStatus}
-            onBlur={handleFristNameBlurEvent}
-            errMessage={errMessage}
-          />
-          <Input
-            id='lastName'
-            placeholder='Thapa'
-            labelName='Last Name'
-            type='text'
-            value={lastName}
-            setValue={setLastName}
-            formSubmitStatus={formSubmitStatus}
-            onBlur={handleLastNameBlurEvent}
-            errMessage={errMessage}
-          />
-        </div>
-        <Input
-          id='email'
-          placeholder='ramthapa@gmail.com'
-          labelName='Email'
-          type='email'
-          value={email}
-          setValue={setEmail}
-          formSubmitStatus={formSubmitStatus}
-          onBlur={handleEmailBlurEvent}
-          errMessage={errMessage}
-        />
-        <div className='flex gap-4'>
-          <Select
-            id='gender'
-            setValue={setGender}
-            value={gender}
-            options={[
-              { value: 'Male', label: "I'm a male." },
-              { value: 'Female', label: "I'm a female." },
-              { value: 'Other', label: "I'm out of this world." },
-            ]}
-            placeholder='Choose gender'
-            onBlur={handleGenderBlurEvent}
-            errMessage={genderErrMessage}
-          />
-          <Date
-            id='date'
-            value={dateOfBirth}
-            setValue={setDateOfBirth}
-            onInput={handleAgeBlur}
-            errMessage={ageErrMessage}
-          />
-        </div>
+  const handleDobChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const isValid = handleAgeChange();
+    if (!isValid) {
+      setAgeErr('You must be 18 or older.');
+    } else {
+      setAgeErr('');
+    }
+    setUserDetails({ ...userDetails, dateOfBirth: e.target.value });
+  };
+  useEffect(() => {
+    const noErrMessage = !err.firstName && !err.lastName && !err.email && !genderErr && !ageErr;
+    const isDisabled =
+      !userDetails.firstName ||
+      !userDetails.lastName ||
+      !userDetails.email ||
+      !userDetails.gender ||
+      !userDetails.dateOfBirth ||
+      !noErrMessage;
+    setFirstNextDisabled(isDisabled);
+  }, [
+    userDetails.firstName,
+    userDetails.lastName,
+    userDetails.email,
+    userDetails.gender,
+    userDetails.dateOfBirth,
+    err.firstName,
+    err.lastName,
+    err.email,
+    genderErr,
+    ageErr,
+  ]);
+  firstStepComplete = !firstNextDisabled;
 
-        <SubmitButton disabled={disabled} />
-      </form>
-      {formSubmitStatus && (
-        <>
-          <div className='flex gap-8'>
-            <h3 className='dark:text-white text-gray-800'>First Name: {firstName}</h3>
-            <h3 className='dark:text-white text-gray-800'>Last Name: {lastName}</h3>
+  return (
+    <div className='flex flex-col align-start justify-between pt-[6rem] h-full w-[30rem] mx-[7rem]'>
+      <div className='flex flex-col  gap-10 items-start 2xl:gap-10'>
+        <div className='name flex flex-row gap-4 w-full'>
+          <div>
+            <Input
+              id='firstName'
+              placeholder='Ram'
+              labelName='First Name'
+              type='text'
+              value={userDetails.firstName}
+              onChange={handleFirstNameChange}
+              onBlur={validateFirstName}
+              err={err.firstName}
+            />
+            <Err err={err.firstName} />
           </div>
-          <div className='flex gap-8'>
-            <h4 className='dark:text-white text-gray-800'>Email: {email}</h4>
-            <h4 className='dark:text-white text-gray-800'>Gender: {gender}</h4>
-            <h4 className='dark:text-white text-gray-800'>
-              {' '}
-              <>DOB: {dateOfBirth}</>
-            </h4>
+          <div>
+            <Input
+              id='lastName'
+              placeholder='Thapa'
+              labelName='Last Name'
+              type='text'
+              value={userDetails.lastName}
+              onChange={handleLastNameChange}
+              onBlur={validateLastName}
+              err={err.lastName}
+            />
+            <Err err={err.lastName} />
           </div>
-        </>
-      )}
+        </div>
+        <div className='w-full'>
+          <Input
+            id='email'
+            placeholder='ramthapa@gmail.com'
+            labelName='Email'
+            type='email'
+            value={userDetails.email}
+            onChange={handleEmailChange}
+            onBlur={validateEmail}
+            err={err.email}
+          />
+          <Err err={err.email} />
+        </div>
+        <div className='flex gap-4 w-full'>
+          <div>
+            <Select
+              id='gender'
+              onChange={handleGenderChange}
+              value={userDetails.gender}
+              options={[
+                { value: 'Male', label: "I'm a male." },
+                { value: 'Female', label: "I'm a female." },
+                { value: 'Other', label: "I'm out of this world." },
+              ]}
+              placeholder='Choose gender'
+              onBlur={validateGender}
+              err={genderErr}
+              labelName='Gender'
+            />
+            <Err err={genderErr} />
+          </div>
+          <div>
+            <Date
+              id='date'
+              value={userDetails.dateOfBirth}
+              onChange={handleDobChange}
+              err={ageErr}
+            />
+            <Err err={ageErr} />
+          </div>
+        </div>
+      </div>
+
+      <div className='flex gap-6 pt-[2rem] 2xl:pt-[4rem] w-full'>
+        <Button label='Back' disabled={true} onClick={goBackward} />
+        <Button label={'Next'} disabled={firstNextDisabled} onClick={moveForward} />
+      </div>
     </div>
   );
 };

@@ -1,5 +1,5 @@
 import React from 'react';
-import { useOutletContext, Link } from 'react-router-dom';
+import { useOutletContext} from 'react-router-dom';
 import Button from '../form/Button';
 
 const FinalStep = () => {

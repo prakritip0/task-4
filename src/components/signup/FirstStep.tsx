@@ -14,12 +14,6 @@ const FirstStep = () => {
   
 const {userDetails, setUserDetails}=useContext(SignUpContext)
 
-  // const [firstName, setFirstName] = useState('');
-  // const [lastName, setLastName] = useState('');
-  // const [email, setEmail] = useState('');
-  // const [gender, setGender] = useState('');
-  // const [dateOfBirth, setDateOfBirth] = useState('');
-
   const [err, setErr] = useState({
     firstName: '',
     lastName: '',
@@ -37,19 +31,15 @@ const {userDetails, setUserDetails}=useContext(SignUpContext)
   }>();
 
   const handleFirstNameChange = (e: ChangeEvent<HTMLInputElement>) => {
-    // setFirstName(e.target.value);
     setUserDetails({...userDetails, firstName:e.target.value})
   };
   const handleLastNameChange = (e: ChangeEvent<HTMLInputElement>) => {
-    // setLastName(e.target.value);
     setUserDetails({...userDetails, lastName:e.target.value})
   };
   const handleEmailChange = (e: ChangeEvent<HTMLInputElement>) => {
-    // setEmail(e.target.value);
     setUserDetails({...userDetails, email:e.target.value})
   };
   const handleGenderChange = (e: ChangeEvent<HTMLSelectElement>) => {
-    // setGender(e.target.value);
     setUserDetails({...userDetails, gender:e.target.value})
   };
 
@@ -133,7 +123,6 @@ const {userDetails, setUserDetails}=useContext(SignUpContext)
             type='text'
             value={userDetails.firstName}
             onChange={handleFirstNameChange}
-            // formSubmitStatus={formSubmitStatus}
             onBlur={validateFirstName}
             err={err.firstName}
           />

@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction } from 'react';
+import React from 'react';
 import Label from './Label';
 
 interface InputProps extends React.ComponentPropsWithoutRef<'input'> {

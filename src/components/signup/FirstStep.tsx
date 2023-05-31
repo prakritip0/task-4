@@ -12,7 +12,6 @@ export let firstStepComplete: boolean;
 
 const FirstStep = () => {
   const { userDetails, setUserDetails } = useContext(SignUpContext);
-
   const [err, setErr] = useState({
     firstName: '',
     lastName: '',

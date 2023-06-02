@@ -20,22 +20,14 @@ const SecondStep = () => {
   }>();
 
   const addSkill = (e: ChangeEvent<HTMLInputElement>) => {
-    // setSkills(e.target.value);
+
     setUserDetails({ ...userDetails, skill: e.target.value });
   };
-  // const addToSkillTagsArr = (e:KeyboardEvent<HTMLInputElement>)=>{
-  //   if (e.key === 'Enter') {
-  //     setSkillTags((prevVal) => [...prevVal, skills]);
-  //     setSkills('');
-  //   }
-  // }
 
   const handleFormalDegreeChange = (e: ChangeEvent<HTMLSelectElement>) => {
-    // setFormalDegree(e.target.value);
     setUserDetails({ ...userDetails, formalDegree: e.target.value });
   };
   const handleDegreeNameChange = (e: ChangeEvent<HTMLInputElement>) => {
-    // setDegreeName(e.target.value)
     setUserDetails({ ...userDetails, degreeName: e.target.value });
   };
   const validateFormalDegree = () => {
@@ -58,15 +50,10 @@ const SecondStep = () => {
   const removeTag = (i: number) => {
     const updatedSkills = userDetails.skillTags;
     updatedSkills.splice(i, 1);
-    // setSkillTags([...updatedSkills]);
     setUserDetails({ ...userDetails, skillTags: [...updatedSkills] });
   };
-  //  skillTags.length>=10 && setSkillTags((prevValue)=>[...prevValue.length===0])
-  // console.log('skillz', skillTags);
 
   useEffect(() => {
-    // console.log(userDetails.skillTags.length <= 0);
-
     const noErrMessage = !skillErr && !formalDegreeErr && !degreeNameErr;
     const isDisabled =
       userDetails.skillTags.length <= 0 ||
@@ -84,8 +71,6 @@ const SecondStep = () => {
     formalDegreeErr,
     degreeNameErr,
   ]);
-
-  console.log('skillTags', userDetails.skillTags);
 
   return (
     <div className='flex flex-col h-full align-start justify-between w-[30rem] mx-[7rem] pt-[6rem]'>
@@ -133,7 +118,6 @@ const SecondStep = () => {
           err={formalDegreeErr}
           labelName='Formal Degree'
         />
-
         <Input
           id='degreeName'
           value={userDetails.degreeName}

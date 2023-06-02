@@ -12,7 +12,7 @@ const SubmitButton = ({ label, ...props }: SubmitButtonProps) => {
       onClick={props.onClick}
       className={`${
         props.disabled ? 'bg-indigo-300 ' : 'bg-indigo-500'
-      } text-white text-xs md:text-md lg:text-lg  py-1   lg:py-[0.35rem]  2xl:py-1 2 rounded-lg w-full`}
+      } text-white text-xs md:text-md lg:text-lg  py-1 lg:py-[0.35rem]  2xl:py-1 2 rounded-lg w-full`}
     {...props}
     >
       {label}

@@ -5,8 +5,6 @@ interface SkillTagProps {
   removeSkill: (i: number) => void;
 }
 
-console.log('Hello' && 'World');
-
 const SkillTag = ({ skillTags = [], removeSkill }: SkillTagProps) => (
   <div className='flex gap-1 min-w-[15rem]  flex-wrap '>
     {skillTags.length > 0 &&

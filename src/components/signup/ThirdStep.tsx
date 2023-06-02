@@ -3,6 +3,7 @@ import { useOutletContext } from 'react-router-dom';
 import { SignUpContext } from '../../pages/SignUp';
 import Button from '../form/Button';
 import Date from '../form/Date';
+import Err from '../form/Err';
 import Input from '../form/Input';
 import Tag from '../form/Tag';
 
@@ -10,6 +11,8 @@ const ThirdStep = () => {
   const { userDetails, setUserDetails } = useContext(SignUpContext);
 
   const [modalOn, setModalOn] = useState(false);
+  const [startDateErr, setStartDateErr] = useState('');
+  const [endDateErr, setEndDateErr] = useState('');
   const { moveForward, goBackward } = useOutletContext<{
     moveForward: () => void;
     goBackward: () => void;
@@ -30,10 +33,37 @@ const ThirdStep = () => {
   const handleRolesChange = (e: ChangeEvent<HTMLInputElement>) => {
     setUserDetails({ ...userDetails, roles: e.target.value });
   };
-  const handleStartDateChange=()=>{
-    console.log('start date has changed');
-    
-  }
+  const validateDate = () => {
+    let isValid = true;
+    const startDate = new window.Date(userDetails.startDate);
+    const endDate = new window.Date(userDetails.endDate);
+    if (startDate.valueOf() <= endDate.valueOf()) {
+      return isValid;
+    } else {
+      isValid = false;
+    }
+    return isValid;
+  };
+
+  const handleStartDateChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const isValid = validateDate();
+    setUserDetails({ ...userDetails, startDate: e.target.value });
+    if (!isValid) {
+      setStartDateErr("Start date can't be later than end date.");
+    } else {
+      setStartDateErr('');
+    }
+  };
+  const handleEndDateChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const isValid = validateDate();
+    setUserDetails({ ...userDetails, endDate: e.target.value });
+    if (!isValid) {
+      setEndDateErr("End date can't be earlier than start date.");
+    } else {
+      setEndDateErr('');
+    }
+  };
+
   const addExperience = () => {
     setUserDetails({
       ...userDetails,
@@ -92,23 +122,29 @@ const ThirdStep = () => {
             err='Roles are required.'
             type='text'
           />
-          <div className='flex'>
-            <Date
-              id='startDate'
-              value={userDetails.dateOfBirth}
-              onChange={handleStartDateChange}
-              err='wrong date!!'
-              label='Start Date'
-            />
-            <Date
-              id='endDate'
-              value={userDetails.dateOfBirth}
-              onChange={handleStartDateChange}
-              err='wrong date!!'
-              label='End Date'
-            />
+          <div className='flex gap-4'>
+            <div>
+              <Date
+                id='startDate'
+                value={userDetails.startDate}
+                onChange={handleStartDateChange}
+                label='Start Date'
+              />
+              <Err err={startDateErr} />
+            </div>
+            <div>
+              <Date
+                id='endDate'
+                value={userDetails.endDate}
+                onChange={handleEndDateChange}
+                label='End Date'
+              />
+              <Err err={endDateErr} />
+            </div>
           </div>
-          <Button label='Add' disabled={false} onClick={addExperience} />
+          <div className='mt-8'>
+            <Button label='Add' disabled={false} onClick={addExperience} />
+          </div>
         </div>
       </div>
       <div className='experiences w-full mx-[1.5rem]'>

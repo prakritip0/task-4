@@ -7,7 +7,7 @@ interface DateProps {
   id: string;
   value: string | null;
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
-  err: string;
+  err?: string;
 }
 
 const Date = ({ id, value, onChange, err, label }: DateProps) => {

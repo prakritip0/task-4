@@ -61,7 +61,7 @@ const FirstStep = () => {
     userDetails.gender ? setGenderErr('') : setGenderErr('Gender is required.');
   };
 
-  const handleAgeChange = () => {
+  const validateAge = () => {
     let isValid = true;
     const DOB = new window.Date(userDetails.dateOfBirth);
     const currentDate = new window.Date();
@@ -79,7 +79,7 @@ const FirstStep = () => {
   };
 
   const handleDobChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const isValid = handleAgeChange();
+    const isValid = validateAge();
     if (!isValid) {
       setAgeErr('You must be 18 or older.');
     } else {

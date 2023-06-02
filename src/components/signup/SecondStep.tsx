@@ -59,7 +59,6 @@ const SecondStep = () => {
       !userDetails.formalDegree ||
       !userDetails.degreeName ||
       !noErrMessage;
-    console.log('noerr', noErrMessage);
 
     setSecondNextDisabled(isDisabled);
   }, [

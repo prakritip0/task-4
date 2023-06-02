@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useContext, useState } from 'react';
+import React, { ChangeEvent, useContext, useEffect, useState } from 'react';
 import { useOutletContext } from 'react-router-dom';
 import { SignUpContext } from '../../pages/SignUp';
 import Button from '../form/Button';
@@ -11,8 +11,15 @@ const ThirdStep = () => {
   const { userDetails, setUserDetails } = useContext(SignUpContext);
 
   const [modalOn, setModalOn] = useState(false);
-  const [startDateErr, setStartDateErr] = useState('');
-  const [endDateErr, setEndDateErr] = useState('');
+  const [thirdStepErr, setThirdStepErr] = useState({
+    companyName: '',
+    years: '',
+    position: '',
+    roles: '',
+    endDate: '',
+    startDate: '',
+  });
+  const [addDisabled, setAddDisabled] = useState(true);
   const { moveForward, goBackward } = useOutletContext<{
     moveForward: () => void;
     goBackward: () => void;
@@ -37,31 +44,58 @@ const ThirdStep = () => {
     let isValid = true;
     const startDate = new window.Date(userDetails.startDate);
     const endDate = new window.Date(userDetails.endDate);
-    if (startDate.valueOf() <= endDate.valueOf()) {
+    if (!!startDate && !!endDate) {
+      if (startDate.valueOf() <= endDate.valueOf()) {
+        return isValid;
+      } else {
+        isValid = false;
+      }
       return isValid;
-    } else {
-      isValid = false;
     }
-    return isValid;
   };
 
   const handleStartDateChange = (e: ChangeEvent<HTMLInputElement>) => {
     const isValid = validateDate();
     setUserDetails({ ...userDetails, startDate: e.target.value });
-    if (!isValid) {
-      setStartDateErr("Start date can't be later than end date.");
-    } else {
-      setStartDateErr('');
+    if (userDetails.startDate !== '' && userDetails.endDate !== '') {
+      if (!isValid) {
+        setThirdStepErr({ ...thirdStepErr, endDate: "End date can't be earlier than start date." });
+      } else {
+        setThirdStepErr({ ...thirdStepErr, endDate: '' });
+      }
     }
   };
   const handleEndDateChange = (e: ChangeEvent<HTMLInputElement>) => {
     const isValid = validateDate();
     setUserDetails({ ...userDetails, endDate: e.target.value });
-    if (!isValid) {
-      setEndDateErr("End date can't be earlier than start date.");
-    } else {
-      setEndDateErr('');
+    if (userDetails.startDate !== '' && userDetails.endDate !== '') {
+      if (!isValid) {
+        setThirdStepErr({ ...thirdStepErr, endDate: "End date can't be earlier than start date." });
+      } else {
+        setThirdStepErr({ ...thirdStepErr, endDate: '' });
+      }
     }
+    
+  };
+  const validateCompanyName = () => {
+    userDetails.companyName
+      ? setThirdStepErr({ ...thirdStepErr, companyName: '' })
+      : setThirdStepErr({ ...thirdStepErr, companyName: 'Company Name is required.' });
+  };
+  // const validateYears = () => {
+  //   userDetails.years
+  //     ? setThirdStepErr({ ...thirdStepErr, years: '' })
+  //     : setThirdStepErr({ ...thirdStepErr, years: 'Company Name is required.' });
+  // };
+  const validatePosition = () => {
+    userDetails.position
+      ? setThirdStepErr({ ...thirdStepErr, position: '' })
+      : setThirdStepErr({ ...thirdStepErr, position: 'Position is required.' });
+  };
+  const validateRoles = () => {
+    userDetails.roles
+      ? setThirdStepErr({ ...thirdStepErr, roles: '' })
+      : setThirdStepErr({ ...thirdStepErr, roles: 'Roles are required.' });
   };
 
   const addExperience = () => {
@@ -72,8 +106,20 @@ const ThirdStep = () => {
       years: 0,
       position: '',
       roles: '',
+      startDate:'',
+      endDate:''
     });
     setModalOn(false);
+  };
+  const validateStartDate = () => {
+    userDetails.startDate
+      ? setThirdStepErr({ ...thirdStepErr, startDate: '' })
+      : setThirdStepErr({ ...thirdStepErr, startDate: 'Start date is required.' });
+  };
+  const validateEndDate = () => {
+    userDetails.endDate
+      ? setThirdStepErr({ ...thirdStepErr, endDate: '' })
+      : setThirdStepErr({ ...thirdStepErr, endDate: 'End date is required.' });
   };
 
   const removeExperience = (i: number) => {
@@ -81,7 +127,33 @@ const ThirdStep = () => {
     updatedExperiences.splice(i, 1);
     setUserDetails({ ...userDetails, skillTags: [...updatedExperiences] });
   };
-  console.log('experiences', userDetails.experiences);
+
+  useEffect(() => {
+    const noErrMessage =
+      !thirdStepErr.companyName &&
+      !thirdStepErr.years &&
+      !thirdStepErr.position &&
+      !thirdStepErr.roles &&
+      !thirdStepErr.startDate&&
+      !thirdStepErr.endDate;
+    const isDisabled =
+      !userDetails.companyName ||
+      !userDetails.years ||
+      !userDetails.position ||
+      !userDetails.roles ||
+      !userDetails.startDate ||
+      !userDetails.endDate ||
+      !noErrMessage;
+    setAddDisabled(isDisabled);
+  }, [
+    thirdStepErr.companyName,
+    thirdStepErr.years,
+    thirdStepErr.position,
+    thirdStepErr.roles,
+    thirdStepErr.startDate,
+    thirdStepErr.endDate,
+  ]);
+  
 
   return (
     <div className='w-[30rem] h-full flex flex-col justify-between'>
@@ -92,58 +164,69 @@ const ThirdStep = () => {
       >
         <div className='addExperienceModal flex flex-col gap-2 p-[1rem] h-[30rem] w-[25rem] bg-white opacity-100 z-40 border rounded-md'>
           <h3 className='text-gray-700 font-bold text-2xl text-center'>Work Experience</h3>
+          <>
+            <Input
+              value={userDetails.companyName}
+              onChange={handleCompanyNameChange}
+              label='Company Name'
+              err={thirdStepErr.companyName}
+              type='text'
+              onBlur={validateCompanyName}
+            />
+            <Err err={thirdStepErr.companyName} />
+          </>
 
-          <Input
-            value={userDetails.companyName}
-            onChange={handleCompanyNameChange}
-            label='Company Name'
-            err='Company Name is required.'
-            type='text'
-          />
           <Input
             value={userDetails.years}
             onChange={handleYearsChange}
             label='Experience (in yrs)'
-            err='Years of experience is required.'
             type='number'
             min={0}
+            err={thirdStepErr.years}
+            // onBlur={validateYears}
           />
-          <Input
-            value={userDetails.position}
-            onChange={handlePositionChange}
-            label='Position'
-            err='Position is required.'
-            type='text'
-          />
+          <>
+            <Input
+              value={userDetails.position}
+              onChange={handlePositionChange}
+              label='Position'
+              err={thirdStepErr.position}
+              type='text'
+              onBlur={validatePosition}
+            />
+            <Err err={thirdStepErr.position} />
+          </>
           <Input
             value={userDetails.roles}
             onChange={handleRolesChange}
             label='Roles & Responsibilities'
-            err='Roles are required.'
+            err={thirdStepErr.roles}
             type='text'
+            onBlur={validateRoles}
           />
-          <div className='flex gap-4'>
-            <div>
+          <div className='flex gap-4 w-full'>
+            <div className='w-full'>
               <Date
                 id='startDate'
                 value={userDetails.startDate}
                 onChange={handleStartDateChange}
                 label='Start Date'
+                onBlur={validateStartDate}
               />
-              <Err err={startDateErr} />
             </div>
-            <div>
+            <div className='w-full'>
               <Date
                 id='endDate'
                 value={userDetails.endDate}
                 onChange={handleEndDateChange}
                 label='End Date'
+                onBlur={validateEndDate}
               />
-              <Err err={endDateErr} />
+              <Err err={thirdStepErr.endDate} />
             </div>
           </div>
-          <div className='mt-8'>
-            <Button label='Add' disabled={false} onClick={addExperience} />
+          <div className='mt-4'>
+            <Button label='Add' disabled={addDisabled} onClick={addExperience} />
           </div>
         </div>
       </div>

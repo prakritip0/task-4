@@ -75,7 +75,6 @@ const ThirdStep = () => {
         setThirdStepErr({ ...thirdStepErr, endDate: '' });
       }
     }
-    
   };
   const validateCompanyName = () => {
     userDetails.companyName
@@ -97,20 +96,6 @@ const ThirdStep = () => {
       ? setThirdStepErr({ ...thirdStepErr, roles: '' })
       : setThirdStepErr({ ...thirdStepErr, roles: 'Roles are required.' });
   };
-
-  const addExperience = () => {
-    setUserDetails({
-      ...userDetails,
-      experiences: [...userDetails.experiences, userDetails.position],
-      companyName: '',
-      years: 0,
-      position: '',
-      roles: '',
-      startDate:'',
-      endDate:''
-    });
-    setModalOn(false);
-  };
   const validateStartDate = () => {
     userDetails.startDate
       ? setThirdStepErr({ ...thirdStepErr, startDate: '' })
@@ -121,7 +106,20 @@ const ThirdStep = () => {
       ? setThirdStepErr({ ...thirdStepErr, endDate: '' })
       : setThirdStepErr({ ...thirdStepErr, endDate: 'End date is required.' });
   };
-
+  const addExperience = () => {
+    userDetails.experiences.length <= 5 &&
+      setUserDetails({
+        ...userDetails,
+        experiences: [...userDetails.experiences, userDetails.position],
+        companyName: '',
+        years: 0,
+        position: '',
+        roles: '',
+        startDate: '',
+        endDate: '',
+      });
+    setModalOn(false);
+  };
   const removeExperience = (i: number) => {
     const updatedExperiences = userDetails.experiences;
     updatedExperiences.splice(i, 1);
@@ -134,7 +132,7 @@ const ThirdStep = () => {
       !thirdStepErr.years &&
       !thirdStepErr.position &&
       !thirdStepErr.roles &&
-      !thirdStepErr.startDate&&
+      !thirdStepErr.startDate &&
       !thirdStepErr.endDate;
     const isDisabled =
       !userDetails.companyName ||
@@ -145,6 +143,7 @@ const ThirdStep = () => {
       !userDetails.endDate ||
       !noErrMessage;
     setAddDisabled(isDisabled);
+
   }, [
     thirdStepErr.companyName,
     thirdStepErr.years,
@@ -153,7 +152,8 @@ const ThirdStep = () => {
     thirdStepErr.startDate,
     thirdStepErr.endDate,
   ]);
-  
+  // console.log(addDisabled);
+
 
   return (
     <div className='w-[30rem] h-full flex flex-col justify-between'>
@@ -233,6 +233,9 @@ const ThirdStep = () => {
       <div className='experiences w-full mx-[1.5rem]'>
         <div className='experiences w-full'>
           <Tag tags={userDetails.experiences} removeTag={removeExperience} />
+          {userDetails.experiences.length === 5 && (
+            <p className='text-red text-xs'>5 experiences are enough, mate.</p>
+          )}
         </div>
         <div className='flex flex-col gap-[64px] mt-[8rem]'>
           <p className='text-gray-500 font-normal text-center'>No experience added.</p>

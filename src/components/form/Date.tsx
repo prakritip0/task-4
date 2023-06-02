@@ -3,16 +3,17 @@ import { ChangeEvent } from 'react';
 import Label from './Label';
 
 interface DateProps {
+  label:string
   id: string;
   value: string | null;
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
   err: string;
 }
 
-const Date = ({ id, value, onChange, err }: DateProps) => {
+const Date = ({ id, value, onChange, err, label }: DateProps) => {
   return (
     <div className='flex flex-col w-full'>
-      <Label htmlFor={id} labelName='Date of birth' />
+      <Label htmlFor={id} label={label}/>
       <input
         type='date'
         value={value || ''}

@@ -2,7 +2,7 @@ import React, { ChangeEvent, useContext, useEffect, useState } from 'react';
 import { useOutletContext } from 'react-router-dom';
 import Input from '../form/Input';
 import Select from '../form/Select';
-import SkillTag from '../form/SkillTag';
+import Tag from '../form/Tag';
 import Button from '../form/Button';
 import { SignUpContext } from '../../pages/SignUp';
 
@@ -20,7 +20,6 @@ const SecondStep = () => {
   }>();
 
   const addSkill = (e: ChangeEvent<HTMLInputElement>) => {
-
     setUserDetails({ ...userDetails, skill: e.target.value });
   };
 
@@ -47,7 +46,7 @@ const SecondStep = () => {
       ? setDegreeNameErr('')
       : setDegreeNameErr("Please mention your degree's name.");
   };
-  const removeTag = (i: number) => {
+  const removeSkill = (i: number) => {
     const updatedSkills = userDetails.skillTags;
     updatedSkills.splice(i, 1);
     setUserDetails({ ...userDetails, skillTags: [...updatedSkills] });
@@ -81,7 +80,7 @@ const SecondStep = () => {
             value={userDetails.skill}
             onChange={addSkill}
             placeholder='Your Skills'
-            labelName='Skills'
+            label='Skills'
             type='text'
             onBlur={validateSkill}
             err={skillErr}
@@ -97,7 +96,7 @@ const SecondStep = () => {
               }
             }}
           />
-          <SkillTag skillTags={userDetails.skillTags} removeSkill={removeTag} />
+          <Tag tags={userDetails.skillTags} removeTag={removeSkill} />
           {userDetails.skillTags.length === 10 && (
             <p className='text-xs text-red-700'>10 skills are enough, mate.</p>
           )}
@@ -116,14 +115,14 @@ const SecondStep = () => {
           ]}
           onBlur={validateFormalDegree}
           err={formalDegreeErr}
-          labelName='Formal Degree'
+          label='Formal Degree'
         />
         <Input
           id='degreeName'
           value={userDetails.degreeName}
           onChange={handleDegreeNameChange}
           placeholder='Formal Degree Name'
-          labelName='Degree Name'
+          label='Degree Name'
           type='text'
           onBlur={validateDegreeName}
           err={degreeNameErr}

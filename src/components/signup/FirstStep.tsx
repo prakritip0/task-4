@@ -119,7 +119,7 @@ const FirstStep = () => {
             <Input
               id='firstName'
               placeholder='Ram'
-              labelName='First Name'
+              label='First Name'
               type='text'
               value={userDetails.firstName}
               onChange={handleFirstNameChange}
@@ -132,7 +132,7 @@ const FirstStep = () => {
             <Input
               id='lastName'
               placeholder='Thapa'
-              labelName='Last Name'
+              label='Last Name'
               type='text'
               value={userDetails.lastName}
               onChange={handleLastNameChange}
@@ -146,7 +146,7 @@ const FirstStep = () => {
           <Input
             id='email'
             placeholder='ramthapa@gmail.com'
-            labelName='Email'
+            label='Email'
             type='email'
             value={userDetails.email}
             onChange={handleEmailChange}
@@ -169,16 +169,17 @@ const FirstStep = () => {
               placeholder='Choose gender'
               onBlur={validateGender}
               err={genderErr}
-              labelName='Gender'
+              label='Gender'
             />
             <Err err={genderErr} />
           </div>
           <div>
             <Date
-              id='date'
+              id='dob'
               value={userDetails.dateOfBirth}
               onChange={handleDobChange}
               err={ageErr}
+              label='Date of birth'
             />
             <Err err={ageErr} />
           </div>

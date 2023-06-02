@@ -12,7 +12,12 @@ interface userDetailsType {
   skill: string;
   formalDegree: string;
   degreeName: string;
-  skillTags: string[] 
+  skillTags: string[];
+  companyName: string;
+  years: number;
+  position: string;
+  roles: string;
+  experiences: string[];
 }
 
 interface SignUpContextType {
@@ -27,7 +32,12 @@ interface SignUpContextType {
       skill: string;
       formalDegree: string;
       degreeName: string;
-      skillTags: string[] 
+      skillTags: string[];
+      companyName: string;
+      years: number;
+      position: string;
+      roles: string;
+      experiences: string[];
     }>
   >;
 }
@@ -43,6 +53,11 @@ export const SignUpContext = createContext<SignUpContextType>({
     formalDegree: '',
     degreeName: '',
     skillTags: [],
+    companyName: '',
+    years: 0,
+    position: '',
+    roles: 'string',
+    experiences: [],
   },
   setUserDetails: () => {
     return;
@@ -65,6 +80,11 @@ const SignUp = () => {
     formalDegree: '',
     degreeName: '',
     skillTags: [],
+    companyName: '',
+    years: 0,
+    position: '',
+    roles: '',
+    experiences: [],
   });
 
   const [signupStep, setSignupStep] = useState(0);

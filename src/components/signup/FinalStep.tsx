@@ -1,63 +1,71 @@
-import React, { ChangeEvent, useState } from 'react';
+import React, { ChangeEvent, useContext, useState } from 'react';
 import { useOutletContext } from 'react-router-dom';
+import { SignUpContext } from '../../pages/SignUp';
 import Button from '../form/Button';
 import Checkbox from '../form/Checkbox';
 import Err from '../form/Err';
 import Input from '../form/Input';
 
 const FinalStep = () => {
+  const {userDetails, setUserDetails}= useContext(SignUpContext);
   const { moveForward, goBackward } = useOutletContext<{
     moveForward: () => void;
     goBackward: () => void;
   }>();
-  const [jobPreferences, setJobPreferences] = useState<string[]>([]);
+  const [finalStepErr, setFinalStepErr] = useState({
+    jobPreferences: '',
+    salary: '',
+    resume:'',
+    agreement:''
+  });
 
   const updateHybridPreference = (e: ChangeEvent<HTMLInputElement>) => {
     // console.log(e.target.id);
     if (e.target.id === 'on-site') {
-      if (jobPreferences.includes('On-site')) {
-        const updatedPreferences = jobPreferences;
+      if (userDetails.jobPreferences.includes('On-site')) {
+        const updatedPreferences = userDetails.jobPreferences;
         const index = updatedPreferences.indexOf('On-site');
         updatedPreferences.splice(index, 1);
-        setJobPreferences([...updatedPreferences]);
+        setUserDetails({...userDetails, jobPreferences:[...updatedPreferences]});
       } else {
-        setJobPreferences([...jobPreferences, 'On-site']);
+        setUserDetails({...userDetails, jobPreferences:[...userDetails.jobPreferences, 'On-site']});
       }
     }
     if (e.target.id === 'remote') {
-      if (jobPreferences.includes('Remote')) {
-        const updatedPreferences = jobPreferences;
+      if (userDetails.jobPreferences.includes('Remote')) {
+        const updatedPreferences = userDetails.jobPreferences;
         const index = updatedPreferences.indexOf('Remote');
         updatedPreferences.splice(index, 1);
-        setJobPreferences([...updatedPreferences]);
+        setUserDetails({...userDetails, jobPreferences:[...updatedPreferences]});
       } else {
-        setJobPreferences([...jobPreferences, 'Remote']);
+        setUserDetails({...userDetails, jobPreferences:[...userDetails.jobPreferences, 'Remote']});
       }
     }
     if (e.target.id === 'hybrid') {
-      if (jobPreferences.includes('Hybrid')) {
-        const updatedPreferences = jobPreferences;
+      if (userDetails.jobPreferences.includes('Hybrid')) {
+        const updatedPreferences =userDetails.jobPreferences;
         const index = updatedPreferences.indexOf('Hybrid');
         updatedPreferences.splice(index, 1);
-        setJobPreferences([...updatedPreferences]);
+        setUserDetails({...userDetails, jobPreferences:[...updatedPreferences]});
       } else {
-        setJobPreferences([...jobPreferences, 'Hybrid']);
+        setUserDetails({...userDetails, jobPreferences:[...userDetails.jobPreferences, 'Hybrid']});
       }
     }
   };
-
-
   return (
     <div className='w-[30rem] h-full flex flex-col justify-between ml-6'>
       <div className='flex flex-col gap-2'>
         <p className='text-sm font-semibold text-gray-800 dark:text-white'>
           How do you prefer to work?
         </p>
-        <div className='flex w-full justify-between'>
-          <Checkbox id='on-site' label='On-Site' onChange={updateHybridPreference} />
-          <Checkbox id='remote' label='Remote' onChange={updateHybridPreference} />
-          <Checkbox id='hybrid' label='Hybrid' onChange={updateHybridPreference} />
-        </div>
+        <>
+          <div className='flex w-full justify-between'>
+            <Checkbox id='on-site' label='On-Site' onChange={updateHybridPreference} />
+            <Checkbox id='remote' label='Remote' onChange={updateHybridPreference} />
+            <Checkbox id='hybrid' label='Hybrid' onChange={updateHybridPreference} />
+          </div>
+          <Err err='Please select atleast one job preference.' />
+        </>
       </div>
       <div className='salaryExpectation flex flex-col gap-2 '>
         <p className='text-sm font-semibold text-gray-800 dark:text-white'>

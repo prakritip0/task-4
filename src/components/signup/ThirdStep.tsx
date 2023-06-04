@@ -237,14 +237,16 @@ const ThirdStep = () => {
       </div>
       <div className='experiences w-full mx-[1.5rem]'>
         <div className='experiences w-full'>
-        
-            <Tag tags={userDetails.experiences} removeTag={removeExperience} />
-         
+          <Tag tags={userDetails.experiences} removeTag={removeExperience} />
 
           {userDetails.experiences.length === 5 && <Err err='5 experiences are enough, mate.' />}
         </div>
         <div className='flex flex-col gap-[64px] mt-[8rem]'>
-          <p className='text-gray-500 font-normal text-center'>No experience added.</p>
+          <p className='text-gray-500 font-normal text-center'>
+            {userDetails.experiences.length > 0
+              ? `${userDetails.experiences.length} experience(s) added.`
+              : 'No experience added.'}
+          </p>
           <div className='flex flex-col justify-end items-center gap-1'>
             <button
               id='addNew'

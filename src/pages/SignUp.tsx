@@ -17,9 +17,10 @@ interface userDetailsType {
   years: number;
   position: string;
   roles: string;
-  startDate:string;
-  endDate:string;
+  startDate: string;
+  endDate: string;
   experiences: string[];
+  jobPreferences: string[];
 }
 
 interface SignUpContextType {
@@ -39,9 +40,10 @@ interface SignUpContextType {
       years: number;
       position: string;
       roles: string;
-      startDate:string;
-      endDate:string;
+      startDate: string;
+      endDate: string;
       experiences: string[];
+      jobPreferences: string[];
     }>
   >;
 }
@@ -61,9 +63,10 @@ export const SignUpContext = createContext<SignUpContextType>({
     years: 0,
     position: '',
     roles: 'string',
-    startDate:'',
-    endDate:'',
+    startDate: '',
+    endDate: '',
     experiences: [],
+    jobPreferences: [],
   },
   setUserDetails: () => {
     return;
@@ -90,9 +93,10 @@ const SignUp = () => {
     years: 0,
     position: '',
     roles: '',
-    startDate:'',
-    endDate:'',
+    startDate: '',
+    endDate: '',
     experiences: [],
+    jobPreferences: [],
   });
 
   const [signupStep, setSignupStep] = useState(0);

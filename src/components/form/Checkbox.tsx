@@ -8,7 +8,7 @@ interface CheckboxProps extends React.ComponentPropsWithoutRef<'input'> {
 const Checkbox = ({ label, ...props }: CheckboxProps) => {
   return (
     <div className='flex row-reverse flex-end items-center gap-2'>
-      <input id={props.id} type='checkbox' {...props} />
+      <input id={props.id} type='checkbox' {...props} onChange={props.onChange}/>
       <Label htmlFor='preference' label={label} />
     </div>
   );

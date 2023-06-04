@@ -143,7 +143,6 @@ const ThirdStep = () => {
       !userDetails.endDate ||
       !noErrMessage;
     setAddDisabled(isDisabled);
-
   }, [
     thirdStepErr.companyName,
     thirdStepErr.years,

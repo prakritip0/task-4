@@ -143,8 +143,16 @@ const ThirdStep = () => {
       !userDetails.endDate ||
       !noErrMessage;
     setAddDisabled(isDisabled);
+    console.log('isDisabled', isDisabled);
+    console.log('noErr', noErrMessage);
   }, [
-    thirdStepErr.companyName,
+    userDetails.companyName,
+    userDetails.companyName,
+    thirdStepErr.years,
+    userDetails.position,
+    userDetails.roles,
+    userDetails.startDate,
+    userDetails.endDate,
     thirdStepErr.years,
     thirdStepErr.position,
     thirdStepErr.roles,
@@ -229,10 +237,11 @@ const ThirdStep = () => {
       </div>
       <div className='experiences w-full mx-[1.5rem]'>
         <div className='experiences w-full'>
-          <Tag tags={userDetails.experiences} removeTag={removeExperience} />
-          {userDetails.experiences.length === 5 && (
-            <p className='text-red text-xs'>5 experiences are enough, mate.</p>
-          )}
+        
+            <Tag tags={userDetails.experiences} removeTag={removeExperience} />
+         
+
+          {userDetails.experiences.length === 5 && <Err err='5 experiences are enough, mate.' />}
         </div>
         <div className='flex flex-col gap-[64px] mt-[8rem]'>
           <p className='text-gray-500 font-normal text-center'>No experience added.</p>

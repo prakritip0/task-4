@@ -13,7 +13,7 @@ const FinalStep = () => {
   const [jobPreferences, setJobPreferences] = useState<string[]>([]);
 
   const updateHybridPreference = (e: ChangeEvent<HTMLInputElement>) => {
-    console.log(e.target.id);
+    // console.log(e.target.id);
     if (e.target.id === 'on-site') {
       if (jobPreferences.includes('On-site')) {
         const updatedPreferences = jobPreferences;
@@ -45,7 +45,7 @@ const FinalStep = () => {
       }
     }
   };
-  console.log(jobPreferences);
+
 
   return (
     <div className='w-[30rem] h-full flex flex-col justify-between ml-6'>

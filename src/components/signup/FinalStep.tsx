@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useContext, useState } from 'react';
+import React, { ChangeEvent, useContext, useEffect, useState } from 'react';
 import { useOutletContext } from 'react-router-dom';
 import { SignUpContext } from '../../pages/SignUp';
 import Button from '../form/Button';
@@ -15,10 +15,7 @@ const FinalStep = () => {
   const [finalStepErr, setFinalStepErr] = useState({
     jobPreferences: '',
     salary: '',
-    lowerLimit: '',
-    upperLimit: '',
     resume: '',
-    agreement: '',
   });
   const handleLowerLimitChange = (e: ChangeEvent<HTMLInputElement>) => {
     setUserDetails({ ...userDetails, salaryLowerLimit: Number(e.target.value) });
@@ -33,7 +30,7 @@ const FinalStep = () => {
       : setFinalStepErr({ ...finalStepErr, salary: '' });
   };
 
-  const updateHybridPreference = (e: ChangeEvent<HTMLInputElement>) => {
+  const updateJobPreference = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.id === 'on-site') {
       if (userDetails.jobPreferences.includes('On-site')) {
         const updatedPreferences = userDetails.jobPreferences;
@@ -74,6 +71,16 @@ const FinalStep = () => {
       }
     }
   };
+  console.log(userDetails.jobPreferences);
+  const validateJobPreference = () => {
+    userDetails.jobPreferences.length === 0
+      ? setFinalStepErr({
+          ...finalStepErr,
+          jobPreferences: '*Please select atleast one job preference.',
+        })
+      : setFinalStepErr({ ...finalStepErr, jobPreferences: '' });
+  };
+
   const readResume = (e: ChangeEvent<HTMLInputElement>) => {
     const uploadedResume = e.target.files;
     const previewResume = uploadedResume && uploadedResume[0];
@@ -83,6 +90,10 @@ const FinalStep = () => {
     });
     reader.readAsDataURL(previewResume as File);
   };
+  // useEffect(() => {
+  //   const noErrMessage =
+  //     !finalStepErr.jobPreferences || !finalStepErr.salary || !finalStepErr.resume;
+  // });
   return (
     <div className='w-[30rem] h-full flex flex-col justify-between ml-6'>
       <div className='flex flex-col gap-2'>
@@ -91,11 +102,26 @@ const FinalStep = () => {
         </p>
         <div className='flex flex-col gap-1'>
           <div className='flex w-full justify-between'>
-            <Checkbox id='on-site' label='On-Site' onChange={updateHybridPreference} />
-            <Checkbox id='remote' label='Remote' onChange={updateHybridPreference} />
-            <Checkbox id='hybrid' label='Hybrid' onChange={updateHybridPreference} />
+            <Checkbox
+              id='on-site'
+              label='On-Site'
+              onChange={updateJobPreference}
+              onBlur={validateJobPreference}
+            />
+            <Checkbox
+              id='remote'
+              label='Remote'
+              onChange={updateJobPreference}
+              onBlur={validateJobPreference}
+            />
+            <Checkbox
+              id='hybrid'
+              label='Hybrid'
+              onChange={updateJobPreference}
+              onBlur={validateJobPreference}
+            />
           </div>
-          <Err err='*Please select atleast one job preference.' />
+          <Err err={finalStepErr.jobPreferences} />
         </div>
       </div>
       <div className='salaryExpectation flex flex-col gap-2 '>

@@ -32,11 +32,11 @@ const SecondStep = () => {
   const validateFormalDegree = () => {
     userDetails.formalDegree
       ? setFormalDegreeErr('')
-      : setFormalDegreeErr('Formal Degree is required.');
+      : setFormalDegreeErr('*Formal Degree is required.');
   };
   const validateSkill = () => {
     if (userDetails.skillTags.length === 0) {
-      userDetails.skill ? setSkillErr('') : setSkillErr('Skills are required.');
+      userDetails.skill ? setSkillErr('') : setSkillErr('*Skills are required.');
     } else {
       setSkillErr('');
     }
@@ -44,7 +44,7 @@ const SecondStep = () => {
   const validateDegreeName = () => {
     userDetails.degreeName
       ? setDegreeNameErr('')
-      : setDegreeNameErr("Please mention your degree's name.");
+      : setDegreeNameErr("*Please mention your degree's name.");
   };
   const removeSkill = (i: number) => {
     const updatedSkills = userDetails.skillTags;

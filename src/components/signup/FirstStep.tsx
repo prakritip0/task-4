@@ -45,20 +45,20 @@ const FirstStep = () => {
   const validateFirstName = () => {
     userDetails.firstName
       ? setErr({ ...err, firstName: '' })
-      : setErr({ ...err, firstName: 'First name is required.' });
+      : setErr({ ...err, firstName: '*First name is required.' });
   };
   const validateLastName = () => {
     userDetails.lastName
       ? setErr({ ...err, lastName: '' })
-      : setErr({ ...err, lastName: 'Last name is required.' });
+      : setErr({ ...err, lastName: '*Last name is required.' });
   };
   const validateEmail = () => {
     regex.test(userDetails.email)
       ? setErr({ ...err, email: '' })
-      : setErr({ ...err, email: 'Correct email is required.' });
+      : setErr({ ...err, email: '*Correct email is required.' });
   };
   const validateGender = () => {
-    userDetails.gender ? setGenderErr('') : setGenderErr('Gender is required.');
+    userDetails.gender ? setGenderErr('') : setGenderErr('*Gender is required.');
   };
 
   const validateAge = () => {
@@ -81,7 +81,7 @@ const FirstStep = () => {
   const handleDobChange = (e: ChangeEvent<HTMLInputElement>) => {
     const isValid = validateAge();
     if (!isValid) {
-      setAgeErr('You must be 18 or older.');
+      setAgeErr('*You must be 18 or older.');
     } else {
       setAgeErr('');
     }

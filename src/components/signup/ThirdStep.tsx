@@ -59,7 +59,7 @@ const ThirdStep = () => {
     setUserDetails({ ...userDetails, startDate: e.target.value });
     if (userDetails.startDate !== '' && userDetails.endDate !== '') {
       if (!isValid) {
-        setThirdStepErr({ ...thirdStepErr, endDate: "End date can't be earlier than start date." });
+        setThirdStepErr({ ...thirdStepErr, endDate: "*End date can't be earlier than start date." });
       } else {
         setThirdStepErr({ ...thirdStepErr, endDate: '' });
       }
@@ -70,7 +70,7 @@ const ThirdStep = () => {
     setUserDetails({ ...userDetails, endDate: e.target.value });
     if (userDetails.startDate !== '' && userDetails.endDate !== '') {
       if (!isValid) {
-        setThirdStepErr({ ...thirdStepErr, endDate: "End date can't be earlier than start date." });
+        setThirdStepErr({ ...thirdStepErr, endDate: "*End date can't be earlier than start date." });
       } else {
         setThirdStepErr({ ...thirdStepErr, endDate: '' });
       }
@@ -79,7 +79,7 @@ const ThirdStep = () => {
   const validateCompanyName = () => {
     userDetails.companyName
       ? setThirdStepErr({ ...thirdStepErr, companyName: '' })
-      : setThirdStepErr({ ...thirdStepErr, companyName: 'Company Name is required.' });
+      : setThirdStepErr({ ...thirdStepErr, companyName: '*Company Name is required.' });
   };
   // const validateYears = () => {
   //   userDetails.years
@@ -89,22 +89,22 @@ const ThirdStep = () => {
   const validatePosition = () => {
     userDetails.position
       ? setThirdStepErr({ ...thirdStepErr, position: '' })
-      : setThirdStepErr({ ...thirdStepErr, position: 'Position is required.' });
+      : setThirdStepErr({ ...thirdStepErr, position: '*Position is required.' });
   };
   const validateRoles = () => {
     userDetails.roles
       ? setThirdStepErr({ ...thirdStepErr, roles: '' })
-      : setThirdStepErr({ ...thirdStepErr, roles: 'Roles are required.' });
+      : setThirdStepErr({ ...thirdStepErr, roles: '*Roles are required.' });
   };
   const validateStartDate = () => {
     userDetails.startDate
       ? setThirdStepErr({ ...thirdStepErr, startDate: '' })
-      : setThirdStepErr({ ...thirdStepErr, startDate: 'Start date is required.' });
+      : setThirdStepErr({ ...thirdStepErr, startDate: '*Start date is required.' });
   };
   const validateEndDate = () => {
     userDetails.endDate
       ? setThirdStepErr({ ...thirdStepErr, endDate: '' })
-      : setThirdStepErr({ ...thirdStepErr, endDate: 'End date is required.' });
+      : setThirdStepErr({ ...thirdStepErr, endDate: '*End date is required.' });
   };
   const addExperience = () => {
     userDetails.experiences.length <= 5 &&

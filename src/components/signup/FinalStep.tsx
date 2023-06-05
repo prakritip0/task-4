@@ -14,9 +14,11 @@ const FinalStep = () => {
   }>();
   const [finalStepErr, setFinalStepErr] = useState({
     jobPreferences: '',
+    upperLimit: '',
     salary: '',
     resume: '',
   });
+  const [finalSubmitDisabled, setFinalSubmitDisabled] = useState(true);
   const handleLowerLimitChange = (e: ChangeEvent<HTMLInputElement>) => {
     setUserDetails({ ...userDetails, salaryLowerLimit: Number(e.target.value) });
   };
@@ -28,6 +30,13 @@ const FinalStep = () => {
     userDetails.salaryLowerLimit === 0 || null || userDetails.salaryLowerLimit === 0 || null
       ? setFinalStepErr({ ...finalStepErr, salary: '*Salary expectation is required.' })
       : setFinalStepErr({ ...finalStepErr, salary: '' });
+
+    userDetails.salaryLowerLimit > userDetails.salaryUpperLimit
+      ? setFinalStepErr({
+          ...finalStepErr,
+          upperLimit: "Upper limit can't be smaller than lower limit.",
+        })
+      : setFinalStepErr({ ...finalStepErr, upperLimit: '' });
   };
 
   const updateJobPreference = (e: ChangeEvent<HTMLInputElement>) => {
@@ -71,7 +80,6 @@ const FinalStep = () => {
       }
     }
   };
-  console.log(userDetails.jobPreferences);
   const validateJobPreference = () => {
     userDetails.jobPreferences.length === 0
       ? setFinalStepErr({
@@ -80,7 +88,9 @@ const FinalStep = () => {
         })
       : setFinalStepErr({ ...finalStepErr, jobPreferences: '' });
   };
-
+  const handleAgreement = () => {
+    setUserDetails({ ...userDetails, agreed: !userDetails.agreed });
+  };
   const readResume = (e: ChangeEvent<HTMLInputElement>) => {
     const uploadedResume = e.target.files;
     const previewResume = uploadedResume && uploadedResume[0];
@@ -90,10 +100,18 @@ const FinalStep = () => {
     });
     reader.readAsDataURL(previewResume as File);
   };
-  // useEffect(() => {
-  //   const noErrMessage =
-  //     !finalStepErr.jobPreferences || !finalStepErr.salary || !finalStepErr.resume;
-  // });
+  useEffect(() => {
+    const noErrMessage =
+      !finalStepErr.jobPreferences && !finalStepErr.salary && !finalStepErr.resume;
+    const isDisabled =
+      userDetails.jobPreferences.length <= 0 ||
+      !userDetails.salaryLowerLimit ||
+      !userDetails.salaryUpperLimit ||
+      !userDetails.resumeFileName ||
+      !userDetails.agreed ||
+      !noErrMessage;
+    setFinalSubmitDisabled(isDisabled);
+  }, [userDetails, finalStepErr]);
   return (
     <div className='w-[30rem] h-full flex flex-col justify-between ml-6'>
       <div className='flex flex-col gap-2'>
@@ -128,7 +146,7 @@ const FinalStep = () => {
         <p className='text-sm font-semibold text-gray-800 dark:text-white'>
           Salary Expectation (in NPR)
         </p>
-        <div className='flex justify-between gap-4 items-center'>
+        <div className='flex justify-between gap-4 items-center w-full'>
           <Input
             type='number'
             value={userDetails.salaryLowerLimit}
@@ -138,14 +156,17 @@ const FinalStep = () => {
             onBlur={vaidateSalary}
           />
           <p className='text-sm  text-gray-800 dark:text-white'>to</p>
-          <Input
-            type='number'
-            value={userDetails.salaryUpperLimit}
-            onChange={handleUpperLimitChange}
-            err='upper limit is required.'
-            placeholder='upper Limit'
-            onBlur={vaidateSalary}
-          />
+          <div>
+            <Input
+              type='number'
+              value={userDetails.salaryUpperLimit}
+              onChange={handleUpperLimitChange}
+              err='upper limit is required.'
+              placeholder='upper Limit'
+              onBlur={vaidateSalary}
+            />
+            <Err err={finalStepErr.upperLimit} />
+          </div>
         </div>
         <Err err={finalStepErr.salary} />
       </div>
@@ -167,10 +188,14 @@ const FinalStep = () => {
           <p className='text-indig-700 text-sm'>{userDetails.resumeFileName}</p>
         )}
       </div>
-      <Checkbox id='hybrid' label='I agree to all the terms and conditions.' />
+      <Checkbox
+        id='hybrid'
+        label='I agree to all the terms and conditions.'
+        onClick={handleAgreement}
+      />
       <div className='flex w-full gap-6'>
         <Button label='Back' disabled={false} onClick={goBackward} />
-        <Button label='Submit' disabled={true} onClick={moveForward} />
+        <Button label='Submit' disabled={finalSubmitDisabled} onClick={moveForward} />
       </div>
     </div>
   );

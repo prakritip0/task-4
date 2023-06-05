@@ -11,6 +11,7 @@ import FirstStep from './components/signup/FirstStep';
 import SecondStep from './components/signup/SecondStep';
 import ThirdStep from './components/signup/ThirdStep';
 import FinalStep from './components/signup/FinalStep';
+import FormSubmitted from './components/signup/FormSubmitted';
 
 function App() {
   const router = createBrowserRouter([
@@ -31,6 +32,7 @@ function App() {
             { path: '/signup/second-step', element: <SecondStep /> },
             { path: '/signup/third-step', element: <ThirdStep /> },
             { path: '/signup/final-step', element: <FinalStep /> },
+            { path: '/signup/submitted', element: <FormSubmitted /> },
           ],
         },
         {

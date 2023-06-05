@@ -25,6 +25,7 @@ interface userDetailsType {
   salaryUpperLimit: number;
   imageURL:string;
   resumeFileName: string;
+  agreed:boolean;
 }
 
 interface SignUpContextType {
@@ -52,6 +53,7 @@ interface SignUpContextType {
       salaryUpperLimit: number;
       imageURL:string;
       resumeFileName: string;
+      agreed:boolean;
     }>
   >;
 }
@@ -79,6 +81,7 @@ export const SignUpContext = createContext<SignUpContextType>({
     salaryUpperLimit:0,
     imageURL:'',
     resumeFileName: '',
+    agreed:false,
   },
   setUserDetails: () => {
     return;
@@ -112,7 +115,8 @@ const SignUp = () => {
     salaryLowerLimit:0,
     salaryUpperLimit:0,
     imageURL:'',
-    resumeFileName: ''
+    resumeFileName: '',
+    agreed:false,
   });
 
   const [signupStep, setSignupStep] = useState(0);
@@ -122,9 +126,10 @@ const SignUp = () => {
     'Your Skills and Certifications',
     'Your Work Experience',
     'Your Job Preferences',
+    ''
   ];
   const navigate = useNavigate();
-  const routes = ['/signup', '/signup/second-step', '/signup/third-step', '/signup/final-step'];
+  const routes = ['/signup', '/signup/second-step', '/signup/third-step', '/signup/final-step', '/signup/submitted'];
 
   useEffect(() => {
     const pathname = stripTrailingChar(location.pathname, '/');

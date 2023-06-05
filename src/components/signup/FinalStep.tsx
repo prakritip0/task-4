@@ -96,7 +96,7 @@ const FinalStep = () => {
     const previewResume = uploadedResume && uploadedResume[0];
     const reader = new FileReader();
     reader.addEventListener('load', () => {
-      setUserDetails({ ...userDetails, resumeFileName: previewResume!.name as string });
+      setUserDetails({ ...userDetails, resumeFileName: previewResume?.name as string });
     });
     reader.readAsDataURL(previewResume as File);
   };

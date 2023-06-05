@@ -143,8 +143,6 @@ const ThirdStep = () => {
       !userDetails.endDate ||
       !noErrMessage;
     setAddDisabled(isDisabled);
-    console.log('isDisabled', isDisabled);
-    console.log('noErr', noErrMessage);
   }, [
     userDetails.companyName,
     userDetails.companyName,

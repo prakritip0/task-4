@@ -15,16 +15,25 @@ const FinalStep = () => {
   const [finalStepErr, setFinalStepErr] = useState({
     jobPreferences: '',
     salary: '',
+    lowerLimit: '',
+    upperLimit: '',
     resume: '',
     agreement: '',
   });
-  const handleLowerLimitChange = () => {};
-  const handleUpperLimitChange = () => {};
-  const validateLowerLimit = () => {};
-  const validateUpperLimit = () => {};
+  const handleLowerLimitChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setUserDetails({ ...userDetails, salaryLowerLimit: Number(e.target.value) });
+  };
+  const handleUpperLimitChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setUserDetails({ ...userDetails, salaryUpperLimit: Number(e.target.value) });
+  };
+
+  const vaidateSalary = () => {
+    userDetails.salaryLowerLimit === 0 || null || userDetails.salaryLowerLimit === 0 || null
+      ? setFinalStepErr({ ...finalStepErr, salary: '*Salary expectation is required.' })
+      : setFinalStepErr({ ...finalStepErr, salary: '' });
+  };
 
   const updateHybridPreference = (e: ChangeEvent<HTMLInputElement>) => {
-    // console.log(e.target.id);
     if (e.target.id === 'on-site') {
       if (userDetails.jobPreferences.includes('On-site')) {
         const updatedPreferences = userDetails.jobPreferences;
@@ -65,7 +74,15 @@ const FinalStep = () => {
       }
     }
   };
-
+  const readResume = (e: ChangeEvent<HTMLInputElement>) => {
+    const uploadedResume = e.target.files;
+    const previewResume = uploadedResume && uploadedResume[0];
+    const reader = new FileReader();
+    reader.addEventListener('load', () => {
+      setUserDetails({ ...userDetails, resumeFileName: previewResume!.name as string });
+    });
+    reader.readAsDataURL(previewResume as File);
+  };
   return (
     <div className='w-[30rem] h-full flex flex-col justify-between ml-6'>
       <div className='flex flex-col gap-2'>
@@ -89,20 +106,22 @@ const FinalStep = () => {
           <Input
             type='number'
             value={userDetails.salaryLowerLimit}
+            onChange={handleLowerLimitChange}
             err='lower limit is required.'
             placeholder='Lower Limit'
-            onBlur={validateLowerLimit}
+            onBlur={vaidateSalary}
           />
           <p className='text-sm  text-gray-800 dark:text-white'>to</p>
           <Input
             type='number'
             value={userDetails.salaryUpperLimit}
+            onChange={handleUpperLimitChange}
             err='upper limit is required.'
             placeholder='upper Limit'
-            onBlur={validateUpperLimit}
+            onBlur={vaidateSalary}
           />
         </div>
-        <Err err='*Salary expectation is required.' />
+        <Err err={finalStepErr.salary} />
       </div>
       <div className='flex flex-col items-start'>
         <label
@@ -111,7 +130,16 @@ const FinalStep = () => {
         >
           Upload resume ↑
         </label>
-        <input id='resume' type='file' hidden />
+        <input
+          id='resume'
+          type='file'
+          hidden
+          onChange={readResume}
+          accept='text/plain, application/pdf, application/msword '
+        />
+        {userDetails.resumeFileName && (
+          <p className='text-indig-700 text-sm'>{userDetails.resumeFileName}</p>
+        )}
       </div>
       <Checkbox id='hybrid' label='I agree to all the terms and conditions.' />
       <div className='flex w-full gap-6'>

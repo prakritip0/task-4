@@ -87,7 +87,7 @@ const FirstStep = () => {
     }
     setUserDetails({ ...userDetails, dateOfBirth: e.target.value });
   };
-  function readImage(e: ChangeEvent<HTMLInputElement>) {
+  const readImage = (e: ChangeEvent<HTMLInputElement>) => {
     const uploadedImage = e.target.files;
     const previewImage = uploadedImage && uploadedImage[0];
 
@@ -96,7 +96,7 @@ const FirstStep = () => {
       setUserDetails({ ...userDetails, imageURL: reader.result as string });
     });
     reader.readAsDataURL(previewImage as File);
-  }
+  };
 
   useEffect(() => {
     const noErrMessage = !err.firstName && !err.lastName && !err.email && !genderErr && !ageErr;
@@ -128,13 +128,14 @@ const FirstStep = () => {
       <div className='flex flex-col  gap-10 items-start 2xl:gap-10'>
         <div className='profilepic flex items-center w-full gap-6'>
           <div className="h-[5rem] w-[5rem] bg-[url('https://pcgacademia.pl/wp-content/themes/pcgacademia-child/images/png/avatar-placeholder.png')] bg-cover rounded-full overflow-hidden">
-            {userDetails.imageURL && <img src={userDetails.imageURL} className='w-full h-full object-cover'  alt='img' />}
+            {userDetails.imageURL && (
+              <img src={userDetails.imageURL} className='w-full h-full object-cover' alt='img' />
+            )}
           </div>
           <input
             type='file'
             id='image'
             accept='image/png, image/jpg, image/jpeg'
-            
             onChange={readImage}
             hidden
           />

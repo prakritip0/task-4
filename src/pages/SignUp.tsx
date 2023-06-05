@@ -24,6 +24,7 @@ interface userDetailsType {
   salaryLowerLimit: number;
   salaryUpperLimit: number;
   imageURL:string;
+  resumeFileName: string;
 }
 
 interface SignUpContextType {
@@ -50,6 +51,7 @@ interface SignUpContextType {
       salaryLowerLimit: number;
       salaryUpperLimit: number;
       imageURL:string;
+      resumeFileName: string;
     }>
   >;
 }
@@ -76,6 +78,7 @@ export const SignUpContext = createContext<SignUpContextType>({
     salaryLowerLimit:0,
     salaryUpperLimit:0,
     imageURL:'',
+    resumeFileName: '',
   },
   setUserDetails: () => {
     return;
@@ -109,6 +112,7 @@ const SignUp = () => {
     salaryLowerLimit:0,
     salaryUpperLimit:0,
     imageURL:'',
+    resumeFileName: ''
   });
 
   const [signupStep, setSignupStep] = useState(0);

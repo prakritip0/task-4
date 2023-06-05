@@ -49,7 +49,7 @@ function App() {
         },
       ],
     },
-  ]);
+  ],{basename: "/task-4"});
   return (
     // <Main/>
     <RouterProvider router={router} />

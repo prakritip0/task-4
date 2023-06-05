@@ -16,7 +16,7 @@ import FormSubmitted from './components/signup/FormSubmitted';
 function App() {
   const router = createBrowserRouter([
     {
-      path: '/',
+      path: '/task-4',
       element: <Main />,
       errorElement: <ErrorPage />,
       children: [

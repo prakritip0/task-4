@@ -87,6 +87,17 @@ const FirstStep = () => {
     }
     setUserDetails({ ...userDetails, dateOfBirth: e.target.value });
   };
+  function readImage(e: ChangeEvent<HTMLInputElement>) {
+    const uploadedImage = e.target.files;
+    const previewImage = uploadedImage && uploadedImage[0];
+
+    const reader = new FileReader();
+    reader.addEventListener('load', () => {
+      setUserDetails({ ...userDetails, imageURL: reader.result as string });
+    });
+    reader.readAsDataURL(previewImage as File);
+  }
+
   useEffect(() => {
     const noErrMessage = !err.firstName && !err.lastName && !err.email && !genderErr && !ageErr;
     const isDisabled =
@@ -110,10 +121,30 @@ const FirstStep = () => {
     ageErr,
   ]);
   firstStepComplete = !firstNextDisabled;
+  console.log(userDetails.imageURL);
 
   return (
-    <div className='flex flex-col align-start justify-between pt-[6rem] h-full w-[30rem] mx-[7rem]'>
+    <div className='flex flex-col align-start justify-between  h-full w-[30rem] mx-[7rem]'>
       <div className='flex flex-col  gap-10 items-start 2xl:gap-10'>
+        <div className='profilepic flex items-center w-full gap-6'>
+          <div className="h-[5rem] w-[5rem] bg-[url('https://pcgacademia.pl/wp-content/themes/pcgacademia-child/images/png/avatar-placeholder.png')] bg-cover rounded-full overflow-hidden">
+            {userDetails.imageURL && <img src={userDetails.imageURL} className='w-full h-full object-cover'  alt='img' />}
+          </div>
+          <input
+            type='file'
+            id='image'
+            accept='image/png, image/jpg, image/jpeg'
+            
+            onChange={readImage}
+            hidden
+          />
+          <label
+            htmlFor='image'
+            className='text-xs text-indigo-500 border border-indigo-500 rounded-sm px-1 py-1'
+          >
+            Upload Image ↑
+          </label>
+        </div>
         <div className='name flex flex-row gap-4 w-full'>
           <div>
             <Input

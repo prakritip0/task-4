@@ -23,6 +23,7 @@ interface userDetailsType {
   jobPreferences: string[];
   salaryLowerLimit: number;
   salaryUpperLimit: number;
+  imageURL:string;
 }
 
 interface SignUpContextType {
@@ -48,6 +49,7 @@ interface SignUpContextType {
       jobPreferences: string[];
       salaryLowerLimit: number;
       salaryUpperLimit: number;
+      imageURL:string;
     }>
   >;
 }
@@ -73,6 +75,7 @@ export const SignUpContext = createContext<SignUpContextType>({
     jobPreferences: [],
     salaryLowerLimit:0,
     salaryUpperLimit:0,
+    imageURL:'',
   },
   setUserDetails: () => {
     return;
@@ -105,6 +108,7 @@ const SignUp = () => {
     jobPreferences: [],
     salaryLowerLimit:0,
     salaryUpperLimit:0,
+    imageURL:'',
   });
 
   const [signupStep, setSignupStep] = useState(0);

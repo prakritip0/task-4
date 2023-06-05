@@ -57,7 +57,6 @@ interface SignUpContextType {
     }>
   >;
 }
-
 export const SignUpContext = createContext<SignUpContextType>({
   userDetails: {
     firstName: '',

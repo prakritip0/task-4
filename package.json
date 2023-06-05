@@ -2,7 +2,7 @@
   "homepage": "https://prakritip0.github.io/task-4 ",
   "name": "task-4",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
   "type": "module",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",

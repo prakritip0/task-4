@@ -28,22 +28,10 @@ const ThirdStep = () => {
   const openModal = () => {
     setModalOn(true);
   };
-  const handleCompanyNameChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setUserDetails({ ...userDetails, companyName: e.target.value });
-  };
-  const handleYearsChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setUserDetails({ ...userDetails, years: Number(e.target.value) });
-  };
-  const handlePositionChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setUserDetails({ ...userDetails, position: e.target.value });
-  };
-  const handleRolesChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setUserDetails({ ...userDetails, role: e.target.value });
-  };
 
- const handleInputChange=(field:string, value:string)=>{
-  setUserDetails({ ...userDetails, [field]: value });
- }
+  const handleInputChange = (field: string, value: string) => {
+    setUserDetails({ ...userDetails, [field]: value });
+  };
 
   const validateDate = () => {
     let isValid = true;
@@ -64,7 +52,10 @@ const ThirdStep = () => {
     setUserDetails({ ...userDetails, startDate: e.target.value });
     if (userDetails.startDate !== '' && userDetails.endDate !== '') {
       if (!isValid) {
-        setThirdStepErr({ ...thirdStepErr, endDate: "*End date can't be earlier than start date." });
+        setThirdStepErr({
+          ...thirdStepErr,
+          endDate: "*End date can't be earlier than start date.",
+        });
       } else {
         setThirdStepErr({ ...thirdStepErr, endDate: '' });
       }
@@ -75,7 +66,10 @@ const ThirdStep = () => {
     setUserDetails({ ...userDetails, endDate: e.target.value });
     if (userDetails.startDate !== '' && userDetails.endDate !== '') {
       if (!isValid) {
-        setThirdStepErr({ ...thirdStepErr, endDate: "*End date can't be earlier than start date." });
+        setThirdStepErr({
+          ...thirdStepErr,
+          endDate: "*End date can't be earlier than start date.",
+        });
       } else {
         setThirdStepErr({ ...thirdStepErr, endDate: '' });
       }
@@ -96,7 +90,7 @@ const ThirdStep = () => {
       ? setThirdStepErr({ ...thirdStepErr, position: '' })
       : setThirdStepErr({ ...thirdStepErr, position: '*Position is required.' });
   };
-  const validateRoles = () => {
+  const validateRole = () => {
     userDetails.role
       ? setThirdStepErr({ ...thirdStepErr, role: '' })
       : setThirdStepErr({ ...thirdStepErr, role: '*Roles are required.' });
@@ -164,84 +158,110 @@ const ThirdStep = () => {
   ]);
   // console.log(addDisabled);
   return (
-    <div className='w-[30rem] h-full flex flex-col justify-between'>
+    <div className='w-[30rem] h-full flex flex-col justify-between mx-[7rem]'>
       <div
         className={`modal ${
           modalOn ? 'flex' : 'hidden'
         } fixed top-0 left-0 justify-center items-center bg-[rgba(0,0,0,0.5)] w-[100vw] h-[100vh] z-30`}
+        onClick={() => setModalOn(false)}
       >
-        <div className='addExperienceModal flex flex-col gap-2 p-[1rem] h-[30rem] w-[25rem] bg-white opacity-100 z-40 border rounded-md'>
-          <h3 className='text-gray-700 font-bold text-2xl text-center'>Work Experience</h3>
-          <>
-            <Input
-              value={userDetails.companyName}
-              onChange={(e)=>{handleInputChange('companyName', e.target.value)}}
-              label='Company Name'
-              err={thirdStepErr.companyName}
-              type='text'
-              onBlur={validateCompanyName}
-            />
-            <Err err={thirdStepErr.companyName} />
-          </>
+        <div
+          className='addExperienceModal flex flex-col p-[1rem] h-[40rem] w-[28rem] bg-white opacity-100 z-40 border rounded-md'
+          onClick={(e) => e.stopPropagation()}
+        >
+          <div className='flex h-full flex-col justify-between'>
+            <div className='flex flex-col gap-2'>
+              <button
+                className='flex justify-end text-lg'
+                onClick={() => {
+                  setModalOn(false);
+                }}
+              >
+                ✕
+              </button>
+              <h3 className='text-gray-700 font-bold text-2xl text-center'>Work Experience</h3>
+              <>
+                <Input
+                  value={userDetails.companyName}
+                  onChange={(e) => {
+                    handleInputChange('companyName', e.target.value);
+                  }}
+                  label='Company Name'
+                  err={thirdStepErr.companyName}
+                  type='text'
+                  onBlur={validateCompanyName}
+                />
+                <Err err={thirdStepErr.companyName} />
+              </>
 
-          <Input
-            value={userDetails.years}
-            onChange={(e)=>{handleInputChange('years', e.target.value)}}
-            label='Experience (in yrs)'
-            type='number'
-            min={0}
-            err={thirdStepErr.years}
-            // onBlur={validateYears}
-          />
-          <>
-            <Input
-              value={userDetails.position}
-              onChange={(e)=>{handleInputChange('position', e.target.value)}}
-              label='Position'
-              err={thirdStepErr.position}
-              type='text'
-              onBlur={validatePosition}
-            />
-            <Err err={thirdStepErr.position} />
-          </>
-          <Input
-            value={userDetails.role}
-            onChange={(e)=>{handleInputChange('role', e.target.value)}}
-            label='Roles & Responsibilities'
-            err={thirdStepErr.role}
-            type='text'
-            onBlur={validateRoles}
-          />
-          <div className='flex gap-4 w-full'>
-            <div className='w-full'>
-              <Date
-                id='startDate'
-                value={userDetails.startDate}
-                onChange={handleStartDateChange}
-                label='Start Date'
-                onBlur={validateStartDate}
+              <Input
+                value={userDetails.years}
+                onChange={(e) => {
+                  handleInputChange('years', e.target.value);
+                }}
+                label='Experience (in yrs)'
+                type='number'
+                min={0}
+                err={thirdStepErr.years}
               />
-            </div>
-            <div className='w-full'>
-              <Date
-                id='endDate'
-                value={userDetails.endDate}
-                onChange={handleEndDateChange}
-                label='End Date'
-                onBlur={validateEndDate}
+              <>
+                <Input
+                  value={userDetails.position}
+                  onChange={(e) => {
+                    handleInputChange('position', e.target.value);
+                  }}
+                  label='Position'
+                  err={thirdStepErr.position}
+                  type='text'
+                  onBlur={validatePosition}
+                />
+                <Err err={thirdStepErr.position} />
+              </>
+              <Input
+                value={userDetails.role}
+                onChange={(e) => {
+                  handleInputChange('role', e.target.value);
+                }}
+                label='Roles & Responsibilities'
+                err={thirdStepErr.role}
+                type='textarea'
+                onBlur={validateRole}
               />
-              <Err err={thirdStepErr.endDate} />
+              <div>
+                <div className='flex justify-between w-full'>
+                  <div>
+                    <Date
+                      id='startDate'
+                      value={userDetails.startDate}
+                      onChange={handleStartDateChange}
+                      label='Start Date'
+                      onBlur={validateStartDate}
+                    />
+                  </div>
+                  <div>
+                    <Date
+                      id='endDate'
+                      value={userDetails.endDate}
+                      onChange={handleEndDateChange}
+                      label='End Date'
+                      onBlur={validateEndDate}
+                    />
+                  </div>
+                </div>
+                <div className='flex justify-center'>
+                  <Err err={thirdStepErr.endDate} />
+                </div>
+              </div>
             </div>
-          </div>
-          <div className='mt-4'>
-            <Button label='Add' disabled={addDisabled} onClick={addExperience} />
+            <div className='mt-4'>
+              <Button label='Add' disabled={addDisabled} onClick={addExperience} />
+            </div>
           </div>
         </div>
       </div>
       <div className='experiences w-full mx-[1.5rem]'>
         <div className='experiences w-full'>
           <Tag tags={userDetails.experiences} removeTag={removeExperience} />
-
           {userDetails.experiences.length === 5 && <Err err='5 experiences are enough, mate.' />}
         </div>
         <div className='flex flex-col gap-[64px] mt-[8rem]'>
@@ -264,10 +284,10 @@ const ThirdStep = () => {
             </label>
           </div>
         </div>
-        <div className='flex gap-6'>
-          <Button label='Back' disabled={false} onClick={goBackward} />
-          <Button label='Next' disabled={false} onClick={moveForward} />
-        </div>
+      </div>
+      <div className='flex gap-6'>
+        <Button label='Back' disabled={false} onClick={goBackward} />
+        <Button label='Next' disabled={false} onClick={moveForward} />
       </div>
     </div>
   );

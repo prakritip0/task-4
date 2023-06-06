@@ -3,7 +3,7 @@ import Label from './Label';
 
 interface InputProps extends React.ComponentPropsWithoutRef<'input'> {
   label?: string;
-  type: 'text' | 'email'| 'number';
+  type: 'text' | 'email'| 'number'|'textarea';
   err: string;
 }
 

@@ -19,16 +19,10 @@ const SecondStep = () => {
     goBackward: () => void;
   }>();
 
-  const addSkill = (e: ChangeEvent<HTMLInputElement>) => {
-    setUserDetails({ ...userDetails, skill: e.target.value });
+  const handleInputChange = (field: string, value: string) => {
+    setUserDetails({ ...userDetails, [field]: value });
   };
 
-  const handleFormalDegreeChange = (e: ChangeEvent<HTMLSelectElement>) => {
-    setUserDetails({ ...userDetails, formalDegree: e.target.value });
-  };
-  const handleDegreeNameChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setUserDetails({ ...userDetails, degreeName: e.target.value });
-  };
   const validateFormalDegree = () => {
     userDetails.formalDegree
       ? setFormalDegreeErr('')
@@ -77,7 +71,7 @@ const SecondStep = () => {
           <Input
             id='skills'
             value={userDetails.skill}
-            onChange={addSkill}
+            onChange={(e) => handleInputChange('skill', e.target.value)}
             placeholder='Your Skills'
             label='Skills'
             type='text'
@@ -101,10 +95,10 @@ const SecondStep = () => {
           )}
         </div>
         <Select
-          id='foramlDegree'
+          id='formalDegree'
           placeholder='Highest Formal Degree'
           value={userDetails.formalDegree}
-          onChange={handleFormalDegreeChange}
+          onChange={(e) => handleInputChange('formalDegree', e.target.value)}
           options={[
             { value: 'phd', label: 'PHD' },
             { value: 'masters', label: 'Bachelors' },
@@ -119,7 +113,7 @@ const SecondStep = () => {
         <Input
           id='degreeName'
           value={userDetails.degreeName}
-          onChange={handleDegreeNameChange}
+          onChange={(e) => handleInputChange('degreeName', e.target.value)}
           placeholder='Formal Degree Name'
           label='Degree Name'
           type='text'

@@ -16,7 +16,7 @@ interface userDetailsType {
   companyName: string;
   years: number;
   position: string;
-  roles: string;
+  role: string;
   startDate: string;
   endDate: string;
   experiences: string[];
@@ -44,7 +44,7 @@ interface SignUpContextType {
       companyName: string;
       years: number;
       position: string;
-      roles: string;
+      role: string;
       startDate: string;
       endDate: string;
       experiences: string[];
@@ -71,7 +71,7 @@ export const SignUpContext = createContext<SignUpContextType>({
     companyName: '',
     years: 0,
     position: '',
-    roles: 'string',
+    role: 'string',
     startDate: '',
     endDate: '',
     experiences: [],
@@ -106,7 +106,7 @@ const SignUp = () => {
     companyName: '',
     years: 0,
     position: '',
-    roles: '',
+    role: '',
     startDate: '',
     endDate: '',
     experiences: [],

@@ -15,7 +15,7 @@ const ThirdStep = () => {
     companyName: '',
     years: '',
     position: '',
-    roles: '',
+    role: '',
     endDate: '',
     startDate: '',
   });
@@ -38,8 +38,13 @@ const ThirdStep = () => {
     setUserDetails({ ...userDetails, position: e.target.value });
   };
   const handleRolesChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setUserDetails({ ...userDetails, roles: e.target.value });
+    setUserDetails({ ...userDetails, role: e.target.value });
   };
+
+ const handleInputChange=(field:string, value:string)=>{
+  setUserDetails({ ...userDetails, [field]: value });
+ }
+
   const validateDate = () => {
     let isValid = true;
     const startDate = new window.Date(userDetails.startDate);
@@ -92,9 +97,9 @@ const ThirdStep = () => {
       : setThirdStepErr({ ...thirdStepErr, position: '*Position is required.' });
   };
   const validateRoles = () => {
-    userDetails.roles
-      ? setThirdStepErr({ ...thirdStepErr, roles: '' })
-      : setThirdStepErr({ ...thirdStepErr, roles: '*Roles are required.' });
+    userDetails.role
+      ? setThirdStepErr({ ...thirdStepErr, role: '' })
+      : setThirdStepErr({ ...thirdStepErr, role: '*Roles are required.' });
   };
   const validateStartDate = () => {
     userDetails.startDate
@@ -114,7 +119,7 @@ const ThirdStep = () => {
         companyName: '',
         years: 0,
         position: '',
-        roles: '',
+        role: '',
         startDate: '',
         endDate: '',
       });
@@ -131,14 +136,14 @@ const ThirdStep = () => {
       !thirdStepErr.companyName &&
       !thirdStepErr.years &&
       !thirdStepErr.position &&
-      !thirdStepErr.roles &&
+      !thirdStepErr.role &&
       !thirdStepErr.startDate &&
       !thirdStepErr.endDate;
     const isDisabled =
       !userDetails.companyName ||
       !userDetails.years ||
       !userDetails.position ||
-      !userDetails.roles ||
+      !userDetails.role ||
       !userDetails.startDate ||
       !userDetails.endDate ||
       !noErrMessage;
@@ -148,12 +153,12 @@ const ThirdStep = () => {
     userDetails.companyName,
     thirdStepErr.years,
     userDetails.position,
-    userDetails.roles,
+    userDetails.role,
     userDetails.startDate,
     userDetails.endDate,
     thirdStepErr.years,
     thirdStepErr.position,
-    thirdStepErr.roles,
+    thirdStepErr.role,
     thirdStepErr.startDate,
     thirdStepErr.endDate,
   ]);
@@ -170,7 +175,7 @@ const ThirdStep = () => {
           <>
             <Input
               value={userDetails.companyName}
-              onChange={handleCompanyNameChange}
+              onChange={(e)=>{handleInputChange('companyName', e.target.value)}}
               label='Company Name'
               err={thirdStepErr.companyName}
               type='text'
@@ -181,7 +186,7 @@ const ThirdStep = () => {
 
           <Input
             value={userDetails.years}
-            onChange={handleYearsChange}
+            onChange={(e)=>{handleInputChange('years', e.target.value)}}
             label='Experience (in yrs)'
             type='number'
             min={0}
@@ -191,7 +196,7 @@ const ThirdStep = () => {
           <>
             <Input
               value={userDetails.position}
-              onChange={handlePositionChange}
+              onChange={(e)=>{handleInputChange('position', e.target.value)}}
               label='Position'
               err={thirdStepErr.position}
               type='text'
@@ -200,10 +205,10 @@ const ThirdStep = () => {
             <Err err={thirdStepErr.position} />
           </>
           <Input
-            value={userDetails.roles}
-            onChange={handleRolesChange}
+            value={userDetails.role}
+            onChange={(e)=>{handleInputChange('role', e.target.value)}}
             label='Roles & Responsibilities'
-            err={thirdStepErr.roles}
+            err={thirdStepErr.role}
             type='text'
             onBlur={validateRoles}
           />

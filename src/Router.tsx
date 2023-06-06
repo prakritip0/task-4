@@ -14,7 +14,6 @@ import Pricing from './pages/Pricing';
 import SignUp from './pages/SignUp';
 
 const Router = () => {
-  
     const router = createBrowserRouter([
         {
           path: '/',

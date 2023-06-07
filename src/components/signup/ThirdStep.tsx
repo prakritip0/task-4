@@ -5,7 +5,6 @@ import Button from '../form/Button';
 import Date from '../form/Date';
 import Err from '../form/Err';
 import Input from '../form/Input';
-import Tag from '../form/Tag';
 import Checkbox from '../form/Checkbox';
 import ExperienceTag from '../form/ExperienceTag';
 

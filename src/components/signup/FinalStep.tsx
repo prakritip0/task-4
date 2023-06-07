@@ -111,6 +111,9 @@ const FinalStep = () => {
       !userDetails.agreed ||
       !noErrMessage;
     setFinalSubmitDisabled(isDisabled);
+    isDisabled
+      ? setUserDetails({ ...userDetails, finalStepComplete: false })
+      : setUserDetails({ ...userDetails, finalStepComplete: true });
   }, [userDetails, finalStepErr]);
   return (
     <div className='w-[30rem] h-full flex flex-col justify-between ml-6'>

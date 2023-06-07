@@ -26,10 +26,10 @@ const FirstStep = () => {
     isNextDisabled: boolean;
     setIsNextDisabled: () => void;
   }>();
- 
-  const handleInputChange =(field:string, value:string)=>{
+
+  const handleInputChange = (field: string, value: string) => {
     setUserDetails({ ...userDetails, [field]: value });
-  }
+  };
   // eslint-disable-next-line no-useless-escape
   const regex = /^([a-zA-Z0-9\._]+)@([a-zA-Z0-9])+.([a-z]+)(.[a-z]+)?$/;
 
@@ -92,6 +92,7 @@ const FirstStep = () => {
   useEffect(() => {
     const noErrMessage = !err.firstName && !err.lastName && !err.email && !genderErr && !ageErr;
     const isDisabled =
+      !userDetails.imageURL ||
       !userDetails.firstName ||
       !userDetails.lastName ||
       !userDetails.email ||
@@ -99,7 +100,11 @@ const FirstStep = () => {
       !userDetails.dateOfBirth ||
       !noErrMessage;
     setFirstNextDisabled(isDisabled);
+    isDisabled
+      ? setUserDetails({ ...userDetails, firstStepComplete: false })
+      : setUserDetails({ ...userDetails, firstStepComplete: true });
   }, [
+    userDetails.imageURL,
     userDetails.firstName,
     userDetails.lastName,
     userDetails.email,
@@ -111,7 +116,8 @@ const FirstStep = () => {
     genderErr,
     ageErr,
   ]);
-  firstStepComplete = !firstNextDisabled;
+
+  console.log(userDetails.firstStepComplete);
 
   return (
     <div className='flex flex-col align-start justify-between  h-full w-[30rem] mx-[7rem]'>
@@ -144,7 +150,7 @@ const FirstStep = () => {
               label='First Name'
               type='text'
               value={userDetails.firstName}
-              onChange={(e)=>handleInputChange('firstName', e.target.value)}
+              onChange={(e) => handleInputChange('firstName', e.target.value)}
               onBlur={validateFirstName}
               err={err.firstName}
             />
@@ -157,7 +163,7 @@ const FirstStep = () => {
               label='Last Name'
               type='text'
               value={userDetails.lastName}
-              onChange={(e)=>handleInputChange('lastName', e.target.value)}
+              onChange={(e) => handleInputChange('lastName', e.target.value)}
               onBlur={validateLastName}
               err={err.lastName}
             />
@@ -171,7 +177,7 @@ const FirstStep = () => {
             label='Email'
             type='email'
             value={userDetails.email}
-            onChange={(e)=>handleInputChange('email', e.target.value)}
+            onChange={(e) => handleInputChange('email', e.target.value)}
             onBlur={validateEmail}
             err={err.email}
           />
@@ -181,7 +187,7 @@ const FirstStep = () => {
           <div>
             <Select
               id='gender'
-              onChange={(e)=>handleInputChange('gender', e.target.value)}
+              onChange={(e) => handleInputChange('gender', e.target.value)}
               value={userDetails.gender}
               options={[
                 { value: 'Male', label: "I'm a male." },

@@ -142,6 +142,9 @@ const ThirdStep = () => {
       !userDetails.endDate ||
       !noErrMessage;
     setAddDisabled(isDisabled);
+    isDisabled
+      ? setUserDetails({ ...userDetails, thirdStepComplete: false })
+      : setUserDetails({ ...userDetails, thirdStepComplete: true });
   }, [
     userDetails.companyName,
     userDetails.companyName,

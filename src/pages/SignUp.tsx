@@ -23,9 +23,13 @@ interface userDetailsType {
   jobPreferences: string[];
   salaryLowerLimit: number;
   salaryUpperLimit: number;
-  imageURL:string;
+  imageURL: string;
   resumeFileName: string;
-  agreed:boolean;
+  agreed: boolean;
+  firstStepComplete: boolean;
+  secondStepComplete: boolean;
+  thirdStepComplete: boolean;
+  finalStepComplete: boolean;
 }
 
 interface SignUpContextType {
@@ -51,9 +55,13 @@ interface SignUpContextType {
       jobPreferences: string[];
       salaryLowerLimit: number;
       salaryUpperLimit: number;
-      imageURL:string;
+      imageURL: string;
       resumeFileName: string;
-      agreed:boolean;
+      agreed: boolean;
+      firstStepComplete: boolean;
+      secondStepComplete: boolean;
+      thirdStepComplete: boolean;
+      finalStepComplete: boolean;
     }>
   >;
 }
@@ -76,11 +84,15 @@ export const SignUpContext = createContext<SignUpContextType>({
     endDate: '',
     experiences: [],
     jobPreferences: [],
-    salaryLowerLimit:0,
-    salaryUpperLimit:0,
-    imageURL:'',
+    salaryLowerLimit: 0,
+    salaryUpperLimit: 0,
+    imageURL: '',
     resumeFileName: '',
-    agreed:false,
+    agreed: false,
+    firstStepComplete: false,
+    secondStepComplete: false,
+    thirdStepComplete: false,
+    finalStepComplete: false,
   },
   setUserDetails: () => {
     return;
@@ -111,11 +123,15 @@ const SignUp = () => {
     endDate: '',
     experiences: [],
     jobPreferences: [],
-    salaryLowerLimit:0,
-    salaryUpperLimit:0,
-    imageURL:'',
+    salaryLowerLimit: 0,
+    salaryUpperLimit: 0,
+    imageURL: '',
     resumeFileName: '',
-    agreed:false,
+    agreed: false,
+    firstStepComplete: false,
+    secondStepComplete: false,
+    thirdStepComplete: false,
+    finalStepComplete: false,
   });
 
   const [signupStep, setSignupStep] = useState(0);
@@ -125,10 +141,16 @@ const SignUp = () => {
     'Your Skills and Certifications',
     'Your Work Experience',
     'Your Job Preferences',
-    ''
+    '',
   ];
   const navigate = useNavigate();
-  const routes = ['/signup', '/signup/second-step', '/signup/third-step', '/signup/final-step', '/signup/submitted'];
+  const routes = [
+    '/signup',
+    '/signup/second-step',
+    '/signup/third-step',
+    '/signup/final-step',
+    '/signup/submitted',
+  ];
 
   useEffect(() => {
     const pathname = stripTrailingChar(location.pathname, '/');

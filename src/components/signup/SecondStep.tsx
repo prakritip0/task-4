@@ -55,6 +55,9 @@ const SecondStep = () => {
       !noErrMessage;
 
     setSecondNextDisabled(isDisabled);
+    isDisabled
+      ? setUserDetails({ ...userDetails, secondStepComplete: false })
+      : setUserDetails({ ...userDetails, secondStepComplete: true });
   }, [
     userDetails.skillTags,
     userDetails.formalDegree,

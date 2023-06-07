@@ -158,7 +158,7 @@ const ThirdStep = () => {
     thirdStepErr.startDate,
     thirdStepErr.endDate,
   ]);
-  console.log('noexp', userDetails.noExperience);
+
   useEffect(() => {
     let isDisabled: boolean;
     if (userDetails.experiences.length > 0) {
@@ -166,13 +166,10 @@ const ThirdStep = () => {
     } else {
       isDisabled = !userDetails.noExperience;
     }
-    // const isDisabled = !userDetails.noExperience || !(userDetails.experiences.length > 0);
-
-    // console.log('noexp', userDetails.noExperience);
-
-    // console.log('isdisabled', isDisabled);
-
     setThirdNextDisabled(isDisabled);
+    isDisabled
+      ? setUserDetails({ ...userDetails, thirdStepComplete: false })
+      : setUserDetails({ ...userDetails, thirdStepComplete: true });
   }, [userDetails.noExperience, userDetails.experiences]);
   return (
     <div className='w-[30rem] h-full flex flex-col justify-between mx-[7rem]'>

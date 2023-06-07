@@ -9,7 +9,6 @@ import Tag from '../form/Tag';
 
 const ThirdStep = () => {
 
-
   const [modalOn, setModalOn] = useState(false);
   const [thirdStepErr, setThirdStepErr] = useState({
     companyName: '',

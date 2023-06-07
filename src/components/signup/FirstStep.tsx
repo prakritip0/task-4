@@ -26,8 +26,6 @@ const FirstStep = () => {
     userDetails: userDetailsType;
     setUserDetails:React.Dispatch<React.SetStateAction<userDetailsType>>;
   }>();
-  console.log(setUserDetails);
-  
 
   const handleInputChange = (field: string, value: string) => {
     setUserDetails({ ...userDetails, [field]: value });

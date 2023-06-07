@@ -7,8 +7,6 @@ import Button from '../form/Button';
 import { userDetailsType } from '../../pages/SignUp';
 
 const SecondStep = () => {
-  
-
   const [skillErr, setSkillErr] = useState('');
   const [formalDegreeErr, setFormalDegreeErr] = useState('');
   const [secondNextDisabled, setSecondNextDisabled] = useState(true);

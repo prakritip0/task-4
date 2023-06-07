@@ -7,6 +7,7 @@ import Button from '../form/Button';
 import { ChangeEvent } from 'react';
 import { SignUpContext } from '../../pages/SignUp';
 import Err from '../form/Err';
+import Avatar from '../form/Avatar';
 
 export let firstStepComplete: boolean;
 
@@ -122,11 +123,7 @@ const FirstStep = () => {
     <div className='flex flex-col align-start justify-between  h-full w-[30rem] mx-[7rem]'>
       <div className='flex flex-col  gap-10 items-start 2xl:gap-10'>
         <div className='profilepic flex items-center w-full gap-6'>
-          <div className="h-[5rem] w-[5rem] bg-[url('https://pcgacademia.pl/wp-content/themes/pcgacademia-child/images/png/avatar-placeholder.png')] bg-cover rounded-full overflow-hidden">
-            {userDetails.imageURL && (
-              <img src={userDetails.imageURL} className='w-full h-full object-cover' alt='img' />
-            )}
-          </div>
+          <Avatar src={userDetails.imageURL} />
           <input
             type='file'
             id='image'

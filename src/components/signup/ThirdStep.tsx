@@ -142,9 +142,6 @@ const ThirdStep = () => {
       !userDetails.endDate ||
       !noErrMessage;
     setAddDisabled(isDisabled);
-    isDisabled
-      ? setUserDetails({ ...userDetails, thirdStepComplete: false })
-      : setUserDetails({ ...userDetails, thirdStepComplete: true });
   }, [
     userDetails.companyName,
     userDetails.companyName,
@@ -159,7 +156,6 @@ const ThirdStep = () => {
     thirdStepErr.startDate,
     thirdStepErr.endDate,
   ]);
-  // console.log(addDisabled);
   return (
     <div className='w-[30rem] h-full flex flex-col justify-between mx-[7rem]'>
       <div

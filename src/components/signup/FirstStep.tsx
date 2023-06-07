@@ -117,7 +117,6 @@ const FirstStep = () => {
     ageErr,
   ]);
 
-  console.log(userDetails.firstStepComplete);
 
   return (
     <div className='flex flex-col align-start justify-between  h-full w-[30rem] mx-[7rem]'>

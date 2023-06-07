@@ -99,6 +99,8 @@ const FinalStep = () => {
       setUserDetails({ ...userDetails, resumeFileName: previewResume?.name as string });
     });
     reader.readAsDataURL(previewResume as File);
+    console.log(previewResume);
+    
   };
   useEffect(() => {
     const noErrMessage =
@@ -115,6 +117,11 @@ const FinalStep = () => {
       ? setUserDetails({ ...userDetails, finalStepComplete: false })
       : setUserDetails({ ...userDetails, finalStepComplete: true });
   }, [userDetails, finalStepErr]);
+
+  useEffect(()=>{
+    console.log(userDetails.resumeFileName);
+  },[userDetails.resumeFileName])
+
   return (
     <div className='w-[30rem] h-full flex flex-col justify-between ml-6'>
       <div className='flex flex-col gap-2'>

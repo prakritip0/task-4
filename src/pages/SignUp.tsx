@@ -181,7 +181,13 @@ const SignUp = () => {
         </h4>
 
         <div className='flex justify-between  items-center m-auto  w-full '>
-          <StepGuide signupStep={signupStep} />
+          <StepGuide
+            signupStep={signupStep}
+            firstStepComplete={userDetails.firstStepComplete}
+            secondStepComplete={userDetails.secondStepComplete}
+            thirdStepComplete={userDetails.thirdStepComplete}
+            finalStepComplete={userDetails.finalStepComplete}
+          />
           <SignUpContext.Provider value={{ userDetails, setUserDetails }}>
             <Outlet
               context={{

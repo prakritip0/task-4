@@ -1,18 +1,17 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Input from '../form/Input';
 import Select from '../form/Select';
 import Date from '../form/Date';
 import { useOutletContext } from 'react-router-dom';
 import Button from '../form/Button';
 import { ChangeEvent } from 'react';
-import { SignUpContext } from '../../pages/SignUp';
+import { userDetailsType } from '../../pages/SignUp';
 import Err from '../form/Err';
 import Avatar from '../form/Avatar';
 
 export let firstStepComplete: boolean;
 
 const FirstStep = () => {
-  const { userDetails, setUserDetails } = useContext(SignUpContext);
   const [err, setErr] = useState({
     firstName: '',
     lastName: '',
@@ -21,12 +20,14 @@ const FirstStep = () => {
   const [genderErr, setGenderErr] = useState('');
   const [ageErr, setAgeErr] = useState('');
   const [firstNextDisabled, setFirstNextDisabled] = useState(true);
-  const { moveForward, goBackward } = useOutletContext<{
+  const { moveForward, goBackward, userDetails, setUserDetails } = useOutletContext<{
     moveForward: () => void;
     goBackward: () => void;
-    isNextDisabled: boolean;
-    setIsNextDisabled: () => void;
+    userDetails: userDetailsType;
+    setUserDetails:React.Dispatch<React.SetStateAction<userDetailsType>>;
   }>();
+  console.log(setUserDetails);
+  
 
   const handleInputChange = (field: string, value: string) => {
     setUserDetails({ ...userDetails, [field]: value });
@@ -117,7 +118,6 @@ const FirstStep = () => {
     genderErr,
     ageErr,
   ]);
-
 
   return (
     <div className='flex flex-col align-start justify-between  h-full w-[30rem] mx-[7rem]'>

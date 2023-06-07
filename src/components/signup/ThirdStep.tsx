@@ -1,6 +1,6 @@
-import React, { ChangeEvent, useContext, useEffect, useState } from 'react';
+import React, { ChangeEvent, useEffect, useState } from 'react';
 import { useOutletContext } from 'react-router-dom';
-import { SignUpContext } from '../../pages/SignUp';
+import { userDetailsType } from '../../pages/SignUp';
 import Button from '../form/Button';
 import Date from '../form/Date';
 import Err from '../form/Err';
@@ -8,7 +8,7 @@ import Input from '../form/Input';
 import Tag from '../form/Tag';
 
 const ThirdStep = () => {
-  const { userDetails, setUserDetails } = useContext(SignUpContext);
+
 
   const [modalOn, setModalOn] = useState(false);
   const [thirdStepErr, setThirdStepErr] = useState({
@@ -20,9 +20,11 @@ const ThirdStep = () => {
     startDate: '',
   });
   const [addDisabled, setAddDisabled] = useState(true);
-  const { moveForward, goBackward } = useOutletContext<{
+  const { moveForward, goBackward, userDetails, setUserDetails } = useOutletContext<{
     moveForward: () => void;
     goBackward: () => void;
+    userDetails: userDetailsType;
+    setUserDetails:React.Dispatch<React.SetStateAction<userDetailsType>>;
   }>();
 
   const openModal = () => {

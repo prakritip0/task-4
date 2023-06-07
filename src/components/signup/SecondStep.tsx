@@ -1,22 +1,24 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useOutletContext } from 'react-router-dom';
 import Input from '../form/Input';
 import Select from '../form/Select';
 import Tag from '../form/Tag';
 import Button from '../form/Button';
-import { SignUpContext } from '../../pages/SignUp';
+import { userDetailsType } from '../../pages/SignUp';
 
 const SecondStep = () => {
-  const { userDetails, setUserDetails } = useContext(SignUpContext);
+  
 
   const [skillErr, setSkillErr] = useState('');
   const [formalDegreeErr, setFormalDegreeErr] = useState('');
   const [secondNextDisabled, setSecondNextDisabled] = useState(true);
   const [degreeNameErr, setDegreeNameErr] = useState('');
 
-  const { moveForward, goBackward } = useOutletContext<{
+  const { moveForward, goBackward, userDetails, setUserDetails } = useOutletContext<{
     moveForward: () => void;
     goBackward: () => void;
+    userDetails: userDetailsType;
+    setUserDetails:React.Dispatch<React.SetStateAction<userDetailsType>>;
   }>();
 
   const handleInputChange = (field: string, value: string) => {

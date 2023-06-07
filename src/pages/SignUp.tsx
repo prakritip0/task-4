@@ -2,8 +2,8 @@ import React, { useEffect, useState, Dispatch, SetStateAction } from 'react';
 import SignUpDesign from '../components/signup/SignUpDesign';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import StepGuide from '../components/signup/StepGuide';
-import { createContext } from 'react';
-interface userDetailsType {
+
+export interface userDetailsType {
   firstName: string;
   lastName: string;
   email: string;
@@ -32,72 +32,6 @@ interface userDetailsType {
   finalStepComplete: boolean;
 }
 
-interface SignUpContextType {
-  userDetails: userDetailsType;
-  setUserDetails: Dispatch<
-    SetStateAction<{
-      firstName: string;
-      lastName: string;
-      email: string;
-      gender: string;
-      dateOfBirth: string;
-      skill: string;
-      formalDegree: string;
-      degreeName: string;
-      skillTags: string[];
-      companyName: string;
-      years: number;
-      position: string;
-      role: string;
-      startDate: string;
-      endDate: string;
-      experiences: string[];
-      jobPreferences: string[];
-      salaryLowerLimit: number;
-      salaryUpperLimit: number;
-      imageURL: string;
-      resumeFileName: string;
-      agreed: boolean;
-      firstStepComplete: boolean;
-      secondStepComplete: boolean;
-      thirdStepComplete: boolean;
-      finalStepComplete: boolean;
-    }>
-  >;
-}
-export const SignUpContext = createContext<SignUpContextType>({
-  userDetails: {
-    firstName: '',
-    lastName: '',
-    email: '',
-    gender: '',
-    dateOfBirth: '',
-    skill: '',
-    formalDegree: '',
-    degreeName: '',
-    skillTags: [],
-    companyName: '',
-    years: 0,
-    position: '',
-    role: 'string',
-    startDate: '',
-    endDate: '',
-    experiences: [],
-    jobPreferences: [],
-    salaryLowerLimit: 0,
-    salaryUpperLimit: 0,
-    imageURL: '',
-    resumeFileName: '',
-    agreed: false,
-    firstStepComplete: false,
-    secondStepComplete: false,
-    thirdStepComplete: false,
-    finalStepComplete: false,
-  },
-  setUserDetails: () => {
-    return;
-  },
-});
 
 const stripTrailingChar = (str: string, char: string) => {
   return str.endsWith(char) ? str.slice(0, -1) : str;
@@ -188,14 +122,14 @@ const SignUp = () => {
             thirdStepComplete={userDetails.thirdStepComplete}
             finalStepComplete={userDetails.finalStepComplete}
           />
-          <SignUpContext.Provider value={{ userDetails, setUserDetails }}>
             <Outlet
               context={{
                 moveForward,
                 goBackward,
+                userDetails, 
+                setUserDetails,
               }}
             />
-          </SignUpContext.Provider>
           <SignUpDesign />
         </div>
       </div>

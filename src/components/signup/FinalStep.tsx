@@ -1,16 +1,17 @@
-import React, { ChangeEvent, useContext, useEffect, useState } from 'react';
+import React, { ChangeEvent, useEffect, useState } from 'react';
 import { useOutletContext } from 'react-router-dom';
-import { SignUpContext } from '../../pages/SignUp';
+import { userDetailsType } from '../../pages/SignUp';
 import Button from '../form/Button';
 import Checkbox from '../form/Checkbox';
 import Err from '../form/Err';
 import Input from '../form/Input';
 
 const FinalStep = () => {
-  const { userDetails, setUserDetails } = useContext(SignUpContext);
-  const { moveForward, goBackward } = useOutletContext<{
+  const { moveForward, goBackward, userDetails, setUserDetails } = useOutletContext<{
     moveForward: () => void;
     goBackward: () => void;
+    userDetails: userDetailsType;
+    setUserDetails: React.Dispatch<React.SetStateAction<userDetailsType>>;
   }>();
   const [finalStepErr, setFinalStepErr] = useState({
     jobPreferences: '',
@@ -162,14 +163,14 @@ const FinalStep = () => {
         </p>
         <div className='flex  gap-4 items-center w-full'>
           <div>
-          <Input
-            type='number'
-            value={userDetails.salaryLowerLimit}
-            onChange={handleLowerLimitChange}
-            err='lower limit is required.'
-            placeholder='Lower Limit'
-            onBlur={vaidateSalary}
-          />
+            <Input
+              type='number'
+              value={userDetails.salaryLowerLimit}
+              onChange={handleLowerLimitChange}
+              err='lower limit is required.'
+              placeholder='Lower Limit'
+              onBlur={vaidateSalary}
+            />
           </div>
           <p className='text-sm  text-gray-800 dark:text-white'>to</p>
           <div>

@@ -100,7 +100,6 @@ const FinalStep = () => {
     });
     reader.readAsDataURL(previewResume as File);
     console.log(previewResume);
-    
   };
   useEffect(() => {
     const noErrMessage =
@@ -116,11 +115,16 @@ const FinalStep = () => {
     isDisabled
       ? setUserDetails({ ...userDetails, finalStepComplete: false })
       : setUserDetails({ ...userDetails, finalStepComplete: true });
-  }, [userDetails, finalStepErr]);
-
-  useEffect(()=>{
-    console.log(userDetails.resumeFileName);
-  },[userDetails.resumeFileName])
+  }, [
+    userDetails.jobPreferences,
+    userDetails.salaryLowerLimit,
+    userDetails.salaryUpperLimit,
+    userDetails.resumeFileName,
+    userDetails.agreed,
+    finalStepErr.jobPreferences,
+    finalStepErr.salary,
+    finalStepErr.resume,
+  ]);
 
   return (
     <div className='w-[30rem] h-full flex flex-col justify-between ml-6'>
@@ -156,7 +160,8 @@ const FinalStep = () => {
         <p className='text-sm font-semibold text-gray-800 dark:text-white'>
           Salary Expectation (in NPR)
         </p>
-        <div className='flex justify-between gap-4 items-center w-full'>
+        <div className='flex  gap-4 items-center w-full'>
+          <div>
           <Input
             type='number'
             value={userDetails.salaryLowerLimit}
@@ -165,6 +170,7 @@ const FinalStep = () => {
             placeholder='Lower Limit'
             onBlur={vaidateSalary}
           />
+          </div>
           <p className='text-sm  text-gray-800 dark:text-white'>to</p>
           <div>
             <Input

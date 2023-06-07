@@ -4,8 +4,6 @@ import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import StepGuide from '../components/signup/StepGuide';
 import { userDetailsType } from '../components/Types';
 
-
-
 const stripTrailingChar = (str: string, char: string) => {
   return str.endsWith(char) ? str.slice(0, -1) : str;
 };
@@ -42,7 +40,6 @@ const SignUp = () => {
   });
 
   const [signupStep, setSignupStep] = useState(0);
-
   const titles = [
     'Lets start with your Personal Information',
     'Your Skills and Certifications',

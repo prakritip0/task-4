@@ -1,4 +1,4 @@
-import React, { useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import SignUpDesign from '../components/signup/SignUpDesign';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import StepGuide from '../components/signup/StepGuide';
@@ -8,36 +8,46 @@ const stripTrailingChar = (str: string, char: string) => {
   return str.endsWith(char) ? str.slice(0, -1) : str;
 };
 
+const defaultValues = {
+  firstName: '',
+  lastName: '',
+  email: '',
+  gender: '',
+  dateOfBirth: '',
+  skill: '',
+  formalDegree: '',
+  degreeName: '',
+  skillTags: [],
+  companyName: '',
+  years: 0,
+  position: '',
+  role: '',
+  startDate: '',
+  endDate: '',
+  experiences: [],
+  jobPreferences: [],
+  salaryLowerLimit: 0,
+  salaryUpperLimit: 0,
+  imageURL: `${localStorage.getItem('imageURL') ? `${localStorage.getItem('imageURL')}` : ''}`,
+  resumeFileName: '',
+  agreed: false,
+  firstStepComplete: false,
+  secondStepComplete: false,
+  thirdStepComplete: false,
+  finalStepComplete: false,
+};
+
 const SignUp = () => {
   const location = useLocation();
-  const [userDetails, setUserDetails] = useState<userDetailsType>({
-    firstName: '',
-    lastName: '',
-    email: '',
-    gender: '',
-    dateOfBirth: '',
-    skill: '',
-    formalDegree: '',
-    degreeName: '',
-    skillTags: [],
-    companyName: '',
-    years: 0,
-    position: '',
-    role: '',
-    startDate: '',
-    endDate: '',
-    experiences: [],
-    jobPreferences: [],
-    salaryLowerLimit: 0,
-    salaryUpperLimit: 0,
-    imageURL: '',
-    resumeFileName: '',
-    agreed: false,
-    firstStepComplete: false,
-    secondStepComplete: false,
-    thirdStepComplete: false,
-    finalStepComplete: false,
-  });
+  // get userDetail:localStorage
+  const storedUserDetails = localStorage.getItem('userDetails');
+  const _userDetails = storedUserDetails ? JSON.parse(storedUserDetails) : defaultValues;
+
+  const [userDetails, setUserDetails] = useState<userDetailsType>(_userDetails);
+
+  useEffect(() => {
+    localStorage.setItem('userDetails', JSON.stringify(userDetails));
+  }, [userDetails]);
 
   const [signupStep, setSignupStep] = useState(0);
   const titles = [
@@ -92,14 +102,14 @@ const SignUp = () => {
             thirdStepComplete={userDetails.thirdStepComplete}
             finalStepComplete={userDetails.finalStepComplete}
           />
-            <Outlet
-              context={{
-                moveForward,
-                goBackward,
-                userDetails, 
-                setUserDetails,
-              }}
-            />
+          <Outlet
+            context={{
+              moveForward,
+              goBackward,
+              userDetails,
+              setUserDetails,
+            }}
+          />
           <SignUpDesign />
         </div>
       </div>

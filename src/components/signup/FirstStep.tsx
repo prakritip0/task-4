@@ -28,6 +28,7 @@ const FirstStep = () => {
   const handleInputChange = (field: string, value: string) => {
     setUserDetails({ ...userDetails, [field]: value });
   };
+
   // eslint-disable-next-line no-useless-escape
   const regex = /^([a-zA-Z0-9\._]+)@([a-zA-Z0-9])+.([a-z]+)(.[a-z]+)?$/;
 
@@ -75,6 +76,7 @@ const FirstStep = () => {
       setAgeErr('');
     }
     setUserDetails({ ...userDetails, dateOfBirth: e.target.value });
+    localStorage.setItem('dateOfBirth', e.target.value)
   };
   const readImage = (e: ChangeEvent<HTMLInputElement>) => {
     const uploadedImage = e.target.files;
@@ -85,6 +87,7 @@ const FirstStep = () => {
       setUserDetails({ ...userDetails, imageURL: reader.result as string });
     });
     reader.readAsDataURL(previewImage as File);
+    localStorage.setItem('imageURL', e.target.value)
   };
 
   useEffect(() => {
@@ -99,7 +102,7 @@ const FirstStep = () => {
       !noErrMessage;
     setFirstNextDisabled(isDisabled);
     isDisabled
-      ? setUserDetails({ ...userDetails, firstStepComplete: false })
+      ? (setUserDetails({ ...userDetails, firstStepComplete: false }))
       : setUserDetails({ ...userDetails, firstStepComplete: true });
   }, [
     userDetails.imageURL,

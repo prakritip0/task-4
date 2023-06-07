@@ -102,6 +102,10 @@ const FinalStep = () => {
     reader.readAsDataURL(previewResume as File);
     console.log(previewResume);
   };
+  const handleSubmit=()=>{
+    moveForward();
+    localStorage.clear();
+  }
   useEffect(() => {
     const noErrMessage =
       !finalStepErr.jobPreferences && !finalStepErr.salary && !finalStepErr.resume;
@@ -212,7 +216,7 @@ const FinalStep = () => {
       />
       <div className='flex w-full gap-6'>
         <Button label='Back' disabled={false} onClick={goBackward} />
-        <Button label='Submit' disabled={finalSubmitDisabled} onClick={moveForward} />
+        <Button label='Submit' disabled={finalSubmitDisabled} onClick={handleSubmit} />
       </div>
     </div>
   );

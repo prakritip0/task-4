@@ -7,6 +7,7 @@ import Err from '../form/Err';
 import Input from '../form/Input';
 import Tag from '../form/Tag';
 import Checkbox from '../form/Checkbox';
+import ExperienceTag from '../form/ExperienceTag';
 
 const ThirdStep = () => {
   const [modalOn, setModalOn] = useState(false);
@@ -104,10 +105,18 @@ const ThirdStep = () => {
       : setThirdStepErr({ ...thirdStepErr, endDate: '*End date is required.' });
   };
   const addExperience = () => {
+    const newExperience = {
+      position: userDetails.position,
+      companyName: userDetails.companyName,
+      years: userDetails.years,
+    };
     userDetails.experiences.length <= 5 &&
       setUserDetails({
         ...userDetails,
-        experiences: [...userDetails.experiences, userDetails.position],
+        experiences: [
+          ...userDetails.experiences,
+          newExperience,
+        ],
         companyName: '',
         years: 0,
         position: '',
@@ -120,7 +129,7 @@ const ThirdStep = () => {
   const removeExperience = (i: number) => {
     const updatedExperiences = userDetails.experiences;
     updatedExperiences.splice(i, 1);
-    setUserDetails({ ...userDetails, skillTags: [...updatedExperiences] });
+    setUserDetails({ ...userDetails, experiences: [...updatedExperiences] });
   };
   const handleNoExperience = () => {
     setUserDetails({ ...userDetails, noExperience: !userDetails.noExperience });
@@ -274,11 +283,11 @@ const ThirdStep = () => {
         </div>
       </div>
       <div className='experiences w-full mx-[1.5rem]'>
-        <div className='experiences w-full'>
-          <Tag tags={userDetails.experiences} removeTag={removeExperience} />
+        <div className='experiences h-[13rem]'>
+          <ExperienceTag experiences={userDetails.experiences} removeExperience={removeExperience} />
           {userDetails.experiences.length === 5 && <Err err='5 experiences are enough, mate.' />}
         </div>
-        <div className='flex flex-col gap-[64px] mt-[8rem]'>
+        <div className='flex flex-col gap-[32px] '>
           <p className='text-gray-500 font-normal text-center'>
             {userDetails.experiences.length > 0
               ? `${userDetails.experiences.length} experience(s) added.`
@@ -297,11 +306,16 @@ const ThirdStep = () => {
               Add new
             </label>
           </div>
-          <Checkbox id='noExperience' checked={userDetails.noExperience} label='I have no experience.' onChange={handleNoExperience} />
+          <Checkbox
+            id='noExperience'
+            checked={userDetails.noExperience}
+            label='I have no experience.'
+            onChange={handleNoExperience}
+          />
         </div>
       </div>
       <div className='flex gap-6'>
-        <Button label='Back' disabled={false}  onClick={goBackward} />
+        <Button label='Back' disabled={false} onClick={goBackward} />
         <Button label='Next' disabled={thirdNextDisabled} onClick={moveForward} />
       </div>
     </div>

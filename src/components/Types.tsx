@@ -48,8 +48,13 @@ export interface StepGuideProps {
 export interface AvatarProps {
   src: string;
 }
+
+// interface ExperienceType {
+//   position: string;
+//   companyName: string;
+//   years: number;
+// }
 export interface userDetailsType {
-  [x: string]: any;
   firstName: string;
   lastName: string;
   email: string;
@@ -65,7 +70,11 @@ export interface userDetailsType {
   role: string;
   startDate: string;
   endDate: string;
-  experiences: string[];
+  experiences: {
+    position: string;
+    companyName: string;
+    years: number;
+  }[];
   noExperience: boolean;
   jobPreferences: string[];
   salaryLowerLimit: number;

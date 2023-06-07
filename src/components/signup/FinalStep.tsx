@@ -149,18 +149,21 @@ const FinalStep = () => {
               label='On-Site'
               onChange={updateJobPreference}
               onBlur={validateJobPreference}
+              checked={userDetails.jobPreferences.includes('On-site') ? true : false}
             />
             <Checkbox
               id='remote'
               label='Remote'
               onChange={updateJobPreference}
               onBlur={validateJobPreference}
+              checked={userDetails.jobPreferences.includes('Remote') ? true : false}
             />
             <Checkbox
               id='hybrid'
               label='Hybrid'
               onChange={updateJobPreference}
               onBlur={validateJobPreference}
+              checked={userDetails.jobPreferences.includes('Hybrid') ? true : false}
             />
           </div>
           <Err err={finalStepErr.jobPreferences} />

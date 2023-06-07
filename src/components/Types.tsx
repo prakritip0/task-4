@@ -19,25 +19,25 @@ export interface DatePropsType {
   onBlur?: () => void;
 }
 export interface InputPropsType extends React.ComponentPropsWithoutRef<'input'> {
-    label?: string;
-    type: 'text' | 'email'| 'number'|'textarea';
-    err: string;
-  }
-
-export interface LabelPropsType extends React.ComponentPropsWithoutRef <'label'>{
-    label?:string,
+  label?: string;
+  type: 'text' | 'email' | 'number' | 'textarea';
+  err: string;
 }
-export interface SelectPropsType extends React.ComponentPropsWithoutRef <'select'> {
-    options: { value: string; label: string }[];
-    placeholder: string;
-    err:string
-    onBlur:()=>void
-    label:string
-  }
- export interface TagPropsType {
-    tags: string[];
-    removeTag: (i: number) => void;
-  }
+
+export interface LabelPropsType extends React.ComponentPropsWithoutRef<'label'> {
+  label?: string;
+}
+export interface SelectPropsType extends React.ComponentPropsWithoutRef<'select'> {
+  options: { value: string; label: string }[];
+  placeholder: string;
+  err: string;
+  onBlur: () => void;
+  label: string;
+}
+export interface TagPropsType {
+  tags: string[];
+  removeTag: (i: number) => void;
+}
 export interface StepGuideProps {
   signupStep: number;
   firstStepComplete: boolean;
@@ -49,6 +49,7 @@ export interface AvatarProps {
   src: string;
 }
 export interface userDetailsType {
+  [x: string]: any;
   firstName: string;
   lastName: string;
   email: string;
@@ -65,7 +66,7 @@ export interface userDetailsType {
   startDate: string;
   endDate: string;
   experiences: string[];
-  noExperience:boolean;
+  noExperience: boolean;
   jobPreferences: string[];
   salaryLowerLimit: number;
   salaryUpperLimit: number;

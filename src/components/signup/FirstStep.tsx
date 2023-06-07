@@ -76,7 +76,7 @@ const FirstStep = () => {
       setAgeErr('');
     }
     setUserDetails({ ...userDetails, dateOfBirth: e.target.value });
-    localStorage.setItem('dateOfBirth', e.target.value)
+
   };
   const readImage = (e: ChangeEvent<HTMLInputElement>) => {
     const uploadedImage = e.target.files;
@@ -87,7 +87,7 @@ const FirstStep = () => {
       setUserDetails({ ...userDetails, imageURL: reader.result as string });
     });
     reader.readAsDataURL(previewImage as File);
-    localStorage.setItem('imageURL', e.target.value)
+
   };
 
   useEffect(() => {

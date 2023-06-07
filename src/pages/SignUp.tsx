@@ -8,7 +8,7 @@ const stripTrailingChar = (str: string, char: string) => {
   return str.endsWith(char) ? str.slice(0, -1) : str;
 };
 
-const defaultValues = {
+export const defaultValues = {
   firstName: '',
   lastName: '',
   email: '',
@@ -29,7 +29,7 @@ const defaultValues = {
   jobPreferences: [],
   salaryLowerLimit: 0,
   salaryUpperLimit: 0,
-  imageURL: `${localStorage.getItem('imageURL') ? `${localStorage.getItem('imageURL')}` : ''}`,
+  imageURL: '',
   resumeFileName: '',
   agreed: false,
   firstStepComplete: false,

@@ -5,6 +5,7 @@ import Button from '../form/Button';
 import Checkbox from '../form/Checkbox';
 import Err from '../form/Err';
 import Input from '../form/Input';
+import { defaultValues } from '../../pages/SignUp';
 
 const FinalStep = () => {
   const { moveForward, goBackward, userDetails, setUserDetails } = useOutletContext<{
@@ -19,6 +20,7 @@ const FinalStep = () => {
     salary: '',
     resume: '',
   });
+
   const [finalSubmitDisabled, setFinalSubmitDisabled] = useState(true);
   const handleLowerLimitChange = (e: ChangeEvent<HTMLInputElement>) => {
     setUserDetails({ ...userDetails, salaryLowerLimit: Number(e.target.value) });
@@ -102,10 +104,13 @@ const FinalStep = () => {
     reader.readAsDataURL(previewResume as File);
     console.log(previewResume);
   };
-  const handleSubmit=()=>{
+  const handleSubmit = () => {
     moveForward();
-    localStorage.clear();
-  }
+    localStorage.setItem('users', JSON.stringify(userDetails));
+    localStorage.removeItem('userDetails');
+    setUserDetails(defaultValues);
+  };
+
   useEffect(() => {
     const noErrMessage =
       !finalStepErr.jobPreferences && !finalStepErr.salary && !finalStepErr.resume;
@@ -132,7 +137,7 @@ const FinalStep = () => {
   ]);
 
   return (
-    <div className='w-[30rem] h-full flex flex-col justify-between ml-6'>
+    <div className='w-[30rem] h-full flex flex-col justify-between  mx-[7rem]'>
       <div className='flex flex-col gap-2'>
         <p className='text-sm font-semibold text-gray-800 dark:text-white'>
           How do you prefer to work?

@@ -297,11 +297,11 @@ const ThirdStep = () => {
               Add new
             </label>
           </div>
-          <Checkbox id='noExperience' label='I have no experience.' onChange={handleNoExperience} />
+          <Checkbox id='noExperience' checked={userDetails.noExperience} label='I have no experience.' onChange={handleNoExperience} />
         </div>
       </div>
       <div className='flex gap-6'>
-        <Button label='Back' disabled={false} onClick={goBackward} />
+        <Button label='Back' disabled={false}  onClick={goBackward} />
         <Button label='Next' disabled={thirdNextDisabled} onClick={moveForward} />
       </div>
     </div>

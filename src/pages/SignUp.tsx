@@ -25,6 +25,7 @@ const defaultValues = {
   startDate: '',
   endDate: '',
   experiences: [],
+  noExperience:false,
   jobPreferences: [],
   salaryLowerLimit: 0,
   salaryUpperLimit: 0,

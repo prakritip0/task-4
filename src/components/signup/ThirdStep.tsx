@@ -6,6 +6,7 @@ import Date from '../form/Date';
 import Err from '../form/Err';
 import Input from '../form/Input';
 import Tag from '../form/Tag';
+import Checkbox from '../form/Checkbox';
 
 const ThirdStep = () => {
   const [modalOn, setModalOn] = useState(false);
@@ -18,11 +19,12 @@ const ThirdStep = () => {
     startDate: '',
   });
   const [addDisabled, setAddDisabled] = useState(true);
+  const [thirdNextDisabled, setThirdNextDisabled] = useState(true);
   const { moveForward, goBackward, userDetails, setUserDetails } = useOutletContext<{
     moveForward: () => void;
     goBackward: () => void;
     userDetails: userDetailsType;
-    setUserDetails:React.Dispatch<React.SetStateAction<userDetailsType>>;
+    setUserDetails: React.Dispatch<React.SetStateAction<userDetailsType>>;
   }>();
 
   const openModal = () => {
@@ -80,11 +82,7 @@ const ThirdStep = () => {
       ? setThirdStepErr({ ...thirdStepErr, companyName: '' })
       : setThirdStepErr({ ...thirdStepErr, companyName: '*Company Name is required.' });
   };
-  // const validateYears = () => {
-  //   userDetails.years
-  //     ? setThirdStepErr({ ...thirdStepErr, years: '' })
-  //     : setThirdStepErr({ ...thirdStepErr, years: 'Company Name is required.' });
-  // };
+
   const validatePosition = () => {
     userDetails.position
       ? setThirdStepErr({ ...thirdStepErr, position: '' })
@@ -124,6 +122,10 @@ const ThirdStep = () => {
     updatedExperiences.splice(i, 1);
     setUserDetails({ ...userDetails, skillTags: [...updatedExperiences] });
   };
+  const handleNoExperience = () => {
+    setUserDetails({ ...userDetails, noExperience: !userDetails.noExperience });
+  };
+  // console.log(userDetails.noExperience);
 
   useEffect(() => {
     const noErrMessage =
@@ -156,6 +158,22 @@ const ThirdStep = () => {
     thirdStepErr.startDate,
     thirdStepErr.endDate,
   ]);
+  console.log('noexp', userDetails.noExperience);
+  useEffect(() => {
+    let isDisabled: boolean;
+    if (userDetails.experiences.length > 0) {
+      isDisabled = false;
+    } else {
+      isDisabled = !userDetails.noExperience;
+    }
+    // const isDisabled = !userDetails.noExperience || !(userDetails.experiences.length > 0);
+
+    // console.log('noexp', userDetails.noExperience);
+
+    // console.log('isdisabled', isDisabled);
+
+    setThirdNextDisabled(isDisabled);
+  }, [userDetails.noExperience, userDetails.experiences]);
   return (
     <div className='w-[30rem] h-full flex flex-col justify-between mx-[7rem]'>
       <div
@@ -282,11 +300,12 @@ const ThirdStep = () => {
               Add new
             </label>
           </div>
+          <Checkbox id='noExperience' label='I have no experience.' onChange={handleNoExperience} />
         </div>
       </div>
       <div className='flex gap-6'>
         <Button label='Back' disabled={false} onClick={goBackward} />
-        <Button label='Next' disabled={false} onClick={moveForward} />
+        <Button label='Next' disabled={thirdNextDisabled} onClick={moveForward} />
       </div>
     </div>
   );

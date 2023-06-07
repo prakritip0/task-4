@@ -65,6 +65,7 @@ export interface userDetailsType {
   startDate: string;
   endDate: string;
   experiences: string[];
+  noExperience:boolean;
   jobPreferences: string[];
   salaryLowerLimit: number;
   salaryUpperLimit: number;

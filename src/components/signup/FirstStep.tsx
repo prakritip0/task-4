@@ -5,11 +5,9 @@ import Date from '../form/Date';
 import { useOutletContext } from 'react-router-dom';
 import Button from '../form/Button';
 import { ChangeEvent } from 'react';
-import { userDetailsType } from '../../pages/SignUp';
+import { userDetailsType } from '../Types';
 import Err from '../form/Err';
 import Avatar from '../form/Avatar';
-
-export let firstStepComplete: boolean;
 
 const FirstStep = () => {
   const [err, setErr] = useState({

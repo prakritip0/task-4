@@ -1,9 +1,7 @@
 import React from 'react'
+import { ErrPropsType } from '../Types'
 
-interface ErrProps{
-  err: string
-}
-const Err = ({err}:ErrProps) => {
+const Err = ({err}:ErrPropsType) => {
   return (
     <p className='text-red-700 dark:text-red-500 text-xs' >{err}</p>
   )

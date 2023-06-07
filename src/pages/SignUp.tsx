@@ -1,36 +1,9 @@
-import React, { useEffect, useState, Dispatch, SetStateAction } from 'react';
+import React, { useEffect, useState} from 'react';
 import SignUpDesign from '../components/signup/SignUpDesign';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import StepGuide from '../components/signup/StepGuide';
+import { userDetailsType } from '../components/Types';
 
-export interface userDetailsType {
-  firstName: string;
-  lastName: string;
-  email: string;
-  gender: string;
-  dateOfBirth: string;
-  skill: string;
-  formalDegree: string;
-  degreeName: string;
-  skillTags: string[];
-  companyName: string;
-  years: number;
-  position: string;
-  role: string;
-  startDate: string;
-  endDate: string;
-  experiences: string[];
-  jobPreferences: string[];
-  salaryLowerLimit: number;
-  salaryUpperLimit: number;
-  imageURL: string;
-  resumeFileName: string;
-  agreed: boolean;
-  firstStepComplete: boolean;
-  secondStepComplete: boolean;
-  thirdStepComplete: boolean;
-  finalStepComplete: boolean;
-}
 
 
 const stripTrailingChar = (str: string, char: string) => {

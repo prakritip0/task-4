@@ -4,9 +4,7 @@ import { Link } from 'react-router-dom';
 
 const Nav = () => {
   const { isDarkMode, changeTheme } = useContext(ThemeContext);
-
   const [mobileMenuOn, setmobileMenuOn] = useState(false);
-
   return (
     <nav
       className={

@@ -1,6 +1,6 @@
 import React, { ChangeEvent, useEffect, useState } from 'react';
 import { useOutletContext } from 'react-router-dom';
-import { userDetailsType } from '../../pages/SignUp';
+import { userDetailsType } from '../Types';
 import Button from '../form/Button';
 import Date from '../form/Date';
 import Err from '../form/Err';
@@ -8,7 +8,6 @@ import Input from '../form/Input';
 import Tag from '../form/Tag';
 
 const ThirdStep = () => {
-
   const [modalOn, setModalOn] = useState(false);
   const [thirdStepErr, setThirdStepErr] = useState({
     companyName: '',

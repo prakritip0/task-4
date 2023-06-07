@@ -1,17 +1,9 @@
 import React from 'react';
-import { ChangeEvent } from 'react';
 import Label from './Label';
+import { DatePropsType } from '../Types';
 
-interface DateProps {
-  label: string;
-  id: string;
-  value: string | null;
-  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
-  err?: string;
-  onBlur?: () => void;
-}
 
-const Date = ({ id, value, onChange, err, label, onBlur }: DateProps) => {
+const Date = ({ id, value, onChange, err, label, onBlur }: DatePropsType) => {
   return (
     <div className='flex flex-col w-full'>
       <Label htmlFor={id} label={label} />

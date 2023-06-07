@@ -1,6 +1,6 @@
 import React, { ChangeEvent, useEffect, useState } from 'react';
 import { useOutletContext } from 'react-router-dom';
-import { userDetailsType } from '../../pages/SignUp';
+import { userDetailsType } from '../Types';
 import Button from '../form/Button';
 import Checkbox from '../form/Checkbox';
 import Err from '../form/Err';

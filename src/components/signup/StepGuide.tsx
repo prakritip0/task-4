@@ -1,13 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { StepGuideProps } from '../Types';
 
-interface StepGuideProps {
-  signupStep: number;
-  firstStepComplete: boolean;
-  secondStepComplete: boolean;
-  thirdStepComplete: boolean;
-  finalStepComplete: boolean;
-}
 
 const StepGuide = ({
   signupStep,
@@ -18,7 +12,7 @@ const StepGuide = ({
 }: StepGuideProps) => {
   return (
     <div className='flex flex-col relative  justify-between h-full lg:py-[2rem]'>
-      <div className='absolute h-[80%] 2xl:h-[85%] w-[1.25px] bg-gray-300 left-[23%] z-0'></div>
+      <div className='absolute h-[88%] lg:h-[85%] 2xl:h-[85%] w-[1.25px] bg-gray-300 left-[23%] z-0'></div>
       <Link className='z-10' to={`${firstStepComplete ? '/signup/' : ''}`}>
         <div className='profile flex justify-center items-center gap-1'>
           <div

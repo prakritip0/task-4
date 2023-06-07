@@ -1,10 +1,7 @@
 import React from 'react';
+import { ButtonPropsType } from '../Types';
 
-interface SubmitButtonProps extends React.ComponentPropsWithoutRef <'button'> {
-  label: string;
-}
-
-const SubmitButton = ({ label, ...props }: SubmitButtonProps) => {
+const SubmitButton = ({ label, ...props }: ButtonPropsType) => {
   return (
     <button
       type='submit'

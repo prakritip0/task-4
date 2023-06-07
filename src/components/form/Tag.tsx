@@ -1,11 +1,7 @@
 import React from 'react';
+import { TagPropsType } from '../Types';
 
-interface TagProps {
-  tags: string[];
-  removeTag: (i: number) => void;
-}
-
-const Tag = ({ tags = [], removeTag }: TagProps) => (
+const Tag = ({ tags = [], removeTag }: TagPropsType) => (
   <div className='flex gap-1 min-w-[15rem]  flex-wrap '>
     {tags.length > 0 &&
       tags.length < 11 &&

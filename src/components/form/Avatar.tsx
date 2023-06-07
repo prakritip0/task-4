@@ -1,8 +1,5 @@
 import React from 'react';
-
-interface AvatarProps{
-    src:string;
-}
+import { AvatarProps } from '../Types';
 
 const Avatar = ({src}:AvatarProps) => {
   return (

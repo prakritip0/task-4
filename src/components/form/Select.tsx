@@ -1,15 +1,9 @@
 import React from 'react';
 import Label from './Label';
+import { SelectPropsType } from '../Types';
 
-interface SelectProps extends React.ComponentPropsWithoutRef <'select'> {
-  options: { value: string; label: string }[];
-  placeholder: string;
-  err:string
-  onBlur:()=>void
-  label:string
-}
 
-const Select = ({ options, placeholder, err,onBlur, label, ...props }: SelectProps) => {
+const Select = ({ options, placeholder, err,onBlur, label, ...props }: SelectPropsType) => {
   return (
     <div className='flex flex-col w-full'>
       <Label htmlFor={props.id as string} label={label} />

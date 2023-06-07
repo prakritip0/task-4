@@ -1,13 +1,8 @@
 import React from 'react';
 import Label from './Label';
+import { InputPropsType } from '../Types';
 
-interface InputProps extends React.ComponentPropsWithoutRef<'input'> {
-  label?: string;
-  type: 'text' | 'email'| 'number'|'textarea';
-  err: string;
-}
-
-const Input = ({ label, err, ...props }: InputProps) => {
+const Input = ({ label, err, ...props }: InputPropsType) => {
   return (
     <div className={`flex flex-col w-full items-start gap-1`}>
       {label && <Label htmlFor={props.id as string} label={label} />}

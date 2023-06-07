@@ -4,7 +4,7 @@ import Input from '../form/Input';
 import Select from '../form/Select';
 import Tag from '../form/Tag';
 import Button from '../form/Button';
-import { userDetailsType } from '../../pages/SignUp';
+import { userDetailsType } from '../Types';
 
 const SecondStep = () => {
   const [skillErr, setSkillErr] = useState('');

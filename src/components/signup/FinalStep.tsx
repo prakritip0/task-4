@@ -23,21 +23,20 @@ const FinalStep = () => {
 
   const [finalSubmitDisabled, setFinalSubmitDisabled] = useState(true);
   const handleLowerLimitChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setUserDetails({ ...userDetails, salaryLowerLimit: Number(e.target.value) });
+    setUserDetails({ ...userDetails, salaryLowerLimit: e.target.value });
   };
   const handleUpperLimitChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setUserDetails({ ...userDetails, salaryUpperLimit: Number(e.target.value) });
+    setUserDetails({ ...userDetails, salaryUpperLimit: e.target.value });
   };
 
   const vaidateSalary = () => {
-    userDetails.salaryLowerLimit === 0 || null || userDetails.salaryLowerLimit === 0 || null
+    userDetails.salaryLowerLimit === '' || userDetails.salaryLowerLimit === ''
       ? setFinalStepErr({ ...finalStepErr, salary: '*Salary expectation is required.' })
       : setFinalStepErr({ ...finalStepErr, salary: '' });
-
-    userDetails.salaryLowerLimit > userDetails.salaryUpperLimit
+    Number(userDetails.salaryLowerLimit) > Number(userDetails.salaryUpperLimit)
       ? setFinalStepErr({
           ...finalStepErr,
-          upperLimit: "Upper limit can't be smaller than lower limit.",
+          upperLimit: "*Upper limit can't be smaller than lower limit.",
         })
       : setFinalStepErr({ ...finalStepErr, upperLimit: '' });
   };
@@ -173,29 +172,27 @@ const FinalStep = () => {
         <p className='text-sm font-semibold text-gray-800 dark:text-white'>
           Salary Expectation (in NPR)
         </p>
-        <div className='flex  gap-4 items-center w-full'>
-          <div>
+        <div className='flex flex-col gap-1 items-center w-full'>
+          <div className='flex  gap-4 items-center w-full'>
             <Input
-              type='number'
+              type='text'
               value={userDetails.salaryLowerLimit}
               onChange={handleLowerLimitChange}
               err='lower limit is required.'
               placeholder='Lower Limit'
               onBlur={vaidateSalary}
             />
-          </div>
-          <p className='text-sm  text-gray-800 dark:text-white'>to</p>
-          <div>
+            <p className='text-sm  text-gray-800 dark:text-white'>to</p>
             <Input
-              type='number'
+              type='text'
               value={userDetails.salaryUpperLimit}
               onChange={handleUpperLimitChange}
               err='upper limit is required.'
               placeholder='upper Limit'
               onBlur={vaidateSalary}
             />
-            <Err err={finalStepErr.upperLimit} />
           </div>
+          <Err err={finalStepErr.upperLimit} />
         </div>
         <Err err={finalStepErr.salary} />
       </div>

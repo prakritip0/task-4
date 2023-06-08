@@ -49,11 +49,6 @@ export interface AvatarProps {
   src: string;
 }
 
-// interface ExperienceType {
-//   position: string;
-//   companyName: string;
-//   years: number;
-// }
 export interface userDetailsType {
   firstName: string;
   lastName: string;
@@ -77,8 +72,8 @@ export interface userDetailsType {
   }[];
   noExperience: boolean;
   jobPreferences: string[];
-  salaryLowerLimit: number;
-  salaryUpperLimit: number;
+  salaryLowerLimit: string;
+  salaryUpperLimit: string;
   imageURL: string;
   resumeFileName: string;
   agreed: boolean;

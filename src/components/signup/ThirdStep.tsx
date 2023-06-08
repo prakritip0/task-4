@@ -112,10 +112,7 @@ const ThirdStep = () => {
     userDetails.experiences.length <= 5 &&
       setUserDetails({
         ...userDetails,
-        experiences: [
-          ...userDetails.experiences,
-          newExperience,
-        ],
+        experiences: [...userDetails.experiences, newExperience],
         companyName: '',
         years: 0,
         position: '',
@@ -283,7 +280,10 @@ const ThirdStep = () => {
       </div>
       <div className='experiences w-full mx-[1.5rem]'>
         <div className='experiences h-[13rem]'>
-          <ExperienceTag experiences={userDetails.experiences} removeExperience={removeExperience} />
+          <ExperienceTag
+            experiences={userDetails.experiences}
+            removeExperience={removeExperience}
+          />
           {userDetails.experiences.length === 5 && <Err err='5 experiences are enough, mate.' />}
         </div>
         <div className='flex flex-col gap-[32px] '>
@@ -292,7 +292,7 @@ const ThirdStep = () => {
               ? `${userDetails.experiences.length} experience(s) added.`
               : 'No experience added.'}
           </p>
-          <div className='flex flex-col justify-end items-center gap-1'>
+          <div className='flex flex-col justify-end items-center  p-4 border border-slate-300 border-dotted rounded-lg gap-1'>
             <button
               id='addNew'
               onClick={openModal}

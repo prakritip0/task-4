@@ -35,10 +35,11 @@ const ThirdStep = () => {
     setUserDetails({ ...userDetails, [field]: value });
   };
 
+  const startDate = new window.Date(userDetails.startDate);
+  const endDate = new window.Date(userDetails.endDate);
+
   const validateDate = () => {
     let isValid = true;
-    const startDate = new window.Date(userDetails.startDate);
-    const endDate = new window.Date(userDetails.endDate);
     if (!!startDate && !!endDate) {
       if (startDate.valueOf() <= endDate.valueOf()) {
         return isValid;
@@ -77,6 +78,13 @@ const ThirdStep = () => {
       }
     }
   };
+  useEffect(() => {
+    const duration = endDate.valueOf() - startDate.valueOf();
+    const millisecondsInAYear = 1000 * 60 * 60 * 24 * 365.25;
+    const years = Math.floor(duration / millisecondsInAYear);
+    setUserDetails({ ...userDetails, years: years }); 
+  }, [userDetails.startDate, userDetails.endDate]);
+
   const validateCompanyName = () => {
     userDetails.companyName
       ? setThirdStepErr({ ...thirdStepErr, companyName: '' })
@@ -212,17 +220,6 @@ const ThirdStep = () => {
                 />
                 <Err err={thirdStepErr.companyName} />
               </>
-
-              <Input
-                value={userDetails.years}
-                onChange={(e) => {
-                  handleInputChange('years', e.target.value);
-                }}
-                label='Experience (in yrs)'
-                type='number'
-                min={0}
-                err={thirdStepErr.years}
-              />
               <>
                 <Input
                   value={userDetails.position}

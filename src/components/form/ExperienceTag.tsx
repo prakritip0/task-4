@@ -10,7 +10,7 @@ interface ExperienceTagPropsType {
 }
 
 const ExperienceTag = ({ experiences, removeExperience }: ExperienceTagPropsType) => {
-  console.log(experiences);
+  // console.log(experiences);
 
   return (
     <div className='flex flex-col gap-2 w-full  flex-wrap '>
@@ -25,18 +25,14 @@ const ExperienceTag = ({ experiences, removeExperience }: ExperienceTagPropsType
               <div className='flex flex-col'>
                 <p className='text-sm font-bold'>{experience.position}</p>
                 <p className='text-xs font-semibold'>{experience.companyName}</p>
-                <p className='text-xs'>{experience.years} year(s)</p>
+                <p className='text-xs'>
+                  {experience.years} {experience.years > 1 ? 'years' : 'year'}
+                </p>
                 <p></p>
               </div>
-              <div className='flex gap-1'>
-                <button>✍</button>
-                <button
-                  className='text-[0.7rem] cursor-pointer'
-                  onClick={() => removeExperience(i)}
-                >
-                  ✗
-                </button>
-              </div>
+              <button className='text-[0.7rem] cursor-pointer' onClick={() => removeExperience(i)}>
+                ✗
+              </button>
             </div>
           );
         })}

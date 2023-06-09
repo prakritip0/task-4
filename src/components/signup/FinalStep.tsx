@@ -134,6 +134,7 @@ const FinalStep = () => {
     finalStepErr.salary,
     finalStepErr.resume,
   ]);
+  console.log(userDetails.agreed);
 
   return (
     <div className='w-[30rem] h-full flex flex-col justify-between  mx-[7rem]'>
@@ -218,6 +219,7 @@ const FinalStep = () => {
         id='hybrid'
         label='I agree to all the terms and conditions.'
         onClick={handleAgreement}
+        checked={userDetails.agreed ? true : false}
       />
       <div className='flex w-full gap-6'>
         <Button label='Back' disabled={false} onClick={goBackward} />

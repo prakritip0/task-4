@@ -1,0 +1,14 @@
+import React from 'react';
+import Label from './Label';
+import { CheckboxPropsType } from '../Types';
+
+const Checkbox = ({ label, ...props }: CheckboxPropsType) => {
+  return (
+    <div className='flex row-reverse flex-end items-center gap-2'>
+      <input id={props.id} type='checkbox' {...props} checked={props.checked} onChange={props.onChange}/>
+      <Label htmlFor={props.id} label={label} />
+    </div>
+  );
+};
+
+export default Checkbox;

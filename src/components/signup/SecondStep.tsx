@@ -1,51 +1,36 @@
-import React, { ChangeEvent, useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useOutletContext } from 'react-router-dom';
 import Input from '../form/Input';
 import Select from '../form/Select';
-import SkillTag from '../form/SkillTag';
+import Tag from '../form/Tag';
 import Button from '../form/Button';
-import { SignUpContext } from '../../pages/SignUp';
+import { userDetailsType } from '../Types';
 
 const SecondStep = () => {
-  const { userDetails, setUserDetails } = useContext(SignUpContext);
-
   const [skillErr, setSkillErr] = useState('');
   const [formalDegreeErr, setFormalDegreeErr] = useState('');
   const [secondNextDisabled, setSecondNextDisabled] = useState(true);
   const [degreeNameErr, setDegreeNameErr] = useState('');
 
-  const { moveForward, goBackward } = useOutletContext<{
+  const { moveForward, goBackward, userDetails, setUserDetails } = useOutletContext<{
     moveForward: () => void;
     goBackward: () => void;
+    userDetails: userDetailsType;
+    setUserDetails:React.Dispatch<React.SetStateAction<userDetailsType>>;
   }>();
 
-  const addSkill = (e: ChangeEvent<HTMLInputElement>) => {
-    // setSkills(e.target.value);
-    setUserDetails({ ...userDetails, skill: e.target.value });
+  const handleInputChange = (field: string, value: string) => {
+    setUserDetails({ ...userDetails, [field]: value });
   };
-  // const addToSkillTagsArr = (e:KeyboardEvent<HTMLInputElement>)=>{
-  //   if (e.key === 'Enter') {
-  //     setSkillTags((prevVal) => [...prevVal, skills]);
-  //     setSkills('');
-  //   }
-  // }
 
-  const handleFormalDegreeChange = (e: ChangeEvent<HTMLSelectElement>) => {
-    // setFormalDegree(e.target.value);
-    setUserDetails({ ...userDetails, formalDegree: e.target.value });
-  };
-  const handleDegreeNameChange = (e: ChangeEvent<HTMLInputElement>) => {
-    // setDegreeName(e.target.value)
-    setUserDetails({ ...userDetails, degreeName: e.target.value });
-  };
   const validateFormalDegree = () => {
     userDetails.formalDegree
       ? setFormalDegreeErr('')
-      : setFormalDegreeErr('Formal Degree is required.');
+      : setFormalDegreeErr('*Formal Degree is required.');
   };
   const validateSkill = () => {
     if (userDetails.skillTags.length === 0) {
-      userDetails.skill ? setSkillErr('') : setSkillErr('Skills are required.');
+      userDetails.skill ? setSkillErr('') : setSkillErr('*Skills are required.');
     } else {
       setSkillErr('');
     }
@@ -53,29 +38,26 @@ const SecondStep = () => {
   const validateDegreeName = () => {
     userDetails.degreeName
       ? setDegreeNameErr('')
-      : setDegreeNameErr("Please mention your degree's name.");
+      : setDegreeNameErr("*Please mention your degree's name.");
   };
-  const removeTag = (i: number) => {
+  const removeSkill = (i: number) => {
     const updatedSkills = userDetails.skillTags;
     updatedSkills.splice(i, 1);
-    // setSkillTags([...updatedSkills]);
     setUserDetails({ ...userDetails, skillTags: [...updatedSkills] });
   };
-  //  skillTags.length>=10 && setSkillTags((prevValue)=>[...prevValue.length===0])
-  // console.log('skillz', skillTags);
 
   useEffect(() => {
-    // console.log(userDetails.skillTags.length <= 0);
-
     const noErrMessage = !skillErr && !formalDegreeErr && !degreeNameErr;
     const isDisabled =
       userDetails.skillTags.length <= 0 ||
       !userDetails.formalDegree ||
       !userDetails.degreeName ||
       !noErrMessage;
-    console.log('noerr', noErrMessage);
 
     setSecondNextDisabled(isDisabled);
+    isDisabled
+      ? setUserDetails({ ...userDetails, secondStepComplete: false })
+      : setUserDetails({ ...userDetails, secondStepComplete: true });
   }, [
     userDetails.skillTags,
     userDetails.formalDegree,
@@ -85,8 +67,6 @@ const SecondStep = () => {
     degreeNameErr,
   ]);
 
-  console.log('skillTags', userDetails.skillTags);
-
   return (
     <div className='flex flex-col h-full align-start justify-between w-[30rem] mx-[7rem] pt-[6rem]'>
       <div className='flex flex-col items-start  gap-6'>
@@ -94,9 +74,9 @@ const SecondStep = () => {
           <Input
             id='skills'
             value={userDetails.skill}
-            onChange={addSkill}
+            onChange={(e) => handleInputChange('skill', e.target.value)}
             placeholder='Your Skills'
-            labelName='Skills'
+            label='Skills'
             type='text'
             onBlur={validateSkill}
             err={skillErr}
@@ -112,16 +92,16 @@ const SecondStep = () => {
               }
             }}
           />
-          <SkillTag skillTags={userDetails.skillTags} removeSkill={removeTag} />
+          <Tag tags={userDetails.skillTags} removeTag={removeSkill} />
           {userDetails.skillTags.length === 10 && (
             <p className='text-xs text-red-700'>10 skills are enough, mate.</p>
           )}
         </div>
         <Select
-          id='foramlDegree'
+          id='formalDegree'
           placeholder='Highest Formal Degree'
           value={userDetails.formalDegree}
-          onChange={handleFormalDegreeChange}
+          onChange={(e) => handleInputChange('formalDegree', e.target.value)}
           options={[
             { value: 'phd', label: 'PHD' },
             { value: 'masters', label: 'Bachelors' },
@@ -131,15 +111,14 @@ const SecondStep = () => {
           ]}
           onBlur={validateFormalDegree}
           err={formalDegreeErr}
-          labelName='Formal Degree'
+          label='Formal Degree'
         />
-
         <Input
           id='degreeName'
           value={userDetails.degreeName}
-          onChange={handleDegreeNameChange}
+          onChange={(e) => handleInputChange('degreeName', e.target.value)}
           placeholder='Formal Degree Name'
-          labelName='Degree Name'
+          label='Degree Name'
           type='text'
           onBlur={validateDegreeName}
           err={degreeNameErr}

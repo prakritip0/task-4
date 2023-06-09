@@ -1,82 +1,71 @@
-import React, { useEffect, useState, Dispatch, SetStateAction } from 'react';
+import React, { useEffect, useState } from 'react';
 import SignUpDesign from '../components/signup/SignUpDesign';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import StepGuide from '../components/signup/StepGuide';
-import { createContext } from 'react';
-interface userDetailsType {
-  firstName: string;
-  lastName: string;
-  email: string;
-  gender: string;
-  dateOfBirth: string;
-  skill: string;
-  formalDegree: string;
-  degreeName: string;
-  skillTags: string[] 
-}
-
-interface SignUpContextType {
-  userDetails: userDetailsType;
-  setUserDetails: Dispatch<
-    SetStateAction<{
-      firstName: string;
-      lastName: string;
-      email: string;
-      gender: string;
-      dateOfBirth: string;
-      skill: string;
-      formalDegree: string;
-      degreeName: string;
-      skillTags: string[] 
-    }>
-  >;
-}
-
-export const SignUpContext = createContext<SignUpContextType>({
-  userDetails: {
-    firstName: '',
-    lastName: '',
-    email: '',
-    gender: '',
-    dateOfBirth: '',
-    skill: '',
-    formalDegree: '',
-    degreeName: '',
-    skillTags: [],
-  },
-  setUserDetails: () => {
-    return;
-  },
-});
+import { userDetailsType } from '../components/Types';
 
 const stripTrailingChar = (str: string, char: string) => {
   return str.endsWith(char) ? str.slice(0, -1) : str;
 };
 
+export const defaultValues = {
+  firstName: '',
+  lastName: '',
+  email: '',
+  gender: '',
+  dateOfBirth: '',
+  skill: '',
+  formalDegree: '',
+  degreeName: '',
+  skillTags: [],
+  companyName: '',
+  years: 0,
+  position: '',
+  role: '',
+  startDate: '',
+  endDate: '',
+  experiences: [],
+  noExperience:false,
+  jobPreferences: [],
+  salaryLowerLimit: '',
+  salaryUpperLimit: '',
+  imageURL: '',
+  resumeFileName: '',
+  agreed: false,
+  firstStepComplete: false,
+  secondStepComplete: false,
+  thirdStepComplete: false,
+  finalStepComplete: false,
+};
+
 const SignUp = () => {
   const location = useLocation();
-  const [userDetails, setUserDetails] = useState<userDetailsType>({
-    firstName: '',
-    lastName: '',
-    email: '',
-    gender: '',
-    dateOfBirth: '',
-    skill: '',
-    formalDegree: '',
-    degreeName: '',
-    skillTags: [],
-  });
+  // get userDetail:localStorage
+  const storedUserDetails = localStorage.getItem('userDetails');
+  const _userDetails = storedUserDetails ? JSON.parse(storedUserDetails) : defaultValues;
+
+  const [userDetails, setUserDetails] = useState<userDetailsType>(_userDetails);
+
+  useEffect(() => {
+    localStorage.setItem('userDetails', JSON.stringify(userDetails));
+  }, [userDetails]);
 
   const [signupStep, setSignupStep] = useState(0);
-
   const titles = [
     'Lets start with your Personal Information',
     'Your Skills and Certifications',
     'Your Work Experience',
     'Your Job Preferences',
+    '',
   ];
   const navigate = useNavigate();
-  const routes = ['/signup', '/signup/second-step', '/signup/third-step', '/signup/final-step'];
+  const routes = [
+    '/signup',
+    '/signup/second-step',
+    '/signup/third-step',
+    '/signup/final-step',
+    '/signup/submitted',
+  ];
 
   useEffect(() => {
     const pathname = stripTrailingChar(location.pathname, '/');
@@ -107,15 +96,21 @@ const SignUp = () => {
         </h4>
 
         <div className='flex justify-between  items-center m-auto  w-full '>
-          <StepGuide signupStep={signupStep} />
-          <SignUpContext.Provider value={{ userDetails, setUserDetails }}>
-            <Outlet
-              context={{
-                moveForward,
-                goBackward,
-              }}
-            />
-          </SignUpContext.Provider>
+          <StepGuide
+            signupStep={signupStep}
+            firstStepComplete={userDetails.firstStepComplete}
+            secondStepComplete={userDetails.secondStepComplete}
+            thirdStepComplete={userDetails.thirdStepComplete}
+            finalStepComplete={userDetails.finalStepComplete}
+          />
+          <Outlet
+            context={{
+              moveForward,
+              goBackward,
+              userDetails,
+              setUserDetails,
+            }}
+          />
           <SignUpDesign />
         </div>
       </div>

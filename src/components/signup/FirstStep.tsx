@@ -1,17 +1,15 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Input from '../form/Input';
 import Select from '../form/Select';
 import Date from '../form/Date';
 import { useOutletContext } from 'react-router-dom';
 import Button from '../form/Button';
 import { ChangeEvent } from 'react';
-import { SignUpContext } from '../../pages/SignUp';
+import { userDetailsType } from '../Types';
 import Err from '../form/Err';
-
-export let firstStepComplete: boolean;
+import Avatar from '../form/Avatar';
 
 const FirstStep = () => {
-  const { userDetails, setUserDetails } = useContext(SignUpContext);
   const [err, setErr] = useState({
     firstName: '',
     lastName: '',
@@ -20,23 +18,15 @@ const FirstStep = () => {
   const [genderErr, setGenderErr] = useState('');
   const [ageErr, setAgeErr] = useState('');
   const [firstNextDisabled, setFirstNextDisabled] = useState(true);
-  const { moveForward, goBackward } = useOutletContext<{
+  const { moveForward, goBackward, userDetails, setUserDetails } = useOutletContext<{
     moveForward: () => void;
     goBackward: () => void;
-    isNextDisabled: boolean;
-    setIsNextDisabled: () => void;
+    userDetails: userDetailsType;
+    setUserDetails:React.Dispatch<React.SetStateAction<userDetailsType>>;
   }>();
-  const handleFirstNameChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setUserDetails({ ...userDetails, firstName: e.target.value });
-  };
-  const handleLastNameChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setUserDetails({ ...userDetails, lastName: e.target.value });
-  };
-  const handleEmailChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setUserDetails({ ...userDetails, email: e.target.value });
-  };
-  const handleGenderChange = (e: ChangeEvent<HTMLSelectElement>) => {
-    setUserDetails({ ...userDetails, gender: e.target.value });
+
+  const handleInputChange = (field: string, value: string) => {
+    setUserDetails({ ...userDetails, [field]: value });
   };
 
   // eslint-disable-next-line no-useless-escape
@@ -45,23 +35,23 @@ const FirstStep = () => {
   const validateFirstName = () => {
     userDetails.firstName
       ? setErr({ ...err, firstName: '' })
-      : setErr({ ...err, firstName: 'First name is required.' });
+      : setErr({ ...err, firstName: '*First name is required.' });
   };
   const validateLastName = () => {
     userDetails.lastName
       ? setErr({ ...err, lastName: '' })
-      : setErr({ ...err, lastName: 'Last name is required.' });
+      : setErr({ ...err, lastName: '*Last name is required.' });
   };
   const validateEmail = () => {
     regex.test(userDetails.email)
       ? setErr({ ...err, email: '' })
-      : setErr({ ...err, email: 'Correct email is required.' });
+      : setErr({ ...err, email: '*Correct email is required.' });
   };
   const validateGender = () => {
-    userDetails.gender ? setGenderErr('') : setGenderErr('Gender is required.');
+    userDetails.gender ? setGenderErr('') : setGenderErr('*Gender is required.');
   };
 
-  const handleAgeChange = () => {
+  const validateAge = () => {
     let isValid = true;
     const DOB = new window.Date(userDetails.dateOfBirth);
     const currentDate = new window.Date();
@@ -79,17 +69,31 @@ const FirstStep = () => {
   };
 
   const handleDobChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const isValid = handleAgeChange();
+    const isValid = validateAge();
     if (!isValid) {
-      setAgeErr('You must be 18 or older.');
+      setAgeErr('*You must be 18 or older.');
     } else {
       setAgeErr('');
     }
     setUserDetails({ ...userDetails, dateOfBirth: e.target.value });
+
   };
+  const readImage = (e: ChangeEvent<HTMLInputElement>) => {
+    const uploadedImage = e.target.files;
+    const previewImage = uploadedImage && uploadedImage[0];
+
+    const reader = new FileReader();
+    reader.addEventListener('load', () => {
+      setUserDetails({ ...userDetails, imageURL: reader.result as string });
+    });
+    reader.readAsDataURL(previewImage as File);
+
+  };
+
   useEffect(() => {
     const noErrMessage = !err.firstName && !err.lastName && !err.email && !genderErr && !ageErr;
     const isDisabled =
+      !userDetails.imageURL ||
       !userDetails.firstName ||
       !userDetails.lastName ||
       !userDetails.email ||
@@ -97,7 +101,11 @@ const FirstStep = () => {
       !userDetails.dateOfBirth ||
       !noErrMessage;
     setFirstNextDisabled(isDisabled);
+    isDisabled
+      ? (setUserDetails({ ...userDetails, firstStepComplete: false }))
+      : setUserDetails({ ...userDetails, firstStepComplete: true });
   }, [
+    userDetails.imageURL,
     userDetails.firstName,
     userDetails.lastName,
     userDetails.email,
@@ -109,20 +117,35 @@ const FirstStep = () => {
     genderErr,
     ageErr,
   ]);
-  firstStepComplete = !firstNextDisabled;
 
   return (
-    <div className='flex flex-col align-start justify-between pt-[6rem] h-full w-[30rem] mx-[7rem]'>
+    <div className='flex flex-col align-start justify-between  h-full w-[30rem] mx-[7rem]'>
       <div className='flex flex-col  gap-10 items-start 2xl:gap-10'>
+        <div className='profilepic flex items-center w-full gap-6'>
+          <Avatar src={userDetails.imageURL} />
+          <input
+            type='file'
+            id='image'
+            accept='image/png, image/jpg, image/jpeg'
+            onChange={readImage}
+            hidden
+          />
+          <label
+            htmlFor='image'
+            className='text-xs text-indigo-500 border border-indigo-500 rounded-sm px-1 py-1'
+          >
+            Upload Image ↑
+          </label>
+        </div>
         <div className='name flex flex-row gap-4 w-full'>
           <div>
             <Input
               id='firstName'
               placeholder='Ram'
-              labelName='First Name'
+              label='First Name'
               type='text'
               value={userDetails.firstName}
-              onChange={handleFirstNameChange}
+              onChange={(e) => handleInputChange('firstName', e.target.value)}
               onBlur={validateFirstName}
               err={err.firstName}
             />
@@ -132,10 +155,10 @@ const FirstStep = () => {
             <Input
               id='lastName'
               placeholder='Thapa'
-              labelName='Last Name'
+              label='Last Name'
               type='text'
               value={userDetails.lastName}
-              onChange={handleLastNameChange}
+              onChange={(e) => handleInputChange('lastName', e.target.value)}
               onBlur={validateLastName}
               err={err.lastName}
             />
@@ -146,10 +169,10 @@ const FirstStep = () => {
           <Input
             id='email'
             placeholder='ramthapa@gmail.com'
-            labelName='Email'
+            label='Email'
             type='email'
             value={userDetails.email}
-            onChange={handleEmailChange}
+            onChange={(e) => handleInputChange('email', e.target.value)}
             onBlur={validateEmail}
             err={err.email}
           />
@@ -159,7 +182,7 @@ const FirstStep = () => {
           <div>
             <Select
               id='gender'
-              onChange={handleGenderChange}
+              onChange={(e) => handleInputChange('gender', e.target.value)}
               value={userDetails.gender}
               options={[
                 { value: 'Male', label: "I'm a male." },
@@ -169,22 +192,22 @@ const FirstStep = () => {
               placeholder='Choose gender'
               onBlur={validateGender}
               err={genderErr}
-              labelName='Gender'
+              label='Gender'
             />
             <Err err={genderErr} />
           </div>
           <div>
             <Date
-              id='date'
+              id='dob'
               value={userDetails.dateOfBirth}
               onChange={handleDobChange}
               err={ageErr}
+              label='Date of birth'
             />
             <Err err={ageErr} />
           </div>
         </div>
       </div>
-
       <div className='flex gap-6 pt-[2rem] 2xl:pt-[4rem] w-full'>
         <Button label='Back' disabled={true} onClick={goBackward} />
         <Button label={'Next'} disabled={firstNextDisabled} onClick={moveForward} />

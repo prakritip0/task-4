@@ -218,7 +218,7 @@ const FinalStep = () => {
       <Checkbox
         id='hybrid'
         label='I agree to all the terms and conditions.'
-        onClick={handleAgreement}
+        onChange={handleAgreement}
         checked={userDetails.agreed ? true : false}
       />
       <div className='flex w-full gap-6'>
